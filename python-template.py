@@ -119,28 +119,31 @@ def get_parser():
 
 message_dictionary = {
     "100": "senzing-" + SENZING_PRODUCT_ID + "{0:04d}I",
-    "101": "Enter {0}",
-    "102": "Exit {0}",
-    "103": "Sleeping {0} seconds.",
-    "104": "Sleeping infinitely.",
-    "197": "Version: {0}  Updated: {1}",
-    "198": "For information on warnings and errors, see https://github.com/Senzing/stream-loader#errors",
-    "199": "{0}",
+    "293": "For information on warnings and errors, see https://github.com/Senzing/stream-loader#errors",
+    "294": "Version: {0}  Updated: {1}",
+    "295": "Sleeping infinitely.",
+    "296": "Sleeping {0} seconds.",
+    "297": "Enter {0}",
+    "298": "Exit {0}",
+    "299": "{0}",
     "300": "senzing-" + SENZING_PRODUCT_ID + "{0:04d}W",
+    "499": "{0}",
     "500": "senzing-" + SENZING_PRODUCT_ID + "{0:04d}E",
-    "501": "Unknown database scheme '{0}' in database url '{1}'",
-    "598": "Bad SENZING_SUBCOMMAND: {0}.",
-    "599": "No processing done.",
+    "695": "Unknown database scheme '{0}' in database url '{1}'",
+    "696": "Bad SENZING_SUBCOMMAND: {0}.",
+    "697": "No processing done.",
+    "698": "Program terminated with error.",
+    "699": "{0}",
     "700": "senzing-" + SENZING_PRODUCT_ID + "{0:04d}E",
-    "701": "Could not initialize G2Engine with '{0}'. Error: {1}",
-    "702": "Could not initialize G2Config with '{0}'. Error: {1}",
-    "703": "Could not initialize G2ConfigMgr with '{0}'. Error: {1}",
-    "704": "Could not initialize G2Audit with '{0}'. Error: {1}",
-    "705": "Could not initialize G2Diagnostic with '{0}'. Error: {1}",
-    "706": "Could not initialize G2Hasher with '{0}'. Error: {1}",
-    "707": "Could not initialize G2Product with '{0}'. Error: {1}",
-    "720": "Original and new database URLs do not match. Original URL: {0}; Reconstructed URL: {1}",
-    "799": "Program terminated with error.",
+    "791": "Original and new database URLs do not match. Original URL: {0}; Reconstructed URL: {1}",
+    "792": "Could not initialize G2Product with '{0}'. Error: {1}",
+    "793": "Could not initialize G2Hasher with '{0}'. Error: {1}",
+    "794": "Could not initialize G2Diagnostic with '{0}'. Error: {1}",
+    "795": "Could not initialize G2Audit with '{0}'. Error: {1}",
+    "796": "Could not initialize G2ConfigMgr with '{0}'. Error: {1}",
+    "797": "Could not initialize G2Config with '{0}'. Error: {1}",
+    "798": "Could not initialize G2Engine with '{0}'. Error: {1}",
+    "899": "{0}",
     "900": "senzing-" + SENZING_PRODUCT_ID + "{0:04d}D",
     "999": "{0}",
 }
@@ -284,12 +287,12 @@ def validate_configuration(config):
     # Log where to go for help.
 
     if len(user_warning_messages) > 0 or len(user_error_messages) > 0:
-        logging.info(message_info(198))
+        logging.info(message_info(293))
 
     # If there are error messages, exit.
 
     if len(user_error_messages) > 0:
-        exit_error(599)
+        exit_error(597)
 
 
 def redact_configuration(config):
@@ -310,7 +313,7 @@ def create_signal_handler_function(args):
     '''
 
     def result_function(signal_number, frame):
-        logging.info(message_info(102, args))
+        logging.info(message_info(298, args))
         sys.exit(0)
 
     return result_function
@@ -329,7 +332,7 @@ def entry_template(config):
     else:
         final_config = redact_configuration(config)
     config_json = json.dumps(final_config, sort_keys=True)
-    return message_info(101, config_json)
+    return message_info(297, config_json)
 
 
 def exit_template(config):
@@ -343,13 +346,13 @@ def exit_template(config):
     else:
         final_config = redact_configuration(config)
     config_json = json.dumps(final_config, sort_keys=True)
-    return message_info(102, config_json)
+    return message_info(298, config_json)
 
 
 def exit_error(index, *args):
     ''' Log error message and exit program. '''
     logging.error(message_error(index, *args))
-    logging.error(message_error(599))
+    logging.error(message_error(598))
     sys.exit(1)
 
 
@@ -438,13 +441,13 @@ def do_sleep(args):
     # Sleep
 
     if sleep_time_in_seconds > 0:
-        logging.info(message_info(103, sleep_time_in_seconds))
+        logging.info(message_info(296, sleep_time_in_seconds))
         time.sleep(sleep_time_in_seconds)
 
     else:
         sleep_time_in_seconds = 3600
         while True:
-            logging.info(message_info(104))
+            logging.info(message_info(295))
             time.sleep(sleep_time_in_seconds)
 
     # Epilog.
@@ -455,7 +458,7 @@ def do_sleep(args):
 def do_version(args):
     ''' Log version information. '''
 
-    logging.info(message_info(197, __version__, __updated__))
+    logging.info(message_info(294, __version__, __updated__))
 
 # -----------------------------------------------------------------------------
 # Main
@@ -515,7 +518,7 @@ if __name__ == "__main__":
     # Test to see if function exists in the code.
 
     if subcommand_function_name not in globals():
-        logging.warning(message_warning(598, subcommand))
+        logging.warning(message_warning(596, subcommand))
         parser.print_help()
         exit_silently()
 
