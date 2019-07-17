@@ -26,7 +26,6 @@ import os
 import signal
 import sys
 import time
-from apt_pkg import config
 
 __all__ = []
 __version__ = "1.0.0"
