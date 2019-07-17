@@ -26,11 +26,12 @@ import os
 import signal
 import sys
 import time
+from apt_pkg import config
 
 __all__ = []
 __version__ = "1.0.0"
 __date__ = '2019-07-16'
-__updated__ = '2019-07-16'
+__updated__ = '2019-07-17'
 
 SENZING_PRODUCT_ID = "5xxx"  # See https://github.com/Senzing/knowledge-base/blob/master/lists/senzing-product-ids.md
 log_format = '%(asctime)s %(message)s'
@@ -313,19 +314,27 @@ def bootstrap_signal_handler(signal, frame):
 
 def entry_template(config):
     ''' Format of entry message. '''
+    debug = config.get("debug", False)
     config['start_time'] = time.time()
-    redacted_configuration = redact_configuration(config)
-    config_json = json.dumps(redacted_configuration, sort_keys=True)
+    if debug:
+        final_config = config
+    else:
+        final_config = redact_configuration(config)
+    config_json = json.dumps(final_config, sort_keys=True)
     return message_info(101, config_json)
 
 
 def exit_template(config):
     ''' Format of exit message. '''
+    debug = config.get("debug", False)
     stop_time = time.time()
     config['stop_time'] = stop_time
     config['elapsed_time'] = stop_time - config.get('start_time', stop_time)
-    redacted_configuration = redact_configuration(config)
-    config_json = json.dumps(redacted_configuration, sort_keys=True)
+    if debug:
+        final_config = config
+    else:
+        final_config = redact_configuration(config)
+    config_json = json.dumps(final_config, sort_keys=True)
     return message_info(102, config_json)
 
 
