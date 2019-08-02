@@ -28,9 +28,9 @@ import sys
 import time
 
 __all__ = []
-__version__ = "1.0.0"
+__version__ = "1.0.0"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = '2019-07-16'
-__updated__ = '2019-07-18'
+__updated__ = '2019-08-02'
 
 SENZING_PRODUCT_ID = "5xxx"  # See https://github.com/Senzing/knowledge-base/blob/master/lists/senzing-product-ids.md
 log_format = '%(asctime)s %(message)s'
@@ -85,24 +85,74 @@ keys_to_redact = [
 def get_parser():
     ''' Parse commandline arguments. '''
 
+    subcommands = {
+        'task1': {
+            "help": 'Example task #1.',
+            "arguments": {
+                "--debug": {
+                    "dest": "debug",
+                    "action": "store_true",
+                    "help": "Enable debugging. (SENZING_DEBUG) Default: False"
+                },
+                "--password": {
+                    "dest": "password",
+                    "metavar": "SENZING_PASSWORD",
+                    "help": "Example of information redacted in the log. Default: None"
+                },
+                "--senzing-dir": {
+                    "dest": "senzing_dir",
+                    "metavar": "SENZING_DIR",
+                    "help": "Location of Senzing. Default: /opt/senzing"
+                },
+            },
+        },
+        'task2': {
+            "help": 'Example task #2.',
+            "arguments": {
+                "--debug": {
+                    "dest": "debug",
+                    "action": "store_true",
+                    "help": "Enable debugging. (SENZING_DEBUG) Default: False"
+                },
+                "--password": {
+                    "dest": "password",
+                    "metavar": "SENZING_PASSWORD",
+                    "help": "Example of information redacted in the log. Default: None"
+                },
+                "--senzing-dir": {
+                    "dest": "senzing_dir",
+                    "metavar": "SENZING_DIR",
+                    "help": "Location of Senzing. Default: /opt/senzing"
+                },
+            },
+        },
+        'sleep': {
+            "help": 'Do nothing but sleep. For Docker testing.',
+            "arguments": {
+                "--sleep-time-in-seconds": {
+                    "dest": "sleep_time_in_seconds",
+                    "metavar": "SENZING_SLEEP_TIME_IN_SECONDS",
+                    "help": "Sleep time in seconds. DEFAULT: 0 (infinite)"
+                },
+            },
+        },
+        'version': {
+            "help": 'Print version of program.',
+        },
+        'docker-acceptance-test': {
+            "help": 'For Docker acceptance testing.',
+        },
+    }
+
     parser = argparse.ArgumentParser(prog="python-template.py", description="Example python skeleton. For more information, see https://github.com/Senzing/python-template")
     subparsers = parser.add_subparsers(dest='subcommand', help='Subcommands (SENZING_SUBCOMMAND):')
 
-    subparser_1 = subparsers.add_parser('task1', help='Example task #1.')
-    subparser_1.add_argument("--debug", dest="debug", action="store_true", help="Enable debugging. (SENZING_DEBUG) Default: False")
-    subparser_1.add_argument("--password", dest="password", metavar="SENZING_PASSWORD", help="Example of information redacted in the log. Default: None")
-    subparser_1.add_argument("--senzing-dir", dest="senzing_dir", metavar="SENZING_DIR", help="Location of Senzing. Default: /opt/senzing")
-
-    subparser_2 = subparsers.add_parser('task2', help='Example task #2.')
-    subparser_2.add_argument("--debug", dest="debug", action="store_true", help="Enable debugging. (SENZING_DEBUG) Default: False")
-    subparser_2.add_argument("--password", dest="password", metavar="SENZING_PASSWORD", help="Example of information redacted in the log. Default: None")
-    subparser_2.add_argument("--senzing-dir", dest="senzing_dir", metavar="SENZING_DIR", help="Location of Senzing. Default: /opt/senzing")
-
-    subparser_8 = subparsers.add_parser('sleep', help='Do nothing but sleep. For Docker testing.')
-    subparser_8.add_argument("--sleep-time-in-seconds", dest="sleep_time_in_seconds", metavar="SENZING_SLEEP_TIME_IN_SECONDS", help="Sleep time in seconds. DEFAULT: 0 (infinite)")
-
-    subparser_9 = subparsers.add_parser('version', help='Print version of stream-loader.py.')
-    subparser_10 = subparsers.add_parser('docker-acceptance-test', help='For Docker acceptance testing.')
+    for subcommand_key, subcommand_values in subcommands.items():
+        subcommand_help = subcommand_values.get('help', "")
+        subcommand_arguments = subcommand_values.get('arguments', {})
+        subparser = subparsers.add_parser(subcommand_key, help=subcommand_help)
+        for argument_key, argument_values in subcommand_arguments.items():
+            subparser.add_argument(argument_key, **argument_values)
 
     return parser
 
@@ -116,6 +166,11 @@ def get_parser():
 # 7xx Internal error (i.e. logging.error for Server errors)
 # 9xx Debugging (i.e. logging.debug())
 
+
+MESSAGE_INFO = 100
+MESSAGE_WARN = 300
+MESSAGE_ERROR = 700
+MESSAGE_DEBUG = 900
 
 message_dictionary = {
     "100": "senzing-" + SENZING_PRODUCT_ID + "{0:04d}I",
@@ -167,19 +222,19 @@ def message_generic(generic_index, index, *args):
 
 
 def message_info(index, *args):
-    return message_generic(100, index, *args)
+    return message_generic(MESSAGE_INFO, index, *args)
 
 
-def message_warning(index, *args):
-    return message_generic(300, index, *args)
+def message_warn(index, *args):
+    return message_generic(MESSAGE_WARN, index, *args)
 
 
 def message_error(index, *args):
-    return message_generic(700, index, *args)
+    return message_generic(MESSAGE_ERROR, index, *args)
 
 
 def message_debug(index, *args):
-    return message_generic(900, index, *args)
+    return message_generic(MESSAGE_DEBUG, index, *args)
 
 
 def get_exception():
@@ -358,7 +413,7 @@ def exit_template(config):
 def exit_error(index, *args):
     ''' Log error message and exit program. '''
     logging.error(message_error(index, *args))
-    logging.error(message_error(598))
+    logging.error(message_error(698))
     sys.exit(1)
 
 
