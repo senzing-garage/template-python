@@ -30,7 +30,7 @@ import time
 __all__ = []
 __version__ = "1.0.0"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = '2019-07-16'
-__updated__ = '2019-09-23'
+__updated__ = '2019-09-26'
 
 SENZING_PRODUCT_ID = "5xxx"  # See https://github.com/Senzing/knowledge-base/blob/master/lists/senzing-product-ids.md
 log_format = '%(asctime)s %(message)s'
@@ -191,6 +191,7 @@ message_dictionary = {
     "698": "Program terminated with error.",
     "699": "{0}",
     "700": "senzing-" + SENZING_PRODUCT_ID + "{0:04d}E",
+    "885": "License has expired.",
     "886": "G2Engine.addRecord() bad return code: {0}; JSON: {1}",
     "888": "G2Engine.addRecord() G2ModuleNotInitialized: {0}; JSON: {1}",
     "889": "G2Engine.addRecord() G2ModuleGenericException: {0}; JSON: {1}",
@@ -359,7 +360,10 @@ def redact_configuration(config):
     ''' Return a shallow copy of config with certain keys removed. '''
     result = config.copy()
     for key in keys_to_redact:
-        result.pop(key)
+        try:
+            result.pop(key)
+        except:
+            pass
     return result
 
 # -----------------------------------------------------------------------------
@@ -418,7 +422,7 @@ def exit_error(index, *args):
 
 def exit_silently():
     ''' Exit program. '''
-    sys.exit(1)
+    sys.exit(0)
 
 # -----------------------------------------------------------------------------
 # do_* functions
