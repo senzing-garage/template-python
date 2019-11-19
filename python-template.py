@@ -360,7 +360,10 @@ def redact_configuration(config):
     ''' Return a shallow copy of config with certain keys removed. '''
     result = config.copy()
     for key in keys_to_redact:
-        result.pop(key)
+        try:
+            result.pop(key)
+        except:
+            pass
     return result
 
 # -----------------------------------------------------------------------------
@@ -419,7 +422,7 @@ def exit_error(index, *args):
 
 def exit_silently():
     ''' Exit program. '''
-    sys.exit(1)
+    sys.exit(0)
 
 # -----------------------------------------------------------------------------
 # do_* functions
