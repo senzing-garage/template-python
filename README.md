@@ -1,11 +1,11 @@
-# python-template
+# template-python
 
 This repository contains exemplar python scripts that can be used to start a new python project.
 
-## python-template.py
+## template-python.py
 
 The
-[python-template.py](python-template.py)
+[template-python.py](template-python.py)
 python script is a boilerplate which has the following features:
 
 1. Conforms to
