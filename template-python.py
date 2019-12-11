@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 
 # -----------------------------------------------------------------------------
-# python-template.py Example python skeleton.
+# template-python.py Example python skeleton.
 # Can be used as a boiler-plate to build new python scripts.
 # This skeleton implements the following features:
 #   1) "command subcommand" command line.
@@ -144,7 +144,7 @@ def get_parser():
         },
     }
 
-    parser = argparse.ArgumentParser(prog="python-template.py", description="Example python skeleton. For more information, see https://github.com/Senzing/python-template")
+    parser = argparse.ArgumentParser(prog="template-python.py", description="Example python skeleton. For more information, see https://github.com/Senzing/template-python")
     subparsers = parser.add_subparsers(dest='subcommand', help='Subcommands (SENZING_SUBCOMMAND):')
 
     for subcommand_key, subcommand_values in subcommands.items():
