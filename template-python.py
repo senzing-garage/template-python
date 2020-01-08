@@ -30,7 +30,7 @@ import time
 __all__ = []
 __version__ = "1.0.0"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = '2019-07-16'
-__updated__ = '2019-09-26'
+__updated__ = '2020-01-08'
 
 SENZING_PRODUCT_ID = "5xxx"  # See https://github.com/Senzing/knowledge-base/blob/master/lists/senzing-product-ids.md
 log_format = '%(asctime)s %(message)s'
@@ -75,7 +75,7 @@ configuration_locator = {
 
 keys_to_redact = [
     "password",
-    ]
+]
 
 # -----------------------------------------------------------------------------
 # Define argument parser
@@ -312,7 +312,7 @@ def get_configuration(args):
 
     integers = [
         'sleep_time_in_seconds'
-        ]
+    ]
     for integer in integers:
         integer_string = result.get(integer)
         result[integer] = int(integer_string)
@@ -371,6 +371,10 @@ def redact_configuration(config):
 # -----------------------------------------------------------------------------
 
 
+def bootstrap_signal_handler(signal, frame):
+    sys.exit(0)
+
+
 def create_signal_handler_function(args):
     ''' Tricky code.  Uses currying technique. Create a function for signal handling.
         that knows about "args".
@@ -381,10 +385,6 @@ def create_signal_handler_function(args):
         sys.exit(0)
 
     return result_function
-
-
-def bootstrap_signal_handler(signal, frame):
-    sys.exit(0)
 
 
 def entry_template(config):
@@ -582,7 +582,7 @@ if __name__ == "__main__":
     # Test to see if function exists in the code.
 
     if subcommand_function_name not in globals():
-        logging.warning(message_warning(596, subcommand))
+        logging.warning(message_warning(696, subcommand))
         parser.print_help()
         exit_silently()
 
