@@ -94,7 +94,7 @@ The following software programs need to be installed:
 
 1. [senzingapi](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-senzing-api.md)
 1. System dependencies
-    1. Ubuntu and
+    1. Debian, Ubuntu and
        [others](https://en.wikipedia.org/wiki/List_of_Linux_distributions#Debian-based)
         1. [Debian-based packages](src/apt-packages.txt)
     1. Red Hat, CentOS, openSuse and
@@ -143,6 +143,14 @@ The following software programs need to be installed:
     ```console
     export SENZING_G2_DIR=/opt/senzing/g2
     ```
+
+    1. Here's a simple test to see if `SENZING_G2_DIR` is correct.
+       The following command should return file contents.
+       Example:
+
+        ```console
+        cat ${SENZING_G2_DIR}/g2BuildVersion.json
+        ```
 
 1. Set common environment variables
    Example:
