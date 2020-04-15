@@ -94,12 +94,12 @@ The following software programs need to be installed:
 
 1. [senzingapi](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-senzing-api.md)
 1. System dependencies
-    1. [Debian-based packages](src/apt-packages.txt)
-       - For Ubuntu and
+    1. Ubuntu and
        [others](https://en.wikipedia.org/wiki/List_of_Linux_distributions#Debian-based)
-    1. [RPM-based packages](src/yum-packages.txt)
-       - For Red Hat, CentOS, openSuse and
+        1. [Debian-based packages](src/apt-packages.txt)
+    1. Red Hat, CentOS, openSuse and
        [others](https://en.wikipedia.org/wiki/List_of_Linux_distributions#RPM-based).
+        1. [RPM-based packages](src/yum-packages.txt)
 1. Python dependencies seen in [requirements.txt](requirements.txt).
    ([Hint](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-python-dependencies.md))
 
