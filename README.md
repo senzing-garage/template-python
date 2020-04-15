@@ -130,7 +130,7 @@ The following software programs need to be installed:
 
         ```console
         chmod +x ${SENZING_DOWNLOAD_FILE}
-        ``
+        ```
 
 1. :thinking: **Alternative:** The entire git repository can be downloaded by following instructions at
    [Clone repository](#clone-repository)
@@ -152,14 +152,15 @@ The following software programs need to be installed:
     ```
 
 1. :thinking: Set operating system specific environment variables.
-    1. Debian, Ubuntu, and [others](https://en.wikipedia.org/wiki/List_of_Linux_distributions#Debian-based).
+   Choose one of the options.
+    1. **Option #1:** For Debian, Ubuntu, and [others](https://en.wikipedia.org/wiki/List_of_Linux_distributions#Debian-based).
        Example:
 
         ```console
         export LD_LIBRARY_PATH=${SENZING_G2_DIR}/lib:${SENZING_G2_DIR}/lib/debian:$LD_LIBRARY_PATH
         ```
 
-    1. Red Hat, CentOS, openSuse and [others](https://en.wikipedia.org/wiki/List_of_Linux_distributions#RPM-based).
+    1. **Option #2** For Red Hat, CentOS, openSuse and [others](https://en.wikipedia.org/wiki/List_of_Linux_distributions#RPM-based).
        Example:
 
         ```console
@@ -168,7 +169,7 @@ The following software programs need to be installed:
 
 ### Run command
 
-1. XXX
+1. Run the command.
    Example:
 
    ```console
