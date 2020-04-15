@@ -101,14 +101,14 @@ The following software programs need to be installed:
 ### Download
 
 1. Get a local copy of
-   [template-repository.py](template-repository.py).
+   [template-python.py](template-python.py).
    Example:
 
     1. :pencil2: Specify where to download file.
        Example:
 
         ```console
-        export SENZING_DOWNLOAD_FILE=~/template-repository.py
+        export SENZING_DOWNLOAD_FILE=~/template-python.py
         ```
 
     1. Download file.
