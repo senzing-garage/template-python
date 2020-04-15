@@ -43,7 +43,12 @@ See [best practices](docs/best-practices.md).
     1. [Time](#time)
     1. [Background knowledge](#background-knowledge)
 1. [Demonstrate using Command Line Interface](#demonstrate-using-command-line-interface)
+    1. [Prerequisite software for CLI](#prerequisite-software-for-cli)
+    1. [Download](#download)
+    1. [Environment variables for CLI](#environment-variables-for-cli)
+    1. [Run command](#run-command)
 1. [Demonstrate using Docker](#demonstrate-using-docker)
+    1. [Prerequisite software for Docker](#prerequisite-software-for-docker)
     1. [Install Senzing](#install-senzing)
     1. [Configure Senzing](#configure-senzing)
     1. [Docker volumes](#docker-volumes)
@@ -53,7 +58,7 @@ See [best practices](docs/best-practices.md).
     1. [Database support](#database-support)
     1. [Run docker container](#run-docker-container)
 1. [Develop](#develop)
-    1. [Prerequisite software](#prerequisite-software)
+    1. [Prerequisite software for development](#prerequisite-software-for-development)
     1. [Clone repository](#clone-repository)
     1. [Build docker image](#build-docker-image)
 1. [Examples](#examples)
@@ -88,7 +93,7 @@ This repository assumes a working knowledge of:
 
 ## Demonstrate using Command Line Interface
 
-### Prerequisite software
+### Prerequisite software for CLI
 
 The following software programs need to be installed:
 
@@ -135,7 +140,7 @@ The following software programs need to be installed:
 1. :thinking: **Alternative:** The entire git repository can be downloaded by following instructions at
    [Clone repository](#clone-repository)
 
-### Environment variables
+### Environment variables for CLI
 
 1. :pencil2: Identify the Senzing `g2` directory.
    Example:
@@ -186,10 +191,18 @@ The following software programs need to be installed:
 
 ## Demonstrate using Docker
 
+### Prerequisite software for Docker
+
+The following software programs need to be installed:
+
+1. [docker](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-docker.md)
+
 ### Install Senzing
 
 1. If Senzing has not been installed, visit
    "[How to install Senzing using Docker](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-senzing-using-docker.md)".
+    1. If using Docker with a previous "system install" of Senzing,
+       see [Using Docker with system install](#using-docker-with-system-install).
 
 ### Configure Senzing
 
@@ -360,7 +373,7 @@ Unset environment variables have no effect on the
 
 The following instructions are used when modifying and building the Docker image.
 
-### Prerequisite software
+### Prerequisite software for development
 
 The following software programs need to be installed:
 
@@ -426,6 +439,21 @@ Configuration values specified by environment variable or command line parameter
 - **[SENZING_NETWORK](https://github.com/Senzing/knowledge-base/blob/master/lists/environment-variables.md#senzing_network)**
 - **[SENZING_RUNAS_USER](https://github.com/Senzing/knowledge-base/blob/master/lists/environment-variables.md#senzing_runas_user)**
 - **[SENZING_VAR_DIR](https://github.com/Senzing/knowledge-base/blob/master/lists/environment-variables.md#senzing_var_dir)**
+
+### Using Docker with system install
+
+It is possible to use Docker with a Senzing "system install" on a host system.
+In this case, the environment variables describing directories need to have values of the "system install" locations.
+
+1. Identify the `data_version`, `etc`, `g2`, and `var` directories.
+   Example:
+
+    ```console
+    export SENZING_DATA_VERSION_DIR=/opt/senzing/data/1.0.0
+    export SENZING_ETC_DIR=/etc/opt/senzing
+    export SENZING_G2_DIR=/opt/senzing/g2
+    export SENZING_VAR_DIR=/var/opt/senzing
+    ```
 
 ## Errors
 
