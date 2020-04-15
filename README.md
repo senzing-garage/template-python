@@ -434,17 +434,8 @@ Configuration values specified by environment variable or command line parameter
 ### Using Docker with system install
 
 It is possible to use Docker with a Senzing "system install" on a host system.
-In this case, the environment variables describing directories need to have values of the "system install" locations.
-
-1. Identify the `data_version`, `etc`, `g2`, and `var` directories.
-   Example:
-
-    ```console
-    export SENZING_DATA_VERSION_DIR=/opt/senzing/data/1.0.0
-    export SENZING_ETC_DIR=/etc/opt/senzing
-    export SENZING_G2_DIR=/opt/senzing/g2
-    export SENZING_VAR_DIR=/var/opt/senzing
-    ```
+If using the Senzing system installation on the host system is desired,
+see how to [use docker with system install](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/use-docker-with-system-install.md).
 
 ## Errors
 
