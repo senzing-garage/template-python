@@ -78,19 +78,10 @@ See [best practices](docs/best-practices.md).
 
 ## Expectations
 
-### Space
-
-This repository and demonstration require 6 GB free disk space.
-
-### Time
-
-Budget 40 minutes to get the demonstration up-and-running, depending on CPU and network speeds.
-
-### Background knowledge
-
-This repository assumes a working knowledge of:
-
-1. [Docker](https://github.com/Senzing/knowledge-base/blob/master/WHATIS/docker.md)
+- **Space:** This repository and demonstration require 6 GB free disk space.
+- **Time:** Budget 40 minutes to get the demonstration up-and-running, depending on CPU and network speeds.
+- **Background knowledge:** This repository assumes a working knowledge of:
+  - [Docker](https://github.com/Senzing/knowledge-base/blob/master/WHATIS/docker.md)
 
 ## Demonstrate using Command Line Interface
 
@@ -108,7 +99,7 @@ The following software programs need to be installed:
         1. [RPM-based packages](src/yum-packages.txt)
 1. Python dependencies
     1. [requirements.txt](requirements.txt).
-       ([Hint](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-python-dependencies.md))
+        1. [Installation hints](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-python-dependencies.md)
 
 ### Download
 
