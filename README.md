@@ -181,7 +181,7 @@ The following software programs need to be installed:
    Example:
 
    ```console
-   ${SENZING_DOWNLOAD_FILE}
+   ${SENZING_DOWNLOAD_FILE} --help
    ```
 
 ## Demonstrate using Docker
