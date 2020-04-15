@@ -105,8 +105,9 @@ The following software programs need to be installed:
     1. Red Hat, CentOS, openSuse and
        [others](https://en.wikipedia.org/wiki/List_of_Linux_distributions#RPM-based).
         1. [RPM-based packages](src/yum-packages.txt)
-1. Python dependencies seen in [requirements.txt](requirements.txt).
-   ([Hint](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-python-dependencies.md))
+1. Python dependencies
+    1. [requirements.txt](requirements.txt).
+       ([Hint](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-python-dependencies.md))
 
 ### Download
 
@@ -214,7 +215,8 @@ The following software programs need to be installed:
 Senzing Docker images follow the [Linux File Hierarchy Standard](https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.pdf).
 Inside the docker container, Senzing artifacts will be located in `/opt/senzing`, `/etc/opt/senzing`, and `/var/opt/senzing`.
 
-1. :pencil2: Specify the directory containing the Senzing installation.
+1. :pencil2: Specify the directory containing the Senzing installation on the host system
+   (i.e. *outside* the docker container).
    Use the same `SENZING_VOLUME` value used in the prior steps.
    Example:
 
