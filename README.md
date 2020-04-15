@@ -213,10 +213,10 @@ The following software programs need to be installed:
 ### Docker volumes
 
 Senzing Docker images follow the [Linux File Hierarchy Standard](https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.pdf).
-Inside the docker container, Senzing artifacts will be located in `/opt/senzing`, `/etc/opt/senzing`, and `/var/opt/senzing`.
+Inside the Docker container, Senzing artifacts will be located in `/opt/senzing`, `/etc/opt/senzing`, and `/var/opt/senzing`.
 
 1. :pencil2: Specify the directory containing the Senzing installation on the host system
-   (i.e. *outside* the docker container).
+   (i.e. *outside* the Docker container).
    Use the same `SENZING_VOLUME` value used in the prior steps.
    Example:
 
@@ -252,16 +252,16 @@ Inside the docker container, Senzing artifacts will be located in `/opt/senzing`
 
 ### Docker network
 
-:thinking: **Optional:**  Use if docker container is part of a docker network.
+:thinking: **Optional:**  Use if Docker container is part of a Docker network.
 
-1. List docker networks.
+1. List Docker networks.
    Example:
 
     ```console
     sudo docker network ls
     ```
 
-1. :pencil2: Specify docker network.
+1. :pencil2: Specify Docker network.
    Choose value from NAME column of `docker network ls`.
    Example:
 
@@ -278,7 +278,7 @@ Inside the docker container, Senzing artifacts will be located in `/opt/senzing`
 
 ### Docker user
 
-:thinking: **Optional:**  The docker container runs as "USER 1001".
+:thinking: **Optional:**  The Docker container runs as "USER 1001".
 Use if a different userid (UID) is required.
 
 1. :pencil2: Identify user.
@@ -344,14 +344,14 @@ For other databases, these steps may be skipped.
    [Support MS SQL](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/support-mssql.md)
    instructions to set `SENZING_OPT_MICROSOFT_DIR_PARAMETER`.
 
-### Run docker container
+### Run Docker container
 
-Although the `docker run` command looks complex,
+Although the `Docker run` command looks complex,
 it accounts for all of the optional variations described above.
 Unset environment variables have no effect on the
 `docker run` command and may be removed or remain.
 
-1. Run docker container.
+1. Run Docker container.
    Example:
 
     ```console
@@ -399,7 +399,7 @@ see [Environment Variables](https://github.com/Senzing/knowledge-base/blob/maste
 
 1. Follow steps in [clone-repository](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/clone-repository.md) to install the Git repository.
 
-### Build docker image
+### Build Docker image
 
 1. **Option #1:** Using `docker` command and GitHub.
 
@@ -423,7 +423,7 @@ see [Environment Variables](https://github.com/Senzing/knowledge-base/blob/maste
     sudo make docker-build
     ```
 
-    Note: `sudo make docker-build-development-cache` can be used to create cached docker layers.
+    Note: `sudo make docker-build-development-cache` can be used to create cached Docker layers.
 
 ## Examples
 
