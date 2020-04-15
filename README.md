@@ -46,8 +46,8 @@ See [best practices](docs/best-practices.md).
     1. [Run command](#run-command)
 1. [Demonstrate using Docker](#demonstrate-using-docker)
     1. [Prerequisite software for Docker](#prerequisite-software-for-docker)
-    1. [Install Senzing](#install-senzing)
-    1. [Configure Senzing](#configure-senzing)
+    1. [Install Senzing for Docker](#install-senzing-for-docker)
+    1. [Configure Senzing for Docker](#configure-senzing-for-docker)
     1. [Docker volumes](#docker-volumes)
     1. [Docker network](#docker-network)
     1. [Docker user](#docker-user)
@@ -187,14 +187,14 @@ The following software programs need to be installed:
 
 1. [docker](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-docker.md)
 
-### Install Senzing
+### Install Senzing for Docker
 
 1. If Senzing has not been installed, visit
    "[How to install Senzing using Docker](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-senzing-using-docker.md)".
     1. If using Docker with a previous "system install" of Senzing,
        see [Using Docker with system install](#using-docker-with-system-install).
 
-### Configure Senzing
+### Configure Senzing for Docker
 
 1. If Senzing has not been configured, visit
    "[How to configure Senzing using Docker](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/configure-senzing-using-docker.md)".
@@ -206,7 +206,8 @@ Inside the Docker container, Senzing artifacts will be located in `/opt/senzing`
 
 1. :pencil2: Specify the directory containing the Senzing installation on the host system
    (i.e. *outside* the Docker container).
-   Use the same `SENZING_VOLUME` value used in the prior steps.
+   Use the same `SENZING_VOLUME` value used when
+   [installing Senzing for Docker](#install-senzing-for-docker).
    Example:
 
     ```console
@@ -229,6 +230,10 @@ Inside the Docker container, Senzing artifacts will be located in `/opt/senzing`
     export SENZING_G2_DIR=${SENZING_VOLUME}/g2
     export SENZING_VAR_DIR=${SENZING_VOLUME}/var
     ```
+
+    *Note:* If using a "system install",
+    see [Using Docker with system install](#using-docker-with-system-install)
+    for how to set environment variables.
 
 1. Here's a simple test to see if `SENZING_G2_DIR` and `SENZING_DATA_VERSION_DIR` are correct.
    The following commands should return file contents.
