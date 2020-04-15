@@ -95,7 +95,7 @@ The following software programs need to be installed:
        [others](https://en.wikipedia.org/wiki/List_of_Linux_distributions#RPM-based).
         1. [RPM-based packages](src/yum-packages.txt)
 1. Python dependencies
-    1. [requirements.txt](requirements.txt).
+    1. [requirements.txt](requirements.txt)
         1. [Installation hints](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-python-dependencies.md)
 
 ### Download
