@@ -39,9 +39,6 @@ See [best practices](docs/best-practices.md).
 ### Contents
 
 1. [Expectations](#expectations)
-    1. [Space](#space)
-    1. [Time](#time)
-    1. [Background knowledge](#background-knowledge)
 1. [Demonstrate using Command Line Interface](#demonstrate-using-command-line-interface)
     1. [Prerequisite software for CLI](#prerequisite-software-for-cli)
     1. [Download](#download)
