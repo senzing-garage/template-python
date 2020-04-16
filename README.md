@@ -40,12 +40,12 @@ See [best practices](docs/best-practices.md).
 
 1. [Expectations](#expectations)
 1. [Demonstrate using Command Line Interface](#demonstrate-using-command-line-interface)
-    1. [Prerequisite software for CLI](#prerequisite-software-for-cli)
+    1. [Prerequisites for CLI](#prerequisites-for-cli)
     1. [Download](#download)
     1. [Environment variables for CLI](#environment-variables-for-cli)
     1. [Run command](#run-command)
 1. [Demonstrate using Docker](#demonstrate-using-docker)
-    1. [Prerequisite software for Docker](#prerequisite-software-for-docker)
+    1. [Prerequisites for Docker](#prerequisites-for-docker)
     1. [Install Senzing for Docker](#install-senzing-for-docker)
     1. [Configure Senzing for Docker](#configure-senzing-for-docker)
     1. [Docker volumes](#docker-volumes)
@@ -55,7 +55,7 @@ See [best practices](docs/best-practices.md).
     1. [Database support](#database-support)
     1. [Run Docker container](#run-docker-container)
 1. [Develop](#develop)
-    1. [Prerequisite software for development](#prerequisite-software-for-development)
+    1. [Prerequisites for development](#prerequisites-for-development)
     1. [Clone repository](#clone-repository)
     1. [Build Docker image](#build-docker-image)
 1. [Examples](#examples)
@@ -82,21 +82,24 @@ See [best practices](docs/best-practices.md).
 
 ## Demonstrate using Command Line Interface
 
-### Prerequisite software for CLI
+### Prerequisites for CLI
 
-The following software programs need to be installed:
+The following tasks need to be complete before proceeding.
+These are "one time tasks" which may already have been completed.
 
-1. [senzingapi](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-senzing-api.md)
-1. System dependencies
-    1. `apt` based installation for Debian, Ubuntu and
+1. Install system dependencies:
+    1. Use `apt` based installation for Debian, Ubuntu and
        [others](https://en.wikipedia.org/wiki/List_of_Linux_distributions#Debian-based)
         1. [apt-packages.txt](src/apt-packages.txt)
-    1. `yum` based installation for Red Hat, CentOS, openSuse and
+    1. Use `yum` based installation for Red Hat, CentOS, openSuse and
        [others](https://en.wikipedia.org/wiki/List_of_Linux_distributions#RPM-based).
         1. [yum-packages.txt](src/yum-packages.txt)
-1. Python dependencies
+1. Install Python dependencies:
     1. [requirements.txt](requirements.txt)
         1. [Installation hints](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-python-dependencies.md)
+1. [Install senzingapi](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-senzing-api.md)
+1. [Initialize Senzing database](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/initialize-senzing-database.md)
+1. [Configure Senzing API](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/configure-senzing-api.md)
 
 ### Download
 
@@ -179,9 +182,11 @@ The following software programs need to be installed:
    ${SENZING_DOWNLOAD_FILE} --help
    ```
 
+1. For more examples of use, see [Examples of CLI](#examples-of-cli).
+
 ## Demonstrate using Docker
 
-### Prerequisite software for Docker
+### Prerequisites for Docker
 
 The following software programs need to be installed:
 
@@ -365,11 +370,13 @@ Unset environment variables have no effect on the
       senzing/template
     ```
 
+1. For more examples of use, see [Examples of Docker](#examples-of-docker).
+
 ## Develop
 
 The following instructions are used when modifying and building the Docker image.
 
-### Prerequisite software for development
+### Prerequisites for development
 
 The following software programs need to be installed:
 
@@ -420,6 +427,10 @@ see [Environment Variables](https://github.com/Senzing/knowledge-base/blob/maste
     Note: `sudo make docker-build-development-cache` can be used to create cached Docker layers.
 
 ## Examples
+
+### Examples of CLI
+
+### Examples of Docker
 
 ## Advanced
 
