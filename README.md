@@ -46,8 +46,6 @@ See [best practices](docs/best-practices.md).
     1. [Run command](#run-command)
 1. [Demonstrate using Docker](#demonstrate-using-docker)
     1. [Prerequisites for Docker](#prerequisites-for-docker)
-    1. [Install Senzing for Docker](#install-senzing-for-docker)
-    1. [Configure Senzing for Docker](#configure-senzing-for-docker)
     1. [Docker volumes](#docker-volumes)
     1. [Docker network](#docker-network)
     1. [Docker user](#docker-user)
@@ -59,6 +57,8 @@ See [best practices](docs/best-practices.md).
     1. [Clone repository](#clone-repository)
     1. [Build Docker image](#build-docker-image)
 1. [Examples](#examples)
+    1. [Examples of CLI](#examples-of-cli)
+    1. [Examples of Docker](#examples-of-docker)
 1. [Advanced](#advanced)
     1. [Configuration](#configuration)
     1. [Using Docker with system install](#using-docker-with-system-install)
@@ -100,7 +100,7 @@ These are "one time tasks" which may already have been completed.
 1. The following software programs need to be installed:
     1. [senzingapi](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-senzing-api.md)
 1. [Configure Senzing database](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/configure-senzing-database.md)
-1. [Configure Senzing API](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/configure-senzing-api.md)
+1. [Configure Senzing](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/configure-senzing.md)
 
 ### Download
 
@@ -194,18 +194,11 @@ These are "one time tasks" which may already have been completed.
 
 1. The following software programs need to be installed:
     1. [docker](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-docker.md)
-
-### Install Senzing for Docker
-
-1. If Senzing has not been installed, visit
-   "[How to install Senzing using Docker](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-senzing-using-docker.md)".
+1. [Install Senzing using Docker](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-senzing-using-docker.md)".
     1. If using Docker with a previous "system install" of Senzing,
        see [Using Docker with system install](#using-docker-with-system-install).
-
-### Configure Senzing for Docker
-
-1. If Senzing has not been configured, visit
-   "[How to configure Senzing using Docker](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/configure-senzing-using-docker.md)".
+1. [Configure Senzing database using Docker](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/configure-senzing-database-using-docker.md)
+1. [Configure Senzing using Docker](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/configure-senzing-using-docker.md)".
 
 ### Docker volumes
 
@@ -214,8 +207,8 @@ Inside the Docker container, Senzing artifacts will be located in `/opt/senzing`
 
 1. :pencil2: Specify the directory containing the Senzing installation on the host system
    (i.e. *outside* the Docker container).
-   Use the same `SENZING_VOLUME` value used when
-   [installing Senzing for Docker](#install-senzing-for-docker).
+   Use the same `SENZING_VOLUME` value used when performing
+   [Prerequisites for Docker](#prerequisites-for-docker).
    Example:
 
     ```console
