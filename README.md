@@ -84,7 +84,7 @@ See [best practices](docs/best-practices.md).
 ### Prerequisites for CLI
 
 The following tasks need to be complete before proceeding.
-These are "one time tasks" which may already have been completed.
+These are "one-time tasks" which may already have been completed.
 
 1. Install system dependencies:
     1. Use `apt` based installation for Debian, Ubuntu and
@@ -189,7 +189,7 @@ These are "one time tasks" which may already have been completed.
 ### Prerequisites for Docker
 
 The following tasks need to be complete before proceeding.
-These are "one time tasks" which may already have been completed.
+These are "one-time tasks" which may already have been completed.
 
 1. The following software programs need to be installed:
     1. [docker](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-docker.md)
@@ -374,7 +374,7 @@ The following instructions are used when modifying and building the Docker image
 ### Prerequisites for development
 
 The following tasks need to be complete before proceeding.
-These are "one time tasks" which may already have been completed.
+These are "one-time tasks" which may already have been completed.
 
 1. The following software programs need to be installed:
     1. [git](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-git.md)
