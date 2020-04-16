@@ -97,7 +97,8 @@ These are "one time tasks" which may already have been completed.
 1. Install Python dependencies:
     1. [requirements.txt](requirements.txt)
         1. [Installation hints](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-python-dependencies.md)
-1. [Install senzingapi](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-senzing-api.md)
+1. The following software programs need to be installed:
+    1. [senzingapi](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-senzing-api.md)
 1. [Configure Senzing database](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/configure-senzing-database.md)
 1. [Configure Senzing API](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/configure-senzing-api.md)
 
@@ -188,9 +189,11 @@ These are "one time tasks" which may already have been completed.
 
 ### Prerequisites for Docker
 
-The following software programs need to be installed:
+The following tasks need to be complete before proceeding.
+These are "one time tasks" which may already have been completed.
 
-1. [docker](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-docker.md)
+1. The following software programs need to be installed:
+    1. [docker](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-docker.md)
 
 ### Install Senzing for Docker
 
@@ -378,11 +381,13 @@ The following instructions are used when modifying and building the Docker image
 
 ### Prerequisites for development
 
-The following software programs need to be installed:
+The following tasks need to be complete before proceeding.
+These are "one time tasks" which may already have been completed.
 
-1. [git](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-git.md)
-1. [make](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-make.md)
-1. [docker](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-docker.md)
+1. The following software programs need to be installed:
+    1. [git](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-git.md)
+    1. [make](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-make.md)
+    1. [docker](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-docker.md)
 
 ### Clone repository
 
