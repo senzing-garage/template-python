@@ -61,7 +61,6 @@ See [best practices](docs/best-practices.md).
     1. [Examples of Docker](#examples-of-docker)
 1. [Advanced](#advanced)
     1. [Configuration](#configuration)
-    1. [Using Docker with system install](#using-docker-with-system-install)
 1. [Errors](#errors)
 1. [References](#references)
 
@@ -90,12 +89,12 @@ These are "one time tasks" which may already have been completed.
 1. Install system dependencies:
     1. Use `apt` based installation for Debian, Ubuntu and
        [others](https://en.wikipedia.org/wiki/List_of_Linux_distributions#Debian-based)
-        1. See [apt-packages.txt](src/apt-packages.txt) for list.
+        1. See [apt-packages.txt](src/apt-packages.txt) for list
     1. Use `yum` based installation for Red Hat, CentOS, openSuse and
        [others](https://en.wikipedia.org/wiki/List_of_Linux_distributions#RPM-based).
-        1. See [yum-packages.txt](src/yum-packages.txt) for list.
+        1. See [yum-packages.txt](src/yum-packages.txt) for list
 1. Install Python dependencies:
-    1. [requirements.txt](requirements.txt)
+    1. See [requirements.txt](requirements.txt) for list
         1. [Installation hints](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-python-dependencies.md)
 1. The following software programs need to be installed:
     1. [senzingapi](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-senzing-api.md)
@@ -196,7 +195,7 @@ These are "one time tasks" which may already have been completed.
     1. [docker](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-docker.md)
 1. [Install Senzing using Docker](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-senzing-using-docker.md)
     1. If using Docker with a previous "system install" of Senzing,
-       see [Using Docker with system install](#using-docker-with-system-install).
+       see [use docker with system install](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/use-docker-with-system-install.md).
 1. [Configure Senzing database using Docker](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/configure-senzing-database-using-docker.md)
 1. [Configure Senzing using Docker](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/configure-senzing-using-docker.md)
 
@@ -444,12 +443,6 @@ Configuration values specified by environment variable or command line parameter
 - **[SENZING_NETWORK](https://github.com/Senzing/knowledge-base/blob/master/lists/environment-variables.md#senzing_network)**
 - **[SENZING_RUNAS_USER](https://github.com/Senzing/knowledge-base/blob/master/lists/environment-variables.md#senzing_runas_user)**
 - **[SENZING_VAR_DIR](https://github.com/Senzing/knowledge-base/blob/master/lists/environment-variables.md#senzing_var_dir)**
-
-### Using Docker with system install
-
-It is possible to use Docker with a Senzing "system install" on a host system.
-If using the Senzing system installation on the host system is desired,
-see how to [use docker with system install](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/use-docker-with-system-install.md).
 
 ## Errors
 
