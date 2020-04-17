@@ -28,7 +28,7 @@ python script is a boilerplate which has the following features:
 
 ## Overview
 
-At [Senzing](http://senzing.com)
+At [Senzing](http://senzing.com),
 we strive to create GitHub documentation in a
 "[don't make me think](https://github.com/Senzing/knowledge-base/blob/master/WHATIS/dont-make-me-think.md)" style.
 For the most part, instructions are copy and paste.
@@ -36,15 +36,11 @@ Whenever thinking is needed, it's marked with a "thinking" icon :thinking:.
 Whenever customization is needed, it's marked with a "pencil" icon :pencil2:.
 If the instructions are not clear, please let us know by opening a new
 [Documentation issue](https://github.com/Senzing/template-python/issues/new?template=documentation_request.md)
-describing where we can improve.   Now onto the show...
-
-### Related artifacts
-
-1. [DockerHub](https://hub.docker.com/r/senzing/xxxxxxxx)
-1. [Helm Chart](https://github.com/Senzing/charts/tree/master/charts/xxxxxxxx)
+describing where we can improve.   Now on with the show...
 
 ### Contents
 
+1. [Related artifacts](#related-artifacts)
 1. [Expectations](#expectations)
 1. [Demonstrate using Command Line Interface](#demonstrate-using-command-line-interface)
     1. [Prerequisites for CLI](#prerequisites-for-cli)
@@ -78,6 +74,11 @@ describing where we can improve.   Now onto the show...
    Perhaps it's an optional step.
 1. :pencil2: - A "pencil" icon means that the instructions may need modification before performing.
 1. :warning: - A "warning" icon means that something tricky is happening, so pay attention.
+
+## Related artifacts
+
+1. [DockerHub](https://hub.docker.com/r/senzing/xxxxxxxx)
+1. [Helm Chart](https://github.com/Senzing/charts/tree/master/charts/xxxxxxxx)
 
 ## Expectations
 
