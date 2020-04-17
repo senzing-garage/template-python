@@ -91,7 +91,7 @@ describing where we can improve.   Now on with the show...
 
 ### Prerequisites for CLI
 
-The following tasks need to be complete before proceeding.
+:thinking: The following tasks need to be complete before proceeding.
 These are "one-time tasks" which may already have been completed.
 
 1. Install system dependencies:
@@ -196,7 +196,7 @@ These are "one-time tasks" which may already have been completed.
 
 ### Prerequisites for Docker
 
-The following tasks need to be complete before proceeding.
+:thinking: The following tasks need to be complete before proceeding.
 These are "one-time tasks" which may already have been completed.
 
 1. The following software programs need to be installed:
@@ -381,7 +381,7 @@ The following instructions are used when modifying and building the Docker image
 
 ### Prerequisites for development
 
-The following tasks need to be complete before proceeding.
+:thinking: The following tasks need to be complete before proceeding.
 These are "one-time tasks" which may already have been completed.
 
 1. The following software programs need to be installed:
