@@ -36,7 +36,7 @@ describing where we can improve.   Now on with the show...
 :warning:
 :warning:
 
-:warning: This section should be replaced after initial repository creation. :warning:
+:warning: This section should be replaced with real "**Overview**" content after initial repository creation. :warning:
 
 This repository contains exemplar python scripts that can be used to start a new python project.
 
@@ -111,7 +111,7 @@ python script is a boilerplate which has the following features:
 1. [Errors](#errors)
 1. [References](#references)
 
-### Legend
+#### Legend
 
 1. :thinking: - A "thinker" icon means that a little extra thinking may be required.
    Perhaps you'll need to make some choices.
