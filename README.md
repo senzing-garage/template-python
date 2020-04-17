@@ -1,8 +1,31 @@
 # template-python
 
-## Development information
+## Preamble
 
-:warning: This section should be removed after initial repository creation. :warning:
+At [Senzing](http://senzing.com),
+we strive to create GitHub documentation in a
+"[don't make me think](https://github.com/Senzing/knowledge-base/blob/master/WHATIS/dont-make-me-think.md)" style.
+For the most part, instructions are copy and paste.
+Whenever thinking is needed, it's marked with a "thinking" icon :thinking:.
+Whenever customization is needed, it's marked with a "pencil" icon :pencil2:.
+If the instructions are not clear, please let us know by opening a new
+[Documentation issue](https://github.com/Senzing/template-python/issues/new?template=documentation_request.md)
+describing where we can improve.   Now on with the show...
+
+## Overview
+
+:arrow_down:
+:arrow_down:
+:arrow_down:
+:arrow_down:
+:arrow_down:
+:arrow_down:
+:arrow_down:
+:arrow_down:
+:arrow_down:
+:arrow_down:
+
+:warning: This section should be replaced after initial repository creation. :warning:
 
 This repository contains exemplar python scripts that can be used to start a new python project.
 
@@ -26,17 +49,16 @@ python script is a boilerplate which has the following features:
 1. Entry / Exit log messages.
 1. Docker support.
 
-## Overview
-
-At [Senzing](http://senzing.com),
-we strive to create GitHub documentation in a
-"[don't make me think](https://github.com/Senzing/knowledge-base/blob/master/WHATIS/dont-make-me-think.md)" style.
-For the most part, instructions are copy and paste.
-Whenever thinking is needed, it's marked with a "thinking" icon :thinking:.
-Whenever customization is needed, it's marked with a "pencil" icon :pencil2:.
-If the instructions are not clear, please let us know by opening a new
-[Documentation issue](https://github.com/Senzing/template-python/issues/new?template=documentation_request.md)
-describing where we can improve.   Now on with the show...
+:arrow_up:
+:arrow_up:
+:arrow_up:
+:arrow_up:
+:arrow_up:
+:arrow_up:
+:arrow_up:
+:arrow_up:
+:arrow_up:
+:arrow_up:
 
 ### Contents
 
