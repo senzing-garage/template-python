@@ -25,6 +25,17 @@ describing where we can improve.   Now on with the show...
 :arrow_down:
 :arrow_down:
 
+:warning:
+:warning:
+:warning:
+:warning:
+:warning:
+:warning:
+:warning:
+:warning:
+:warning:
+:warning:
+
 :warning: This section should be replaced after initial repository creation. :warning:
 
 This repository contains exemplar python scripts that can be used to start a new python project.
@@ -48,6 +59,17 @@ python script is a boilerplate which has the following features:
 1. Logging and Log Level support.
 1. Entry / Exit log messages.
 1. Docker support.
+
+:warning:
+:warning:
+:warning:
+:warning:
+:warning:
+:warning:
+:warning:
+:warning:
+:warning:
+:warning:
 
 :arrow_up:
 :arrow_up:
