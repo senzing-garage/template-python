@@ -151,7 +151,7 @@ These are "one-time tasks" which may already have been completed.
 1. The following software programs need to be installed:
     1. [senzingapi](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-senzing-api.md)
 1. :thinking: **Optional:**  Some databases need additional support.
-   For other databases, these steps may be skipped.
+   For other databases, this step may be skipped.
     1. **Db2:** See
        [Support Db2](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/support-db2.md).
     1. **MS SQL:** See
