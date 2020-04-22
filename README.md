@@ -485,7 +485,13 @@ see [Environment Variables](https://github.com/Senzing/knowledge-base/blob/maste
 
 ### Examples of CLI
 
+The following examples require environment variables set in
+[Demonstrate using Command Line Interface](#demonstrate-using-command-line-interface).
+
 ### Examples of Docker
+
+The following examples require environment variables set in
+[Demonstrate using Docker](#demonstrate-using-docker).
 
 ## Advanced
 
