@@ -1,44 +1,14 @@
 # template-python
 
-## Preamble
+## Synopsis
 
-At [Senzing](http://senzing.com),
-we strive to create GitHub documentation in a
-"[don't make me think](https://github.com/Senzing/knowledge-base/blob/master/WHATIS/dont-make-me-think.md)" style.
-For the most part, instructions are copy and paste.
-Whenever thinking is needed, it's marked with a "thinking" icon :thinking:.
-Whenever customization is needed, it's marked with a "pencil" icon :pencil2:.
-If the instructions are not clear, please let us know by opening a new
-[Documentation issue](https://github.com/Senzing/template-python/issues/new?template=documentation_request.md)
-describing where we can improve.   Now on with the show...
+This section should give 4-5 sentences on what the artifacts in this repository do.
 
 ## Overview
 
-:arrow_down:
-:arrow_down:
-:arrow_down:
-:arrow_down:
-:arrow_down:
-:arrow_down:
-:arrow_down:
-:arrow_down:
-:arrow_down:
-:arrow_down:
+This section should be replaced with real "**Overview**" content after initial repository creation.
 
-:warning:
-:warning:
-:warning:
-:warning:
-:warning:
-:warning:
-:warning:
-:warning:
-:warning:
-:warning:
-
-:warning: This section should be replaced with real "**Overview**" content after initial repository creation. :warning:
-
-This repository contains exemplar python scripts that can be used to start a new python project.
+This repository (template-python) contains exemplar python scripts that can be used to start a new python project.
 
 The
 [template-python.py](template-python.py)
@@ -60,30 +30,10 @@ python script is a boilerplate which has the following features:
 1. Entry / Exit log messages.
 1. Docker support.
 
-:warning:
-:warning:
-:warning:
-:warning:
-:warning:
-:warning:
-:warning:
-:warning:
-:warning:
-:warning:
-
-:arrow_up:
-:arrow_up:
-:arrow_up:
-:arrow_up:
-:arrow_up:
-:arrow_up:
-:arrow_up:
-:arrow_up:
-:arrow_up:
-:arrow_up:
-
 ### Contents
 
+1. [Preamble](#preamble)
+    1. [Legend](#legend)
 1. [Related artifacts](#related-artifacts)
 1. [Expectations](#expectations)
 1. [Demonstrate using Command Line Interface](#demonstrate-using-command-line-interface)
@@ -111,7 +61,19 @@ python script is a boilerplate which has the following features:
 1. [Errors](#errors)
 1. [References](#references)
 
-#### Legend
+## Preamble
+
+At [Senzing](http://senzing.com),
+we strive to create GitHub documentation in a
+"[don't make me think](https://github.com/Senzing/knowledge-base/blob/master/WHATIS/dont-make-me-think.md)" style.
+For the most part, instructions are copy and paste.
+Whenever thinking is needed, it's marked with a "thinking" icon :thinking:.
+Whenever customization is needed, it's marked with a "pencil" icon :pencil2:.
+If the instructions are not clear, please let us know by opening a new
+[Documentation issue](https://github.com/Senzing/template-python/issues/new?template=documentation_request.md)
+describing where we can improve.   Now on with the show...
+
+### Legend
 
 1. :thinking: - A "thinker" icon means that a little extra thinking may be required.
    Perhaps there are some choices to be made.
