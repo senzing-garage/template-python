@@ -6,9 +6,9 @@ This section should give 4-5 sentences on what the artifacts in this repository 
 
 ## Overview
 
-This section should be replaced with real "**Overview**" content after initial repository creation. :warning:
+This section should be replaced with real "**Overview**" content after initial repository creation.
 
-This repository contains exemplar python scripts that can be used to start a new python project.
+This repository (template-python) contains exemplar python scripts that can be used to start a new python project.
 
 The
 [template-python.py](template-python.py)
