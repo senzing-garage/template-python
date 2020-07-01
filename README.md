@@ -2,24 +2,11 @@
 
 ## Synopsis
 
-:arrow_down: :arrow_down: :arrow_down: :arrow_down: :arrow_down: :arrow_down: :arrow_down: :arrow_down: :arrow_down: :arrow_down:
-:warning: This section should give 4-5 sentences on what the artifacts in this repository do.
-:arrow_up:   :arrow_up:   :arrow_up:   :arrow_up:   :arrow_up:   :arrow_up:   :arrow_up:   :arrow_up:   :arrow_up:   :arrow_up:
+This section should give 4-5 sentences on what the artifacts in this repository do.
 
 ## Overview
 
-:arrow_down:
-:arrow_down:
-:arrow_down:
-:arrow_down:
-:arrow_down:
-:arrow_down:
-:arrow_down:
-:arrow_down:
-:arrow_down:
-:arrow_down:
-
-:warning: This section should be replaced with real "**Overview**" content after initial repository creation. :warning:
+This section should be replaced with real "**Overview**" content after initial repository creation. :warning:
 
 This repository contains exemplar python scripts that can be used to start a new python project.
 
@@ -43,19 +30,10 @@ python script is a boilerplate which has the following features:
 1. Entry / Exit log messages.
 1. Docker support.
 
-:arrow_up:
-:arrow_up:
-:arrow_up:
-:arrow_up:
-:arrow_up:
-:arrow_up:
-:arrow_up:
-:arrow_up:
-:arrow_up:
-:arrow_up:
-
 ### Contents
 
+1. [Preamble](#preamble)
+    1. [Legend](#legend)
 1. [Related artifacts](#related-artifacts)
 1. [Expectations](#expectations)
 1. [Demonstrate using Command Line Interface](#demonstrate-using-command-line-interface)
@@ -83,7 +61,7 @@ python script is a boilerplate which has the following features:
 1. [Errors](#errors)
 1. [References](#references)
 
-### Preamble
+## Preamble
 
 At [Senzing](http://senzing.com),
 we strive to create GitHub documentation in a
@@ -95,7 +73,7 @@ If the instructions are not clear, please let us know by opening a new
 [Documentation issue](https://github.com/Senzing/template-python/issues/new?template=documentation_request.md)
 describing where we can improve.   Now on with the show...
 
-#### Legend
+### Legend
 
 1. :thinking: - A "thinker" icon means that a little extra thinking may be required.
    Perhaps there are some choices to be made.
