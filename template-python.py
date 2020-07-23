@@ -30,7 +30,7 @@ import time
 __all__ = []
 __version__ = "1.0.0"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = '2019-07-16'
-__updated__ = '2020-01-17'
+__updated__ = '2020-07-23'
 
 SENZING_PRODUCT_ID = "5xxx"  # See https://github.com/Senzing/knowledge-base/blob/master/lists/senzing-product-ids.md
 log_format = '%(asctime)s %(message)s'
@@ -88,17 +88,8 @@ def get_parser():
     subcommands = {
         'task1': {
             "help": 'Example task #1.',
+            "argument_aspects": ["common"],
             "arguments": {
-                "--debug": {
-                    "dest": "debug",
-                    "action": "store_true",
-                    "help": "Enable debugging. (SENZING_DEBUG) Default: False"
-                },
-                "--password": {
-                    "dest": "password",
-                    "metavar": "SENZING_PASSWORD",
-                    "help": "Example of information redacted in the log. Default: None"
-                },
                 "--senzing-dir": {
                     "dest": "senzing_dir",
                     "metavar": "SENZING_DIR",
@@ -108,21 +99,12 @@ def get_parser():
         },
         'task2': {
             "help": 'Example task #2.',
+            "argument_aspects": ["common"],
             "arguments": {
-                "--debug": {
-                    "dest": "debug",
-                    "action": "store_true",
-                    "help": "Enable debugging. (SENZING_DEBUG) Default: False"
-                },
                 "--password": {
                     "dest": "password",
                     "metavar": "SENZING_PASSWORD",
                     "help": "Example of information redacted in the log. Default: None"
-                },
-                "--senzing-dir": {
-                    "dest": "senzing_dir",
-                    "metavar": "SENZING_DIR",
-                    "help": "Location of Senzing. Default: /opt/senzing"
                 },
             },
         },
@@ -144,7 +126,35 @@ def get_parser():
         },
     }
 
-    parser = argparse.ArgumentParser(prog="template-python.py", description="Example python skeleton. For more information, see https://github.com/Senzing/template-python")
+    # Define argument_aspects.
+
+    argument_aspects = {
+        "common": {
+            "--debug": {
+                "dest": "debug",
+                "action": "store_true",
+                "help": "Enable debugging. (SENZING_DEBUG) Default: False"
+            },
+            "--engine-configuration-json": {
+                "dest": "engine_configuration_json",
+                "metavar": "SENZING_ENGINE_CONFIGURATION_JSON",
+                "help": "Advanced Senzing engine configuration. Default: none"
+            },
+        },
+    }
+
+    # Augment "subcommands" variable with arguments specified by aspects.
+
+    for subcommand, subcommand_value in subcommands.items():
+        if 'argument_aspects' in subcommand_value:
+            for aspect in subcommand_value['argument_aspects']:
+                if 'arguments' not in subcommands[subcommand]:
+                    subcommands[subcommand]['arguments'] = {}
+                arguments = argument_aspects.get(aspect, {})
+                for argument, argument_value in arguments.items():
+                    subcommands[subcommand]['arguments'][argument] = argument_value
+
+    parser = argparse.ArgumentParser(prog="init-container.py", description="Initialize Senzing installation. For more information, see https://github.com/Senzing/docker-init-container")
     subparsers = parser.add_subparsers(dest='subcommand', help='Subcommands (SENZING_SUBCOMMAND):')
 
     for subcommand_key, subcommand_values in subcommands.items():
@@ -291,6 +301,11 @@ def get_configuration(args):
         new_key = key.format(subcommand.replace('-', '_'))
         if value:
             result[new_key] = value
+
+    # Add program information.
+
+    result['program_version'] = __version__
+    result['program_updated'] = __updated__
 
     # Special case: subcommand from command-line
 
