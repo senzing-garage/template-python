@@ -157,11 +157,11 @@ def get_parser():
     for subcommand, subcommand_value in subcommands.items():
         if 'argument_aspects' in subcommand_value:
             for aspect in subcommand_value['argument_aspects']:
-                if 'arguments' not in subcommands[subcommand]:
-                    subcommands[subcommand]['arguments'] = {}
+                if 'arguments' not in subcommand_value:
+                    subcommand_value['arguments'] = {}
                 arguments = argument_aspects.get(aspect, {})
                 for argument, argument_value in arguments.items():
-                    subcommands[subcommand]['arguments'][argument] = argument_value
+                    subcommand_value['arguments'][argument] = argument_value
 
     parser = argparse.ArgumentParser(prog="template-python.py", description="Add description. For more information, see https://github.com/Senzing/template-python")
     subparsers = parser.add_subparsers(dest='subcommand', help='Subcommands (SENZING_SUBCOMMAND):')
