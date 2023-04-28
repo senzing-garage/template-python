@@ -108,3 +108,5 @@ pyvenv.cfg
 .mypy_cache/
 
 .DS_Store
+
+.history
