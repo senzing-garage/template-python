@@ -39,7 +39,7 @@ __version__ = "1.0.0"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = '2019-07-16'
 __updated__ = '2022-05-18'
 
-# See https://github.com/Senzing/knowledge-base/blob/main/lists/senzing-product-ids.md
+# See https://github.com/senzing-garage/knowledge-base/blob/main/lists/senzing-product-ids.md
 
 SENZING_PRODUCT_ID = "5xxx"
 LOG_FORMAT = '%(asctime)s %(message)s'
@@ -163,7 +163,7 @@ def get_parser():
                 for argument, argument_value in arguments.items():
                     subcommand_value['arguments'][argument] = argument_value
 
-    parser = argparse.ArgumentParser(prog="template-python.py", description="Add description. For more information, see https://github.com/Senzing/template-python")
+    parser = argparse.ArgumentParser(prog="template-python.py", description="Add description. For more information, see https://github.com/senzing-garage/template-python")
     subparsers = parser.add_subparsers(dest='subcommand', help='Subcommands (SENZING_SUBCOMMAND):')
 
     for subcommand_key, subcommand_values in subcommands.items():
@@ -194,7 +194,7 @@ MESSAGE_DEBUG = 900
 MESSAGE_DICTIONARY = {
     "100": "senzing-" + SENZING_PRODUCT_ID + "{0:04d}I",
     "292": "Configuration change detected.  Old: {0} New: {1}",
-    "293": "For information on warnings and errors, see https://github.com/Senzing/stream-loader#errors",
+    "293": "For information on warnings and errors, see https://github.com/senzing-garage/stream-loader#errors",
     "294": "Version: {0}  Updated: {1}",
     "295": "Sleeping infinitely.",
     "296": "Sleeping {0} seconds.",
