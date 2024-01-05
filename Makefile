@@ -1,5 +1,13 @@
 # Git variables
 
+# Detect the operating system and architecture.
+
+include makefiles/osdetect.mk
+
+# -----------------------------------------------------------------------------
+# Variables
+# -----------------------------------------------------------------------------
+
 GIT_REPOSITORY_NAME := $(shell basename `git rev-parse --show-toplevel`)
 GIT_VERSION := $(shell git describe --always --tags --long --dirty | sed -e 's/\-0//' -e 's/\-g.......//')
 
@@ -16,6 +24,17 @@ DOCKER_IMAGE_NAME := senzing/template-python
 default: help
 
 # -----------------------------------------------------------------------------
+# Operating System / Architecture targets
+# -----------------------------------------------------------------------------
+
+-include makefiles/$(OSTYPE).mk
+-include makefiles/$(OSTYPE)_$(OSARCH).mk
+
+
+.PHONY: hello-world
+hello-world: hello-world-osarch-specific
+
+# -----------------------------------------------------------------------------
 # Docker-based builds
 # -----------------------------------------------------------------------------
 
@@ -27,8 +46,12 @@ docker-build:
 		.
 
 # -----------------------------------------------------------------------------
-# Clean up targets
+# Utility targets
 # -----------------------------------------------------------------------------
+
+.PHONY: clean
+clean: clean-osarch-specific docker-rmi-for-build
+
 
 .PHONY: docker-rmi-for-build
 docker-rmi-for-build:
@@ -36,14 +59,20 @@ docker-rmi-for-build:
 		$(DOCKER_IMAGE_NAME):$(GIT_VERSION) \
 		$(DOCKER_IMAGE_NAME)
 
-.PHONY: clean
-clean: docker-rmi-for-build
-
-# -----------------------------------------------------------------------------
-# Help
-# -----------------------------------------------------------------------------
 
 .PHONY: help
 help:
-	@echo "List of make targets:"
-	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$' | xargs
+	@echo "Build $(PROGRAM_NAME) version $(BUILD_VERSION)-$(BUILD_ITERATION)".
+	@echo "Makefile targets:"
+	@$(MAKE) -pRrq -f $(firstword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$' | xargs
+
+
+.PHONY: print-make-variables
+print-make-variables:
+	@$(foreach V,$(sort $(.VARIABLES)), \
+		$(if $(filter-out environment% default automatic, \
+		$(origin $V)),$(warning $V=$($V) ($(value $V)))))
+
+
+.PHONY: setup
+setup: setup-osarch-specific
