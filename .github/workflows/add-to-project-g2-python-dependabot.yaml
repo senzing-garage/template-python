@@ -1,4 +1,4 @@
-name: 'add to project garage dependabot'
+name: 'add to project g2 python dependabot'
 
 on:
   pull_request:
@@ -16,4 +16,4 @@ jobs:
     with:
       classic: false
       org: ${{ vars.SENZING_GITHUB_ACCOUNT_NAME }}
-      project-number: ${{ vars.SENZING_PROJECT_GARAGE }}
+      project-number: ${{ vars.SENZING_PROJECT_G2_PYTHON }}
