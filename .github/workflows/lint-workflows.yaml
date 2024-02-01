@@ -1,4 +1,4 @@
-name: 'lint workflows'
+name: lint workflows
 
 on:
   push:
