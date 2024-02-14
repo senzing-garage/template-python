@@ -8,6 +8,7 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.8", "3.9", "3.10"]
+
     steps:
       - uses: actions/checkout@v4
 
@@ -23,4 +24,5 @@ jobs:
 
       - name: analysing the code with pylint
         run: |
-          pylint "$(git ls-files '*.py')"
+          # shellcheck disable=SC2046
+          pylint $(git ls-files '*.py')
