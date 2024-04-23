@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-'''
+"""
 # -----------------------------------------------------------------------------
 # template-python.py Example python skeleton.
 # Can be used as a boiler-plate to build new python scripts.
@@ -17,7 +17,7 @@
 #   6) Entry / Exit log messages.
 #   7) Docker support.
 # -----------------------------------------------------------------------------
-'''
+"""
 
 # Import from standard library. https://docs.python.org/3/library/
 
@@ -36,13 +36,13 @@ import time
 
 __all__ = []
 __version__ = "1.0.0"  # See https://www.python.org/dev/peps/pep-0396/
-__date__ = '2019-07-16'
-__updated__ = '2022-05-18'
+__date__ = "2019-07-16"
+__updated__ = "2022-05-18"
 
 # See https://github.com/senzing-garage/knowledge-base/blob/main/lists/senzing-product-ids.md
 
 SENZING_PRODUCT_ID = "5xxx"
-LOG_FORMAT = '%(asctime)s %(message)s'
+LOG_FORMAT = "%(asctime)s %(message)s"
 
 # Working with bytes.
 
@@ -54,30 +54,22 @@ GIGABYTES = 1024 * MEGABYTES
 # 1) Command line options, 2) Environment variables, 3) Configuration files, 4) Default values
 
 CONFIGURATION_LOCATOR = {
-    "debug": {
-        "default": False,
-        "env": "SENZING_DEBUG",
-        "cli": "debug"
-    },
-    "password": {
-        "default": None,
-        "env": "SENZING_PASSWORD",
-        "cli": "password"
-    },
+    "debug": {"default": False, "env": "SENZING_DEBUG", "cli": "debug"},
+    "password": {"default": None, "env": "SENZING_PASSWORD", "cli": "password"},
     "senzing_dir": {
         "default": "/opt/senzing",
         "env": "SENZING_DIR",
-        "cli": "senzing-dir"
+        "cli": "senzing-dir",
     },
     "sleep_time_in_seconds": {
         "default": 0,
         "env": "SENZING_SLEEP_TIME_IN_SECONDS",
-        "cli": "sleep-time-in-seconds"
+        "cli": "sleep-time-in-seconds",
     },
     "subcommand": {
         "default": None,
         "env": "SENZING_SUBCOMMAND",
-    }
+    },
 }
 
 # Enumerate keys in 'configuration_locator' that should not be printed to the log.
@@ -92,46 +84,46 @@ KEYS_TO_REDACT = [
 
 
 def get_parser():
-    ''' Parse commandline arguments. '''
+    """Parse commandline arguments."""
 
     subcommands = {
-        'task1': {
-            "help": 'Example task #1.',
+        "task1": {
+            "help": "Example task #1.",
             "argument_aspects": ["common"],
             "arguments": {
                 "--senzing-dir": {
                     "dest": "senzing_dir",
                     "metavar": "SENZING_DIR",
-                    "help": "Location of Senzing. Default: /opt/senzing"
+                    "help": "Location of Senzing. Default: /opt/senzing",
                 },
             },
         },
-        'task2': {
-            "help": 'Example task #2.',
+        "task2": {
+            "help": "Example task #2.",
             "argument_aspects": ["common"],
             "arguments": {
                 "--password": {
                     "dest": "password",
                     "metavar": "SENZING_PASSWORD",
-                    "help": "Example of information redacted in the log. Default: None"
+                    "help": "Example of information redacted in the log. Default: None",
                 },
             },
         },
-        'sleep': {
-            "help": 'Do nothing but sleep. For Docker testing.',
+        "sleep": {
+            "help": "Do nothing but sleep. For Docker testing.",
             "arguments": {
                 "--sleep-time-in-seconds": {
                     "dest": "sleep_time_in_seconds",
                     "metavar": "SENZING_SLEEP_TIME_IN_SECONDS",
-                    "help": "Sleep time in seconds. DEFAULT: 0 (infinite)"
+                    "help": "Sleep time in seconds. DEFAULT: 0 (infinite)",
                 },
             },
         },
-        'version': {
-            "help": 'Print version of program.',
+        "version": {
+            "help": "Print version of program.",
         },
-        'docker-acceptance-test': {
-            "help": 'For Docker acceptance testing.',
+        "docker-acceptance-test": {
+            "help": "For Docker acceptance testing.",
         },
     }
 
@@ -142,12 +134,12 @@ def get_parser():
             "--debug": {
                 "dest": "debug",
                 "action": "store_true",
-                "help": "Enable debugging. (SENZING_DEBUG) Default: False"
+                "help": "Enable debugging. (SENZING_DEBUG) Default: False",
             },
             "--engine-configuration-json": {
                 "dest": "engine_configuration_json",
                 "metavar": "SENZING_ENGINE_CONFIGURATION_JSON",
-                "help": "Advanced Senzing engine configuration. Default: none"
+                "help": "Advanced Senzing engine configuration. Default: none",
             },
         },
     }
@@ -155,25 +147,31 @@ def get_parser():
     # Augment "subcommands" variable with arguments specified by aspects.
 
     for subcommand_value in subcommands.values():
-        if 'argument_aspects' in subcommand_value:
-            for aspect in subcommand_value['argument_aspects']:
-                if 'arguments' not in subcommand_value:
-                    subcommand_value['arguments'] = {}
+        if "argument_aspects" in subcommand_value:
+            for aspect in subcommand_value["argument_aspects"]:
+                if "arguments" not in subcommand_value:
+                    subcommand_value["arguments"] = {}
                 arguments = argument_aspects.get(aspect, {})
                 for argument, argument_value in arguments.items():
-                    subcommand_value['arguments'][argument] = argument_value
+                    subcommand_value["arguments"][argument] = argument_value
 
-    parser = argparse.ArgumentParser(prog="template-python.py", description="Add description. For more information, see https://github.com/senzing-garage/template-python")
-    subparsers = parser.add_subparsers(dest='subcommand', help='Subcommands (SENZING_SUBCOMMAND):')
+    parser = argparse.ArgumentParser(
+        prog="template-python.py",
+        description="Add description. For more information, see https://github.com/senzing-garage/template-python",
+    )
+    subparsers = parser.add_subparsers(
+        dest="subcommand", help="Subcommands (SENZING_SUBCOMMAND):"
+    )
 
     for subcommand_key, subcommand_values in subcommands.items():
-        subcommand_help = subcommand_values.get('help', "")
-        subcommand_arguments = subcommand_values.get('arguments', {})
+        subcommand_help = subcommand_values.get("help", "")
+        subcommand_arguments = subcommand_values.get("arguments", {})
         subparser = subparsers.add_parser(subcommand_key, help=subcommand_help)
         for argument_key, argument_values in subcommand_arguments.items():
             subparser.add_argument(argument_key, **argument_values)
 
     return parser
+
 
 # -----------------------------------------------------------------------------
 # Message handling
@@ -231,39 +229,41 @@ MESSAGE_DICTIONARY = {
 
 
 def message(index, *args):
-    ''' Return an instantiated message. '''
+    """Return an instantiated message."""
     index_string = str(index)
-    template = MESSAGE_DICTIONARY.get(index_string, "No message for index {0}.".format(index_string))
+    template = MESSAGE_DICTIONARY.get(
+        index_string, "No message for index {0}.".format(index_string)
+    )
     return template.format(*args)
 
 
 def message_generic(generic_index, index, *args):
-    ''' Return a formatted message. '''
+    """Return a formatted message."""
     return "{0} {1}".format(message(generic_index, index), message(index, *args))
 
 
 def message_info(index, *args):
-    ''' Return an info message. '''
+    """Return an info message."""
     return message_generic(MESSAGE_INFO, index, *args)
 
 
 def message_warning(index, *args):
-    ''' Return a warning message. '''
+    """Return a warning message."""
     return message_generic(MESSAGE_WARN, index, *args)
 
 
 def message_error(index, *args):
-    ''' Return an error message. '''
+    """Return an error message."""
     return message_generic(MESSAGE_ERROR, index, *args)
 
 
 def message_debug(index, *args):
-    ''' Return a debug message. '''
+    """Return a debug message."""
     return message_generic(MESSAGE_DEBUG, index, *args)
 
 
 def get_exception():
-    ''' Get details about an exception. '''
+    """Get details about an exception."""
     exception_type, exception_object, traceback = sys.exc_info()
     frame = traceback.tb_frame
     line_number = traceback.tb_lineno
@@ -279,31 +279,32 @@ def get_exception():
         "traceback": traceback,
     }
 
+
 # -----------------------------------------------------------------------------
 # Configuration
 # -----------------------------------------------------------------------------
 
 
 def get_configuration(subcommand, args):
-    ''' Order of precedence: CLI, OS environment variables, INI file, default. '''
+    """Order of precedence: CLI, OS environment variables, INI file, default."""
     result = {}
 
     # Copy default values into configuration dictionary.
 
     for key, value in list(CONFIGURATION_LOCATOR.items()):
-        result[key] = value.get('default', None)
+        result[key] = value.get("default", None)
 
     # "Prime the pump" with command line args. This will be done again as the last step.
 
     for key, value in list(args.__dict__.items()):
-        new_key = key.format(subcommand.replace('-', '_'))
+        new_key = key.format(subcommand.replace("-", "_"))
         if value:
             result[new_key] = value
 
     # Copy OS environment variables into configuration dictionary.
 
     for key, value in list(CONFIGURATION_LOCATOR.items()):
-        os_env_var = value.get('env', None)
+        os_env_var = value.get("env", None)
         if os_env_var:
             os_env_value = os.getenv(os_env_var, None)
             if os_env_value:
@@ -312,39 +313,35 @@ def get_configuration(subcommand, args):
     # Copy 'args' into configuration dictionary.
 
     for key, value in list(args.__dict__.items()):
-        new_key = key.format(subcommand.replace('-', '_'))
+        new_key = key.format(subcommand.replace("-", "_"))
         if value:
             result[new_key] = value
 
     # Add program information.
 
-    result['program_version'] = __version__
-    result['program_updated'] = __updated__
+    result["program_version"] = __version__
+    result["program_updated"] = __updated__
 
     # Special case: subcommand from command-line
 
     if args.subcommand:
-        result['subcommand'] = args.subcommand
+        result["subcommand"] = args.subcommand
 
     # Special case: Change boolean strings to booleans.
 
-    booleans = [
-        'debug'
-    ]
+    booleans = ["debug"]
     for boolean in booleans:
         boolean_value = result.get(boolean)
         if isinstance(boolean_value, str):
             boolean_value_lower_case = boolean_value.lower()
-            if boolean_value_lower_case in ['true', '1', 't', 'y', 'yes']:
+            if boolean_value_lower_case in ["true", "1", "t", "y", "yes"]:
                 result[boolean] = True
             else:
                 result[boolean] = False
 
     # Special case: Change integer strings to integers.
 
-    integers = [
-        'sleep_time_in_seconds'
-    ]
+    integers = ["sleep_time_in_seconds"]
     for integer in integers:
         integer_string = result.get(integer)
         result[integer] = int(integer_string)
@@ -353,18 +350,18 @@ def get_configuration(subcommand, args):
 
 
 def validate_configuration(config):
-    ''' Check aggregate configuration from commandline options, environment variables, config files, and defaults. '''
+    """Check aggregate configuration from commandline options, environment variables, config files, and defaults."""
 
     user_warning_messages = []
     user_error_messages = []
 
     # Perform subcommand specific checking.
 
-    subcommand = config.get('subcommand')
+    subcommand = config.get("subcommand")
 
-    if subcommand in ['task1', 'task2']:
+    if subcommand in ["task1", "task2"]:
 
-        if not config.get('senzing_dir'):
+        if not config.get("senzing_dir"):
             user_error_messages.append(message_error(414))
 
     # Log warning messages.
@@ -389,7 +386,7 @@ def validate_configuration(config):
 
 
 def redact_configuration(config):
-    ''' Return a shallow copy of config with certain keys removed. '''
+    """Return a shallow copy of config with certain keys removed."""
     result = config.copy()
     for key in KEYS_TO_REDACT:
         try:
@@ -398,21 +395,22 @@ def redact_configuration(config):
             pass
     return result
 
+
 # -----------------------------------------------------------------------------
 # Utility functions
 # -----------------------------------------------------------------------------
 
 
 def bootstrap_signal_handler(signal_number, frame):
-    ''' Exit on signal error. '''
+    """Exit on signal error."""
     logging.debug(message_debug(901, signal_number, frame))
     sys.exit(0)
 
 
 def create_signal_handler_function(args):
-    ''' Tricky code.  Uses currying technique. Create a function for signal handling.
-        that knows about "args".
-    '''
+    """Tricky code.  Uses currying technique. Create a function for signal handling.
+    that knows about "args".
+    """
 
     def result_function(signal_number, frame):
         logging.info(message_info(298, args))
@@ -423,9 +421,9 @@ def create_signal_handler_function(args):
 
 
 def entry_template(config):
-    ''' Format of entry message. '''
+    """Format of entry message."""
     debug = config.get("debug", False)
-    config['start_time'] = time.time()
+    config["start_time"] = time.time()
     if debug:
         final_config = config
     else:
@@ -435,11 +433,11 @@ def entry_template(config):
 
 
 def exit_template(config):
-    ''' Format of exit message. '''
+    """Format of exit message."""
     debug = config.get("debug", False)
     stop_time = time.time()
-    config['stop_time'] = stop_time
-    config['elapsed_time'] = stop_time - config.get('start_time', stop_time)
+    config["stop_time"] = stop_time
+    config["elapsed_time"] = stop_time - config.get("start_time", stop_time)
     if debug:
         final_config = config
     else:
@@ -449,15 +447,16 @@ def exit_template(config):
 
 
 def exit_error(index, *args):
-    ''' Log error message and exit program. '''
+    """Log error message and exit program."""
     logging.error(message_error(index, *args))
     logging.error(message_error(698))
     sys.exit(1)
 
 
 def exit_silently():
-    ''' Exit program. '''
+    """Exit program."""
     sys.exit(0)
+
 
 # -----------------------------------------------------------------------------
 # do_* functions
@@ -466,7 +465,7 @@ def exit_silently():
 
 
 def do_docker_acceptance_test(subcommand, args):
-    ''' For use with Docker acceptance testing. '''
+    """For use with Docker acceptance testing."""
 
     # Get context from CLI, environment variables, and ini files.
 
@@ -482,7 +481,7 @@ def do_docker_acceptance_test(subcommand, args):
 
 
 def do_task1(subcommand, args):
-    ''' Do a task. '''
+    """Do a task."""
 
     # Get context from CLI, environment variables, and ini files.
 
@@ -502,7 +501,7 @@ def do_task1(subcommand, args):
 
 
 def do_task2(subcommand, args):
-    ''' Do a task. Print the complete config object'''
+    """Do a task. Print the complete config object"""
 
     # Get context from CLI, environment variables, and ini files.
 
@@ -523,7 +522,7 @@ def do_task2(subcommand, args):
 
 
 def do_sleep(subcommand, args):
-    ''' Sleep.  Used for debugging. '''
+    """Sleep.  Used for debugging."""
 
     # Get context from CLI, environment variables, and ini files.
 
@@ -535,7 +534,7 @@ def do_sleep(subcommand, args):
 
     # Pull values from configuration.
 
-    sleep_time_in_seconds = config.get('sleep_time_in_seconds')
+    sleep_time_in_seconds = config.get("sleep_time_in_seconds")
 
     # Sleep.
 
@@ -555,10 +554,11 @@ def do_sleep(subcommand, args):
 
 
 def do_version(subcommand, args):
-    ''' Log version information. '''
+    """Log version information."""
 
     logging.info(message_info(294, __version__, __updated__))
     logging.debug(message_debug(902, subcommand, args))
+
 
 # -----------------------------------------------------------------------------
 # Main
@@ -576,7 +576,7 @@ if __name__ == "__main__":
         "fatal": logging.FATAL,
         "warning": logging.WARNING,
         "error": logging.ERROR,
-        "critical": logging.CRITICAL
+        "critical": logging.CRITICAL,
     }
 
     LOG_LEVEL_PARAMETER = os.getenv("SENZING_LOG_LEVEL", "info").lower()
@@ -614,7 +614,7 @@ if __name__ == "__main__":
 
     # Transform subcommand from CLI parameter to function name string.
 
-    SUBCOMMAND_FUNCTION_NAME = "do_{0}".format(SUBCOMMAND.replace('-', '_'))
+    SUBCOMMAND_FUNCTION_NAME = "do_{0}".format(SUBCOMMAND.replace("-", "_"))
 
     # Test to see if function exists in the code.
 
