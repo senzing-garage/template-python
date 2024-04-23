@@ -29,7 +29,8 @@ import os
 import signal
 import sys
 import time
-from typing import List
+from types import FrameType, TracebackType
+from typing import Any, Callable, Collection, Dict, List
 
 # Import from https://pypi.org/
 
@@ -54,7 +55,14 @@ GIGABYTES = 1024 * MEGABYTES
 # The "configuration_locator" describes where configuration variables are in:
 # 1) Command line options, 2) Environment variables, 3) Configuration files, 4) Default values
 
-CONFIGURATION_LOCATOR = {
+CONFIGURATION_LOCATOR: Dict[
+    str,
+    Dict[str, bool | str]
+    | Dict[str, str | None]
+    | Dict[str, str]
+    | Dict[str, object]
+    | Dict[str, int | str],
+] = {
     "debug": {"default": False, "env": "SENZING_DEBUG", "cli": "debug"},
     "password": {"default": None, "env": "SENZING_PASSWORD", "cli": "password"},
     "senzing_dir": {
@@ -75,7 +83,7 @@ CONFIGURATION_LOCATOR = {
 
 # Enumerate keys in 'configuration_locator' that should not be printed to the log.
 
-KEYS_TO_REDACT = [
+KEYS_TO_REDACT: List[str] = [
     "password",
 ]
 
@@ -87,7 +95,13 @@ KEYS_TO_REDACT = [
 def get_parser() -> argparse.ArgumentParser:
     """Parse commandline arguments."""
 
-    subcommands = {
+    subcommands: Dict[
+        str,
+        Dict[str, str | List[str] | Dict[str, Dict[str, str]]]
+        | Dict[str, str | Dict[str, Dict[str, str]]]
+        | Dict[str, str]
+        | Dict[str, Collection[str]],
+    ] = {
         "task1": {
             "help": "Example task #1.",
             "argument_aspects": ["common"],
@@ -130,7 +144,7 @@ def get_parser() -> argparse.ArgumentParser:
 
     # Define argument_aspects.
 
-    argument_aspects = {
+    argument_aspects: Dict[str, Dict[str, Dict[str, str]]] = {
         "common": {
             "--debug": {
                 "dest": "debug",
@@ -147,14 +161,16 @@ def get_parser() -> argparse.ArgumentParser:
 
     # Augment "subcommands" variable with arguments specified by aspects.
 
+    arguments_key: str = "arguments"
+    argument_aspects_key: str = "argument_aspects"
     for subcommand_value in subcommands.values():
-        if "argument_aspects" in subcommand_value:
-            for aspect in subcommand_value["argument_aspects"]:
-                if "arguments" not in subcommand_value:
-                    subcommand_value["arguments"] = {}
+        if argument_aspects in subcommand_value:  # type: ignore[comparison-overlap]
+            for aspect in subcommand_value[argument_aspects_key]:
+                if arguments_key not in subcommand_value:
+                    subcommand_value[arguments_key] = {}  # type: ignore[ assignment]
                 arguments = argument_aspects.get(aspect, {})
                 for argument, argument_value in arguments.items():
-                    subcommand_value["arguments"][argument] = argument_value
+                    subcommand_value[arguments_key][argument] = argument_value  # type: ignore[ index]
 
     parser = argparse.ArgumentParser(
         prog="template-python.py",
@@ -167,8 +183,8 @@ def get_parser() -> argparse.ArgumentParser:
     for subcommand_key, subcommand_values in subcommands.items():
         subcommand_help = subcommand_values.get("help", "")
         subcommand_arguments = subcommand_values.get("arguments", {})
-        subparser = subparsers.add_parser(subcommand_key, help=subcommand_help)
-        for argument_key, argument_values in subcommand_arguments.items():
+        subparser = subparsers.add_parser(subcommand_key, help=subcommand_help)  # type: ignore[arg-type]
+        for argument_key, argument_values in subcommand_arguments.items():  # type: ignore[attr-defined]
             subparser.add_argument(argument_key, **argument_values)
 
     return parser
@@ -229,7 +245,7 @@ MESSAGE_DICTIONARY = {
 }
 
 
-def message(index, *args) -> str:
+def message(index: int, *args: Any) -> str:
     """Return an instantiated message."""
     index_string = str(index)
     template = MESSAGE_DICTIONARY.get(
@@ -238,36 +254,38 @@ def message(index, *args) -> str:
     return template.format(*args)
 
 
-def message_generic(generic_index, index, *args) -> str:
+def message_generic(generic_index: int, index: int, *args: Any) -> str:
     """Return a formatted message."""
     return "{0} {1}".format(message(generic_index, index), message(index, *args))
 
 
-def message_info(index, *args) -> str:
+def message_info(index: int, *args: Any) -> str:
     """Return an info message."""
     return message_generic(MESSAGE_INFO, index, *args)
 
 
-def message_warning(index, *args) -> str:
+def message_warning(index: int, *args: Any) -> str:
     """Return a warning message."""
     return message_generic(MESSAGE_WARN, index, *args)
 
 
-def message_error(index, *args) -> str:
+def message_error(index: int, *args: Any) -> str:
     """Return an error message."""
     return message_generic(MESSAGE_ERROR, index, *args)
 
 
-def message_debug(index, *args) -> str:
+def message_debug(index: int, *args: Any) -> str:
     """Return a debug message."""
     return message_generic(MESSAGE_DEBUG, index, *args)
 
 
-def get_exception():
+def get_exception() -> (
+    Dict[str, str | int | BaseException | type[BaseException] | TracebackType | None]
+):
     """Get details about an exception."""
     exception_type, exception_object, traceback = sys.exc_info()
-    frame = traceback.tb_frame
-    line_number = traceback.tb_lineno
+    frame = traceback.tb_frame  # type: ignore[union-attr]
+    line_number = traceback.tb_lineno  # type: ignore[union-attr]
     filename = frame.f_code.co_filename
     linecache.checkcache(filename)
     line = linecache.getline(filename, line_number, frame.f_globals)
@@ -286,7 +304,7 @@ def get_exception():
 # -----------------------------------------------------------------------------
 
 
-def get_configuration(subcommand, args):
+def get_configuration(subcommand: str, args: argparse.Namespace) -> Dict[str, Any]:
     """Order of precedence: CLI, OS environment variables, INI file, default."""
     result = {}
 
@@ -305,7 +323,7 @@ def get_configuration(subcommand, args):
     # Copy OS environment variables into configuration dictionary.
 
     for key, value in list(CONFIGURATION_LOCATOR.items()):
-        os_env_var = value.get("env", None)
+        os_env_var = str(value.get("env", ""))
         if os_env_var:
             os_env_value = os.getenv(os_env_var, None)
             if os_env_value:
@@ -344,17 +362,17 @@ def get_configuration(subcommand, args):
 
     integers = ["sleep_time_in_seconds"]
     for integer in integers:
-        integer_string = result.get(integer)
-        result[integer] = int(integer_string)
+        integer_string = result.get(integer, "0")
+        result[integer] = int(integer_string)  # type: ignore[call-overload]
 
     return result
 
 
-def validate_configuration(config):
+def validate_configuration(config: Dict[Any, Any]) -> None:
     """Check aggregate configuration from commandline options, environment variables, config files, and defaults."""
 
-    user_warning_messages = []
-    user_error_messages = []
+    user_warning_messages: List[str] = []
+    user_error_messages: List[str] = []
 
     # Perform subcommand specific checking.
 
@@ -386,7 +404,7 @@ def validate_configuration(config):
         exit_error(697)
 
 
-def redact_configuration(config):
+def redact_configuration(config: Dict[Any, Any]) -> Dict[Any, Any]:
     """Return a shallow copy of config with certain keys removed."""
     result = config.copy()
     for key in KEYS_TO_REDACT:
@@ -402,18 +420,20 @@ def redact_configuration(config):
 # -----------------------------------------------------------------------------
 
 
-def bootstrap_signal_handler(signal_number, frame):
+def bootstrap_signal_handler(signal_number: int, frame: FrameType | None) -> Any:
     """Exit on signal error."""
     logging.debug(message_debug(901, signal_number, frame))
     sys.exit(0)
 
 
-def create_signal_handler_function(args):
+def create_signal_handler_function(
+    args: argparse.Namespace,
+) -> Callable[[int, FrameType | None], None]:
     """Tricky code.  Uses currying technique. Create a function for signal handling.
     that knows about "args".
     """
 
-    def result_function(signal_number, frame):
+    def result_function(signal_number: int, frame: FrameType | None) -> None:
         logging.info(message_info(298, args))
         logging.debug(message_debug(901, signal_number, frame))
         sys.exit(0)
@@ -421,7 +441,7 @@ def create_signal_handler_function(args):
     return result_function
 
 
-def entry_template(config):
+def entry_template(config: Dict[Any, Any]) -> str:
     """Format of entry message."""
     debug = config.get("debug", False)
     config["start_time"] = time.time()
@@ -433,7 +453,7 @@ def entry_template(config):
     return message_info(297, config_json)
 
 
-def exit_template(config):
+def exit_template(config: Dict[Any, Any]) -> str:
     """Format of exit message."""
     debug = config.get("debug", False)
     stop_time = time.time()
@@ -447,14 +467,14 @@ def exit_template(config):
     return message_info(298, config_json)
 
 
-def exit_error(index, *args):
+def exit_error(index: int, *args: Any) -> None:
     """Log error message and exit program."""
     logging.error(message_error(index, *args))
     logging.error(message_error(698))
     sys.exit(1)
 
 
-def exit_silently():
+def exit_silently() -> None:
     """Exit program."""
     sys.exit(0)
 
@@ -465,7 +485,7 @@ def exit_silently():
 # -----------------------------------------------------------------------------
 
 
-def do_docker_acceptance_test(subcommand, args):
+def do_docker_acceptance_test(subcommand: str, args: argparse.Namespace) -> None:
     """For use with Docker acceptance testing."""
 
     # Get context from CLI, environment variables, and ini files.
@@ -481,7 +501,7 @@ def do_docker_acceptance_test(subcommand, args):
     logging.info(exit_template(config))
 
 
-def do_task1(subcommand, args):
+def do_task1(subcommand: str, args: argparse.Namespace) -> None:
     """Do a task."""
 
     # Get context from CLI, environment variables, and ini files.
@@ -501,7 +521,7 @@ def do_task1(subcommand, args):
     logging.info(exit_template(config))
 
 
-def do_task2(subcommand, args):
+def do_task2(subcommand: str, args: argparse.Namespace) -> None:
     """Do a task. Print the complete config object"""
 
     # Get context from CLI, environment variables, and ini files.
@@ -522,7 +542,7 @@ def do_task2(subcommand, args):
     logging.info(exit_template(config))
 
 
-def do_sleep(subcommand, args):
+def do_sleep(subcommand: str, args: argparse.Namespace) -> None:
     """Sleep.  Used for debugging."""
 
     # Get context from CLI, environment variables, and ini files.
@@ -535,7 +555,7 @@ def do_sleep(subcommand, args):
 
     # Pull values from configuration.
 
-    sleep_time_in_seconds = config.get("sleep_time_in_seconds")
+    sleep_time_in_seconds = int(config.get("sleep_time_in_seconds", 0))
 
     # Sleep.
 
@@ -554,7 +574,7 @@ def do_sleep(subcommand, args):
     logging.info(exit_template(config))
 
 
-def do_version(subcommand, args):
+def do_version(subcommand: str, args: argparse.Namespace) -> None:
     """Log version information."""
 
     logging.info(message_info(294, __version__, __updated__))
@@ -592,7 +612,7 @@ if __name__ == "__main__":
 
     # Parse the command line arguments.
 
-    SUBCOMMAND = os.getenv("SENZING_SUBCOMMAND", None)
+    SUBCOMMAND: str = str(os.getenv("SENZING_SUBCOMMAND", None))
     PARSER = get_parser()
     if len(sys.argv) > 1:
         ARGS = PARSER.parse_args()
