@@ -28,5 +28,5 @@ jobs:
         uses: py-actions/flake8@v2
         with:
           max-line-length: 88
-          path: src/senzing
+          path: src
           plugins: flake8-black
