@@ -414,7 +414,7 @@ def redact_configuration(config: Dict[Any, Any]) -> Dict[Any, Any]:
         try:
             result.pop(key)
         except Exception:
-            continue
+            print(f"Could not pop {key}")
     return result
 
 
