@@ -10,8 +10,6 @@ env:
 jobs:
   pytest-linux:
     name: "pytest Senzing: ${{ matrix.senzingapi-version }}; OS: ${{ matrix.os }}; Python ${{ matrix.python-version }}"
-    permissions:
-      contents: read
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -70,4 +68,4 @@ jobs:
     permissions:
       pull-requests: write
       contents: write
-    uses: senzing-factory/build-resources/.github/workflows/python-coverage-comment.yaml@v1
+    uses: senzing-factory/build-resources/.github/workflows/python-coverage-comment.yaml@py-cov-test
