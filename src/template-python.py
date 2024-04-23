@@ -21,6 +21,8 @@
 
 # Import from standard library. https://docs.python.org/3/library/
 
+from __future__ import annotations
+
 import argparse
 import json
 import linecache
@@ -219,6 +221,7 @@ MESSAGE_DICTIONARY = {
     "300": "senzing-" + SENZING_PRODUCT_ID + "{0:04d}W",
     "499": "{0}",
     "500": "senzing-" + SENZING_PRODUCT_ID + "{0:04d}E",
+    "694": "SENZING_SUBCOMMAND not set: {0}.",
     "695": "Unknown database scheme '{0}' in database url '{1}'",
     "696": "Bad SENZING_SUBCOMMAND: {0}.",
     "697": "No processing done.",
@@ -411,7 +414,7 @@ def redact_configuration(config: Dict[Any, Any]) -> Dict[Any, Any]:
         try:
             result.pop(key)
         except Exception:
-            pass
+            continue
     return result
 
 
@@ -634,7 +637,8 @@ if __name__ == "__main__":
     signal.signal(signal.SIGTERM, SIGNAL_HANDLER)
 
     # Transform subcommand from CLI parameter to function name string.
-    assert SUBCOMMAND is not None
+    if not SUBCOMMAND:
+        exit_error(694)
     SUBCOMMAND_FUNCTION_NAME = "do_{0}".format(SUBCOMMAND.replace("-", "_"))
 
     # Test to see if function exists in the code.
