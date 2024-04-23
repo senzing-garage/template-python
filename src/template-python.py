@@ -84,7 +84,7 @@ KEYS_TO_REDACT = [
 # -----------------------------------------------------------------------------
 
 
-def get_parser():
+def get_parser() -> argparse.ArgumentParser:
     """Parse commandline arguments."""
 
     subcommands = {
