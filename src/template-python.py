@@ -35,7 +35,7 @@ from typing import List
 
 # Metadata
 
-__all__ : List[str] = []
+__all__: List[str] = []
 __version__ = "1.0.0"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = "2019-07-16"
 __updated__ = "2022-05-18"
