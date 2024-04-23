@@ -29,12 +29,13 @@ import os
 import signal
 import sys
 import time
+from typing import List
 
 # Import from https://pypi.org/
 
 # Metadata
 
-__all__ = []
+__all__ : List[str] = []
 __version__ = "1.0.0"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = "2019-07-16"
 __updated__ = "2022-05-18"
@@ -228,7 +229,7 @@ MESSAGE_DICTIONARY = {
 }
 
 
-def message(index, *args):
+def message(index, *args) -> str:
     """Return an instantiated message."""
     index_string = str(index)
     template = MESSAGE_DICTIONARY.get(
@@ -237,27 +238,27 @@ def message(index, *args):
     return template.format(*args)
 
 
-def message_generic(generic_index, index, *args):
+def message_generic(generic_index, index, *args) -> str:
     """Return a formatted message."""
     return "{0} {1}".format(message(generic_index, index), message(index, *args))
 
 
-def message_info(index, *args):
+def message_info(index, *args) -> str:
     """Return an info message."""
     return message_generic(MESSAGE_INFO, index, *args)
 
 
-def message_warning(index, *args):
+def message_warning(index, *args) -> str:
     """Return a warning message."""
     return message_generic(MESSAGE_WARN, index, *args)
 
 
-def message_error(index, *args):
+def message_error(index, *args) -> str:
     """Return an error message."""
     return message_generic(MESSAGE_ERROR, index, *args)
 
 
-def message_debug(index, *args):
+def message_debug(index, *args) -> str:
     """Return a debug message."""
     return message_generic(MESSAGE_DEBUG, index, *args)
 
@@ -613,7 +614,7 @@ if __name__ == "__main__":
     signal.signal(signal.SIGTERM, SIGNAL_HANDLER)
 
     # Transform subcommand from CLI parameter to function name string.
-
+    assert SUBCOMMAND is not None
     SUBCOMMAND_FUNCTION_NAME = "do_{0}".format(SUBCOMMAND.replace("-", "_"))
 
     # Test to see if function exists in the code.
