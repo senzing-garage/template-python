@@ -1,5 +1,6 @@
 """Placeholder for defining test functions."""
 
+
 def func(x):
     """Function to increment by 1."""
     return x + 1
