@@ -61,6 +61,7 @@ jobs:
         env:
           COVERAGE_FILE: ".coverage.${{ matrix.python-version }}"
         run: |
+          ls -al
           mv .coverage "$COVERAGE_FILE"
 
       - name: Store coverage file
