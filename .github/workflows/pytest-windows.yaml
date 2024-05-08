@@ -9,14 +9,14 @@ env:
 
 jobs:
   pytest-windows:
-    name: "pytest Senzing: ${{ matrix.senzingapi-runtime-version }}; OS: ${{ matrix.os }}; Python ${{ matrix.python-version }}"
+    name: "pytest Senzing: ${{ matrix.senzingapi-version }}; OS: ${{ matrix.os }}; Python ${{ matrix.python-version }}"
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         os: [windows-latest]
         python-version: ["3.8", "3.9", "3.10", "3.11"]
-        senzingapi-runtime-version: [production-v3]
+        senzingapi-version: [production-v3]
 
     steps:
       - name: checkout repository
@@ -39,7 +39,7 @@ jobs:
       - name: install Senzing API
         uses: senzing-factory/github-action-install-senzing-api@v3
         with:
-          senzingapi-runtime-version: ${{ matrix.senzingapi-runtime-version }}
+          senzingapi-version: ${{ matrix.senzingapi-version }}
 
       - name: add to "Path" environment variable
         run: echo "C:\Program Files\Senzing\g2\lib" | Out-File -FilePath "$env:GITHUB_PATH" -Encoding utf8 -Append
