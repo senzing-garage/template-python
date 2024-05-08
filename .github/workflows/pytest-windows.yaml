@@ -51,7 +51,7 @@ jobs:
         run: mkdir "C:\Temp\sqlite" && copy testdata/sqlite/G2C.db "C:\Temp\sqlite\G2C.db"
 
       - name: run pytest on tests
-        run: pytest tests/ --verbose --capture=no --cov=src/senzing
+        run: pytest tests/ --verbose --capture=no --cov=src
 
       - name: rename coverage file
         env:

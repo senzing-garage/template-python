@@ -50,7 +50,7 @@ jobs:
       - name: run pytest on tests
         run: |
           export DYLD_LIBRARY_PATH=/opt/senzing/g2/lib:/opt/senzing/g2/lib/macos
-          pytest tests/ --verbose --capture=no --cov=src/senzing
+          pytest tests/ --verbose --capture=no --cov=src
 
       - name: rename coverage file
         env:
