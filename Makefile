@@ -34,6 +34,30 @@ default: help
 .PHONY: hello-world
 hello-world: hello-world-osarch-specific
 
+
+# -----------------------------------------------------------------------------
+# Test
+# -----------------------------------------------------------------------------
+
+.PHONY: test
+test: test-osarch-specific
+
+
+.PHONY: pylint
+pylint:
+	@pylint $(shell git ls-files '*.py'  ':!:docs/source/*')
+
+
+.PHONY: mypy
+mypy:
+	mypy --strict $(shell git ls-files '*.py' ':!:docs/source/*' ':!:tests/*')
+
+
+.PHONY: pytest
+pytest:
+	@pytest --cov=src/senzing --cov-report=xml  tests
+
+
 # -----------------------------------------------------------------------------
 # Docker-based builds
 # -----------------------------------------------------------------------------

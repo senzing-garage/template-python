@@ -1,13 +1,9 @@
 # template-python
 
-If you are beginning your journey with
-[Senzing](https://senzing.com/),
-please start with
-[Senzing Quick Start guides](https://docs.senzing.com/quickstart/).
+If you are beginning your journey with [Senzing],
+please start with [Senzing Quick Start guides].
 
-You are in the
-[Senzing Garage](https://github.com/senzing-garage)
-where projects are "tinkered" on.
+You are in the [Senzing Garage] where projects are "tinkered" on.
 Although this GitHub repository may help you understand an approach to using Senzing,
 it's not considered to be "production ready" and is not considered to be part of the Senzing product.
 Heck, it may not even be appropriate for your application of Senzing!
@@ -23,12 +19,10 @@ This section should be replaced with real "**Overview**" content after initial r
 This repository (template-python) contains exemplar python scripts that can be used to start a new python project.
 
 The
-[template-python.py](template-python.py)
+[template-python.py]
 python script is a boilerplate which has the following features:
 
-1. Conforms to
-   [PEP-0008](https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/pep-0008.md)
-   python programming style guide.
+1. Conforms to [PEP-0008] python programming style guide.
     1. With exception of some lines being too long.
 1. "command subcommand" command line.
 1. A structured command line parser and "-help"
@@ -62,15 +56,15 @@ python script is a boilerplate which has the following features:
 
 ## Preamble
 
-At [Senzing](http://senzing.com),
+At [Senzing],
 we strive to create GitHub documentation in a
-"[don't make me think](https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/dont-make-me-think.md)" style.
+"[don't make me think]" style.
 For the most part, instructions are copy and paste.
 Whenever thinking is needed, it's marked with a "thinking" icon :thinking:.
 Whenever customization is needed, it's marked with a "pencil" icon :pencil2:.
 If the instructions are not clear, please let us know by opening a new
-[Documentation issue](https://github.com/senzing-garage/template-python/issues/new?template=documentation_request.md)
-describing where we can improve.   Now on with the show...
+[Documentation issue] describing where we can improve.   
+Now on with the show...
 
 ### Legend
 
@@ -85,7 +79,7 @@ describing where we can improve.   Now on with the show...
 - **Space:** This repository and demonstration require 6 GB free disk space.
 - **Time:** Budget 40 minutes to get the demonstration up-and-running, depending on CPU and network speeds.
 - **Background knowledge:** This repository assumes a working knowledge of:
-  - [Docker](https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/docker.md)
+  - [Docker]
 
 ## Demonstrate using Command Line Interface
 
@@ -95,29 +89,29 @@ describing where we can improve.   Now on with the show...
 These are "one-time tasks" which may already have been completed.
 
 1. Install system dependencies:
-    1. Use `apt` based installation for Debian, Ubuntu and
-       [others](https://en.wikipedia.org/wiki/List_of_Linux_distributions#Debian-based)
-        1. See [apt-packages.txt](src/apt-packages.txt) for list
-    1. Use `yum` based installation for Red Hat, CentOS, openSuse and
-       [others](https://en.wikipedia.org/wiki/List_of_Linux_distributions#RPM-based).
-        1. See [yum-packages.txt](src/yum-packages.txt) for list
+    1. Use `apt` based installation for Debian, Ubuntu and other
+       [debain based distributions]
+        1. See [apt-packages.txt] for list
+    1. Use `yum` based installation for Red Hat, CentOS, openSuse and other
+       [rpm based distributions].
+        1. See [yum-packages.txt] for list
 1. Install Python dependencies:
-    1. See [requirements.txt](requirements.txt) for list
-        1. [Installation hints](https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/install-python-dependencies.md)
+    1. See [requirements.txt] for list
+        1. [Installation hints]
 1. The following software programs need to be installed:
-    1. [senzingapi](https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/install-senzing-api.md)
+    1. [senzingapi]
 1. :thinking: **Optional:**  Some databases need additional support.
    For other databases, this step may be skipped.
     1. **Db2:** See
-       [Support Db2](https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/support-db2.md).
+       [Support Db2].
     1. **MS SQL:** See
-       [Support MS SQL](https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/support-mssql.md).
-1. [Configure Senzing database](https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/configure-senzing-database.md)
+       [Support MS SQL].
+1. [Configure Senzing database]
 
 ### Download
 
 1. Get a local copy of
-   [template-python.py](template-python.py).
+   [template-python.py].
    Example:
 
     1. :pencil2: Specify where to download file.
@@ -144,7 +138,7 @@ These are "one-time tasks" which may already have been completed.
         ```
 
 1. :thinking: **Alternative:** The entire git repository can be downloaded by following instructions at
-   [Clone repository](docs/development.md#clone-repository)
+   [Clone repository]
 
 ### Environment variables for CLI
 
@@ -172,14 +166,14 @@ These are "one-time tasks" which may already have been completed.
 
 1. :thinking: Set operating system specific environment variables.
    Choose one of the options.
-    1. **Option #1:** For Debian, Ubuntu, and [others](https://en.wikipedia.org/wiki/List_of_Linux_distributions#Debian-based).
+    1. **Option #1:** For Debian, Ubuntu, and other [debain based distributions].
        Example:
 
         ```console
         export LD_LIBRARY_PATH=${SENZING_G2_DIR}/lib:${SENZING_G2_DIR}/lib/debian:$LD_LIBRARY_PATH
         ```
 
-    1. **Option #2** For Red Hat, CentOS, openSuse and [others](https://en.wikipedia.org/wiki/List_of_Linux_distributions#RPM-based).
+    1. **Option #2** For Red Hat, CentOS, openSuse and other [rpm based distributions].
        Example:
 
         ```console
@@ -195,7 +189,7 @@ These are "one-time tasks" which may already have been completed.
    ${SENZING_DOWNLOAD_FILE} --help
    ```
 
-1. For more examples of use, see [Examples of CLI](docs/examples.md#examples-of-cli).
+1. For more examples of use, see [Examples of CLI].
 
 ## Demonstrate using Docker
 
@@ -205,9 +199,9 @@ These are "one-time tasks" which may already have been completed.
 These are "one-time tasks" which may already have been completed.
 
 1. The following software programs need to be installed:
-    1. [docker](https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/docker.md)
-1. [Install Senzing using Docker](https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/install-senzing-using-docker.md)
-1. [Configure Senzing database using Docker](https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/configure-senzing-database-using-docker.md)
+    1. [Docker]
+1. [Install Senzing using Docker]
+1. [Configure Senzing database using Docker]
 
 ### Database support
 
@@ -215,10 +209,10 @@ These are "one-time tasks" which may already have been completed.
 For other databases, these steps may be skipped.
 
 1. **Db2:** See
-   [Support Db2](https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/support-db2.md)
+   [Support Db2]
    instructions to set `SENZING_OPT_IBM_DIR_PARAMETER`.
 1. **MS SQL:** See
-   [Support MS SQL](https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/support-mssql.md)
+   [Support MS SQL]
    instructions to set `SENZING_OPT_MICROSOFT_DIR_PARAMETER`.
 
 ### External database
@@ -273,14 +267,14 @@ Unset `*_PARAMETER` environment variables have no effect on the
       senzing/template
     ```
 
-1. For more examples of use, see [Examples of Docker](docs/examples.md#examples-of-docker).
+1. For more examples of use, see [Examples of Docker].
 
 ## Configuration
 
 Configuration values specified by environment variable or command line parameter.
 
-- **[SENZING_DATABASE_URL](https://github.com/senzing-garage/knowledge-base/blob/main/lists/environment-variables.md#senzing_database_url)**
-- **[SENZING_DEBUG](https://github.com/senzing-garage/knowledge-base/blob/main/lists/environment-variables.md#senzing_debug)**
+- **[SENZING_DATABASE_URL]**
+- **[SENZING_DEBUG]**
 
 ## References
 
@@ -290,3 +284,29 @@ Configuration values specified by environment variable or command line parameter
 1. Related artifacts:
     1. [DockerHub](https://hub.docker.com/r/senzing/template-python)
     1. [Helm Chart](https://github.com/senzing-garage/charts/tree/main/charts/template-python)
+
+[apt-packages.txt]: src/apt-packages.txt
+[Clone repository]: docs/development.md#clone-repository
+[Configure Senzing database]: https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/configure-senzing-database.md
+[Configure Senzing database using Docker]: https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/configure-senzing-database-using-docker.md
+[debain based distributions]: https://en.wikipedia.org/wiki/List_of_Linux_distributions#Debian-based
+[Docker]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/docker.md
+[Documentation issue]: https://github.com/senzing-garage/template-python/issues/new?template=documentation_request.md
+[don't make me think]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/dont-make-me-think.md
+[Examples of CLI]: docs/examples.md#examples-of-cli
+[Examples of Docker]: docs/examples.md#examples-of-docker
+[Install Senzing using Docker]: https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/install-senzing-using-docker.md
+[Installation hints]: https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/install-python-dependencies.md
+[PEP-0008]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/pep-0008.md
+[requirements.txt]: requirements.txt
+[rpm based distributions]: https://en.wikipedia.org/wiki/List_of_Linux_distributions#RPM-based
+[Senzing]: https://senzing.com/
+[senzingapi]: https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/install-senzing-api.md
+[SENZING_DATABASE_URL]: https://github.com/senzing-garage/knowledge-base/blob/main/lists/environment-variables.md#senzing_database_url
+[SENZING_DEBUG]: https://github.com/senzing-garage/knowledge-base/blob/main/lists/environment-variables.md#senzing_debug
+[Senzing Garage]: https://github.com/senzing-garage
+[Senzing Quick Start guides]: https://docs.senzing.com/quickstart/
+[Support Db2]: https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/support-db2.md
+[Support MS SQL]: https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/support-mssql.md
+[template-python.py]: src/template-python.py
+[yum-packages.txt]: src/yum-packages.txt
