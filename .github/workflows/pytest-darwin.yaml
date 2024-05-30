@@ -6,6 +6,9 @@ env:
   PYTHONPATH: /Users/runner/work/g2-sdk-python-next/g2-sdk-python-next/src
   SENZING_TOOLS_DATABASE_URL: 'sqlite3://na:na@/tmp/sqlite/G2C.db'
 
+permissions:
+  contents: read
+
 jobs:
   pytest-darwin:
     name: "pytest Senzing: ${{ matrix.senzingapi-version }}; OS: ${{ matrix.os }}; Python ${{ matrix.python-version }}"
