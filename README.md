@@ -5,8 +5,8 @@
 | Name                   |    Stmts |     Miss |  Cover |   Missing |
 |----------------------- | -------: | -------: | -----: | --------: |
 | src/\_\_init\_\_.py    |        0 |        0 |   100% |           |
-| src/template-python.py |      225 |      225 |     0% |     3-653 |
-|              **TOTAL** |  **225** |  **225** | **0%** |           |
+| src/template-python.py |      224 |      224 |     0% |    24-653 |
+|              **TOTAL** |  **224** |  **224** | **0%** |           |
 
 
 ## Setup coverage badge
