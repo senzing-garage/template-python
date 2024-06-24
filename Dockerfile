@@ -5,7 +5,7 @@ ENV REFRESHED_AT=2024-06-24
 
 LABEL Name="senzing/template-python" \
   Maintainer="support@senzing.com" \
-  Version="1.2.4"
+  Version="1.2.5"
 
 HEALTHCHECK CMD ["/app/healthcheck.sh"]
 
