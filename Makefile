@@ -1,4 +1,4 @@
-# Git variables
+# Makefile for Python project
 
 # Detect the operating system and architecture.
 
@@ -8,13 +8,38 @@ include makefiles/osdetect.mk
 # Variables
 # -----------------------------------------------------------------------------
 
+# "Simple expanded" variables (':=')
+
+PROGRAM_NAME := $(shell basename `git rev-parse --show-toplevel`)
+MAKEFILE_PATH := $(abspath $(firstword $(MAKEFILE_LIST)))
+MAKEFILE_DIRECTORY := $(shell dirname $(MAKEFILE_PATH))
+TARGET_DIRECTORY := $(MAKEFILE_DIRECTORY)/target
+DOCKER_CONTAINER_NAME := $(PROGRAM_NAME)
+DOCKER_IMAGE_NAME := senzing/$(PROGRAM_NAME)
+DOCKER_BUILD_IMAGE_NAME := $(DOCKER_IMAGE_NAME)-build
+BUILD_VERSION := $(shell git describe --always --tags --abbrev=0 --dirty  | sed 's/v//')
+BUILD_TAG := $(shell git describe --always --tags --abbrev=0  | sed 's/v//')
+BUILD_ITERATION := $(shell git log $(BUILD_TAG)..HEAD --oneline | wc -l | sed 's/^ *//')
+GIT_REMOTE_URL := $(shell git config --get remote.origin.url)
 GIT_REPOSITORY_NAME := $(shell basename `git rev-parse --show-toplevel`)
 GIT_VERSION := $(shell git describe --always --tags --long --dirty | sed -e 's/\-0//' -e 's/\-g.......//')
+GO_PACKAGE_NAME := $(shell echo $(GIT_REMOTE_URL) | sed -e 's|^git@github.com:|github.com/|' -e 's|\.git$$||' -e 's|Senzing|senzing|')
+PATH := $(MAKEFILE_DIRECTORY)/bin:$(PATH)
 
-# Docker variables
+# Recursive assignment ('=')
+
+GO_OSARCH = $(subst /, ,$@)
+GO_OS = $(word 1, $(GO_OSARCH))
+GO_ARCH = $(word 2, $(GO_OSARCH))
+
+# Conditional assignment. ('?=')
+# Can be overridden with "export"
 
 DOCKER_IMAGE_TAG ?= $(GIT_REPOSITORY_NAME):$(GIT_VERSION)
-DOCKER_IMAGE_NAME := senzing/template-python
+
+# Export environment variables.
+
+.EXPORT_ALL_VARIABLES:
 
 # -----------------------------------------------------------------------------
 # The first "make" target runs as default.
@@ -34,28 +59,44 @@ default: help
 .PHONY: hello-world
 hello-world: hello-world-osarch-specific
 
+# -----------------------------------------------------------------------------
+# Dependency management
+# -----------------------------------------------------------------------------
+
+.PHONY: dependencies-for-make
+dependencies-for-make:
+
+
+.PHONY: dependencies
+dependencies:
+
+# -----------------------------------------------------------------------------
+# Setup
+# -----------------------------------------------------------------------------
+
+.PHONY: setup
+setup: setup-osarch-specific
+
+# -----------------------------------------------------------------------------
+# Lint
+# -----------------------------------------------------------------------------
+
+.PHONY: lint
+lint:
+	@pylint $(shell git ls-files '*.py'  ':!:docs/source/*')
+	@mypy --strict $(shell git ls-files '*.py' ':!:docs/source/*' ':!:tests/*')
 
 # -----------------------------------------------------------------------------
 # Test
 # -----------------------------------------------------------------------------
 
 .PHONY: test
-test: test-osarch-specific
-
-
-.PHONY: pylint
-pylint:
-	@pylint $(shell git ls-files '*.py'  ':!:docs/source/*')
-
-
-.PHONY: mypy
-mypy:
-	mypy --strict $(shell git ls-files '*.py' ':!:docs/source/*' ':!:tests/*')
-
-
-.PHONY: pytest
-pytest:
+test: 
 	@pytest --cov=src/senzing --cov-report=xml  tests
+
+# -----------------------------------------------------------------------------
+# Coverage
+# -----------------------------------------------------------------------------
 
 
 # -----------------------------------------------------------------------------
@@ -70,12 +111,20 @@ docker-build:
 		.
 
 # -----------------------------------------------------------------------------
-# Utility targets
+# Documentation
+# -----------------------------------------------------------------------------
+
+
+# -----------------------------------------------------------------------------
+# Clean
 # -----------------------------------------------------------------------------
 
 .PHONY: clean
 clean: clean-osarch-specific docker-rmi-for-build
 
+# -----------------------------------------------------------------------------
+# Utility targets
+# -----------------------------------------------------------------------------
 
 .PHONY: docker-rmi-for-build
 docker-rmi-for-build:
@@ -96,7 +145,3 @@ print-make-variables:
 	@$(foreach V,$(sort $(.VARIABLES)), \
 		$(if $(filter-out environment% default automatic, \
 		$(origin $V)),$(warning $V=$($V) ($(value $V)))))
-
-
-.PHONY: setup
-setup: setup-osarch-specific

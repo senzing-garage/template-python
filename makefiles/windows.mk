@@ -4,6 +4,7 @@
 # Variables
 # -----------------------------------------------------------------------------
 
+SENZING_TOOLS_DATABASE_URL ?= sqlite3://na:na@nowhere/C:\Temp\sqlite\G2C.db
 
 # -----------------------------------------------------------------------------
 # OS specific targets
@@ -11,8 +12,9 @@
 
 .PHONY: clean-osarch-specific
 clean-osarch-specific:
+	@docker rm  --force $(DOCKER_CONTAINER_NAME) 
+	@docker rmi --force $(DOCKER_IMAGE_NAME) $(DOCKER_BUILD_IMAGE_NAME) 
 	del /F /S /Q $(TARGET_DIRECTORY)
-	del /F /S /Q $(GOPATH)/bin/$(PROGRAM_NAME)
 
 
 .PHONY: hello-world-osarch-specific
@@ -20,24 +22,9 @@ hello-world-osarch-specific:
 	@echo "Hello World, from windows."
 
 
-.PHONY: package-osarch-specific
-package-osarch-specific:
-	@echo No packaging for windows.
-
-
-.PHONY: run-osarch-specific
-run-osarch-specific:
-	@go run main.go
-
-
 .PHONY: setup-osarch-specific
 setup-osarch-specific:
 	@echo "No setup required."
-
-
-.PHONY: test-osarch-specific
-test-osarch-specific:
-	@go test -v -p 1 ./...
 
 # -----------------------------------------------------------------------------
 # Makefile targets supported only by this platform.
