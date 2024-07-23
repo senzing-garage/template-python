@@ -1,4 +1,4 @@
-name: dependency scan
+name: Dependency scan
 
 on:
   pull_request:
