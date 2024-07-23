@@ -16,6 +16,5 @@ jobs:
       - name: Run isort
         uses: isort/isort-action@v1
         with:
-          configuration:
           requirements-files: requirements.txt
-          sort-paths: "src"
+          sort-paths: "src/senzing_abstract examples tests"
