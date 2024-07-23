@@ -23,8 +23,6 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - run: pwd; ls -la
-
       - name: Run flake8 lint
         uses: py-actions/flake8@v2
         with:
