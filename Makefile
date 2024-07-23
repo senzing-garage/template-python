@@ -10,10 +10,12 @@ include makefiles/osdetect.mk
 
 # "Simple expanded" variables (':=')
 
+# PROGRAM_NAME is the name of the GIT repository.
 PROGRAM_NAME := $(shell basename `git rev-parse --show-toplevel`)
 MAKEFILE_PATH := $(abspath $(firstword $(MAKEFILE_LIST)))
 MAKEFILE_DIRECTORY := $(shell dirname $(MAKEFILE_PATH))
 TARGET_DIRECTORY := $(MAKEFILE_DIRECTORY)/target
+DIST_DIRECTORY := $(MAKEFILE_DIRECTORY)/dist
 DOCKER_CONTAINER_NAME := $(PROGRAM_NAME)
 DOCKER_IMAGE_NAME := senzing/$(PROGRAM_NAME)
 DOCKER_BUILD_IMAGE_NAME := $(DOCKER_IMAGE_NAME)-build
@@ -26,16 +28,13 @@ GIT_VERSION := $(shell git describe --always --tags --long --dirty | sed -e 's/\
 GO_PACKAGE_NAME := $(shell echo $(GIT_REMOTE_URL) | sed -e 's|^git@github.com:|github.com/|' -e 's|\.git$$||' -e 's|Senzing|senzing|')
 PATH := $(MAKEFILE_DIRECTORY)/bin:$(PATH)
 
-# Recursive assignment ('=')
-
-GO_OSARCH = $(subst /, ,$@)
-GO_OS = $(word 1, $(GO_OSARCH))
-GO_ARCH = $(word 2, $(GO_OSARCH))
-
 # Conditional assignment. ('?=')
 # Can be overridden with "export"
+# Example: "export LD_LIBRARY_PATH=/path/to/my/senzing/g2/lib"
 
 DOCKER_IMAGE_TAG ?= $(GIT_REPOSITORY_NAME):$(GIT_VERSION)
+LD_LIBRARY_PATH ?= /opt/senzing/g2/lib
+PYTHONPATH ?= $(MAKEFILE_DIRECTORY)/src
 
 # Export environment variables.
 
@@ -65,10 +64,13 @@ hello-world: hello-world-osarch-specific
 
 .PHONY: dependencies-for-make
 dependencies-for-make:
+	@python3 -m pip install --upgrade pip
+	@python3 -m pip install --requirement development-requirements.txt
 
 
 .PHONY: dependencies
-dependencies:
+dependencies: dependencies-osarch-specific
+	@python3 -m pip install --requirement requirements.txt
 
 # -----------------------------------------------------------------------------
 # Setup
@@ -113,6 +115,43 @@ docker-build:
 # -----------------------------------------------------------------------------
 # Documentation
 # -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+# Specific programs
+# -----------------------------------------------------------------------------
+
+.PHONY: bandit
+bandit:
+	@bandit $(shell git ls-files '*.py'  ':!:docs/source/*' ':!:tests/*' ':!:src/senzing_grpc/pb2_grpc/*')
+
+.PHONY: black
+black:
+	@black $(shell git ls-files '*.py'  ':!:docs/source/*' ':!:tests/*' ':!:src/senzing_grpc/pb2_grpc/*')
+
+
+.PHONY: flake8
+flake8:
+	@flake8 $(shell git ls-files '*.py'  ':!:docs/source/*' ':!:src/senzing_grpc/pb2_grpc/*')
+
+
+.PHONY: isort
+isort:
+	@isort $(shell git ls-files '*.py'  ':!:docs/source/*' ':!:src/senzing_grpc/pb2_grpc/*')
+
+
+.PHONY: mypy
+mypy:
+	mypy --follow-imports skip --strict $(shell git ls-files '*.py' ':!:src/senzing_grpc/pb2_grpc/*')
+
+
+.PHONY: pylint
+pylint:
+	@pylint $(shell git ls-files '*.py'  ':!:docs/source/*' ':!:src/senzing_grpc/pb2_grpc/*')
+
+
+.PHONY: pytest
+pytest:
+	@pytest --cov=src/senzing_grpc --cov-report=xml  $(shell git ls-files '*.py'  ':!:docs/source/*' ':!:src/senzing_grpc/pb2_grpc/*')
 
 
 # -----------------------------------------------------------------------------
