@@ -168,7 +168,7 @@ def get_parser() -> argparse.ArgumentParser:
     arguments_key: str = "arguments"
     argument_aspects_key: str = "argument_aspects"
     for subcommand_value in subcommands.values():
-        if argument_aspects_key in subcommand_value:  # type: ignore[comparison-overlap]
+        if argument_aspects_key in subcommand_value:
             for aspect in subcommand_value[argument_aspects_key]:
                 if arguments_key not in subcommand_value:
                     subcommand_value[arguments_key] = {}  # type: ignore[ assignment]
@@ -520,7 +520,7 @@ def do_task1(subcommand: str, args: argparse.Namespace) -> None:
     # Do work.
 
     example.example_function()
-    print(example.example_return(5))
+    print(example.example_return_int(5))
 
     print("senzing-dir: {senzing_dir}; debug: {debug}".format(**config))
 

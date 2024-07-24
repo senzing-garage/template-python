@@ -84,17 +84,14 @@ setup: setup-osarch-specific
 # -----------------------------------------------------------------------------
 
 .PHONY: lint
-lint:
-	@pylint $(shell git ls-files '*.py'  ':!:docs/source/*')
-	@mypy --strict $(shell git ls-files '*.py' ':!:docs/source/*' ':!:tests/*')
+lint: pylint mypy bandit black flake8 isort
 
 # -----------------------------------------------------------------------------
 # Test
 # -----------------------------------------------------------------------------
 
 .PHONY: test
-test:
-	@pytest tests
+test: pytest
 
 # -----------------------------------------------------------------------------
 # Coverage
@@ -118,43 +115,8 @@ docker-build:
 # Documentation
 # -----------------------------------------------------------------------------
 
-# -----------------------------------------------------------------------------
-# Specific programs
-# -----------------------------------------------------------------------------
-
-.PHONY: bandit
-bandit:
-	@bandit $(shell git ls-files '*.py'  ':!:docs/source/*' ':!:tests/*' ':!:src/senzing_grpc/pb2_grpc/*')
-
-.PHONY: black
-black:
-	@black $(shell git ls-files '*.py'  ':!:docs/source/*' ':!:tests/*' ':!:src/senzing_grpc/pb2_grpc/*')
-
-
-.PHONY: flake8
-flake8:
-	@flake8 $(shell git ls-files '*.py'  ':!:docs/source/*' ':!:src/senzing_grpc/pb2_grpc/*')
-
-
-.PHONY: isort
-isort:
-	@isort $(shell git ls-files '*.py'  ':!:docs/source/*' ':!:src/senzing_grpc/pb2_grpc/*')
-
-
-.PHONY: mypy
-mypy:
-	mypy --follow-imports skip --strict $(shell git ls-files '*.py' ':!:src/senzing_grpc/pb2_grpc/*')
-
-
-.PHONY: pylint
-pylint:
-	@pylint $(shell git ls-files '*.py'  ':!:docs/source/*' ':!:src/senzing_grpc/pb2_grpc/*')
-
-
-.PHONY: pytest
-pytest:
-	@pytest --cov=src/senzing_grpc --cov-report=xml  $(shell git ls-files '*.py'  ':!:docs/source/*' ':!:src/senzing_grpc/pb2_grpc/*')
-
+.PHONY: documentation
+documentation: pydoc
 
 # -----------------------------------------------------------------------------
 # Clean
@@ -162,6 +124,74 @@ pytest:
 
 .PHONY: clean
 clean: clean-osarch-specific docker-rmi-for-build
+
+# -----------------------------------------------------------------------------
+# Specific programs
+# -----------------------------------------------------------------------------
+
+.PHONY: bandit
+bandit:
+	$(info --- bandit ---------------------------------------------------------------------)
+	@bandit $(shell git ls-files '*.py'   ':!:tests/*')
+
+
+.PHONY: black
+black:
+	$(info --- black ----------------------------------------------------------------------)
+	@black $(shell git ls-files '*.py'   ':!:tests/*')
+
+
+.PHONY: flake8
+flake8:
+	$(info --- flake8 ---------------------------------------------------------------------)
+	@flake8 $(shell git ls-files '*.py'  )
+
+
+.PHONY: isort
+isort:
+	$(info --- isort ----------------------------------------------------------------------)
+	@isort $(shell git ls-files '*.py'  )
+
+
+.PHONY: mypy
+mypy:
+	$(info --- mypy -----------------------------------------------------------------------)
+	@mypy --follow-imports skip --strict $(shell git ls-files '*.py' )
+
+
+.PHONY: pydoc
+pydoc:
+	$(info --- pydoc ----------------------------------------------------------------------)
+	@python3 -m pydoc
+
+
+.PHONY: pydoc-web
+pydoc-web:
+	$(info --- pydoc-web ------------------------------------------------------------------)
+	@python3 -m pydoc -p 8885
+
+
+.PHONY: pylint
+pylint:
+	$(info --- pylint ---------------------------------------------------------------------)
+	@pylint $(shell git ls-files '*.py')
+
+
+.PHONY: pytest
+pytest:
+	$(info --- pytest ---------------------------------------------------------------------)
+	@pytest $(shell git ls-files '*.py')
+
+
+.PHONY: sphinx
+sphinx:
+	$(info --- sphinx ---------------------------------------------------------------------)
+	@cd docs; rm -rf build; make html
+
+
+.PHONY: view-sphinx
+view-sphinx: view-sphinx-osarch-specific
+	$(info --- view-sphinx ---------------------------------------------------------------------)
 
 # -----------------------------------------------------------------------------
 # Utility targets
