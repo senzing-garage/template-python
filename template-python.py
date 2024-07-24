@@ -34,6 +34,8 @@ import time
 from types import FrameType, TracebackType
 from typing import Any, Callable, Collection, Dict, List
 
+from template_python import example
+
 # Import from https://pypi.org/
 
 # Metadata
@@ -41,7 +43,7 @@ from typing import Any, Callable, Collection, Dict, List
 __all__: List[str] = []
 __version__ = "1.0.0"  # See https://www.python.org/dev/peps/pep-0396/
 __date__ = "2019-07-16"
-__updated__ = "2022-05-18"
+__updated__ = "2024-07-24"
 
 # See https://github.com/senzing-garage/knowledge-base/blob/main/lists/senzing-product-ids.md
 
@@ -517,7 +519,8 @@ def do_task1(subcommand: str, args: argparse.Namespace) -> None:
 
     # Do work.
 
-    bob()
+    example.example_function()
+    print(example.example_return(5))
 
     print("senzing-dir: {senzing_dir}; debug: {debug}".format(**config))
 
