@@ -70,7 +70,7 @@ dependencies-for-make:
 
 
 .PHONY: dependencies
-dependencies: dependencies-osarch-specific
+dependencies:
 	@python3 -m pip install --requirement requirements.txt
 
 # -----------------------------------------------------------------------------
@@ -126,6 +126,14 @@ run:
 
 .PHONY: documentation
 documentation: sphinx view-sphinx
+
+# -----------------------------------------------------------------------------
+# Package
+# -----------------------------------------------------------------------------
+
+.PHONY: package
+package: clean
+	python3 -m build
 
 # -----------------------------------------------------------------------------
 # Clean
@@ -207,7 +215,7 @@ pydoc-web:
 .PHONY: pylint
 pylint:
 	$(info --- pylint ---------------------------------------------------------------------)
-	@pylint $(shell git ls-files '*.py')
+	@pylint $(shell git ls-files '*.py' ':!:docs/source/*')
 
 
 .PHONY: pytest

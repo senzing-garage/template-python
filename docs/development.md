@@ -1,6 +1,6 @@
 # template-python development
 
-The following instructions are used when modifying and building the Docker image.
+The following instructions are useful during development.
 
 ## Prerequisites for development
 
@@ -108,22 +108,10 @@ Create a code coverage map.
 
     ```
 
-1. If a web page doesn't appear, visit [localhost:6060].
-1. Senzing documentation will be in the "Third party" section.
-   `github.com` > `senzing` > `go-cmdhelping`
-
-1. When a versioned release is published with a `v0.0.0` format tag,
-the reference can be found by clicking on the following badge at the top of the README.md page.
-Example:
-
-    [![Go Reference](https://pkg.go.dev/badge/github.com/senzing-garage/template-go.svg)](https://pkg.go.dev/github.com/senzing-garage/template-go)
-
-1. To stop the `godoc` server, run
+1. If a web page doesn't appear, run the following command and paste the results into a web browser's address bar.
 
     ```console
-    cd ${GIT_REPOSITORY_DIR}
-    make clean
-
+    echo "file://${GIT_REPOSITORY_DIR}/docs/build/html/index.html"
     ```
 
 ## Docker
@@ -141,7 +129,7 @@ Example:
    Example:
 
     ```console
-    docker run --rm senzing/template-go
+    docker run --rm senzing/template-python
 
     ```
 
@@ -159,7 +147,7 @@ Example:
    Example:
 
     ```console
-    python3 -m pip freeze | grep -e template-python -e senzing_abstract
+    python3 -m pip freeze | grep -e template-python -e template_python
     ```
 
    Nothing is returned.
