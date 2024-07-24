@@ -12,44 +12,178 @@ These are "one-time tasks" which may already have been completed.
     1. [make](https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/make.md)
     1. [docker](https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/docker.md)
 
-## Clone repository
+## Install Senzing C library
 
-For more information on environment variables,
-see [Environment Variables](https://github.com/senzing-garage/knowledge-base/blob/main/lists/environment-variables.md).
+Since the Senzing library is a prerequisite, it must be installed first.
 
-1. Set these environment variable values:
+1. Verify Senzing C shared objects, configuration, and SDK header files are installed.
+    1. `/opt/senzing/g2/lib`
+    1. `/opt/senzing/g2/sdk/c`
+    1. `/etc/opt/senzing`
+
+1. If not installed, see [How to Install Senzing for Python Development].
+
+## Install Git repository
+
+1. Identify git repository.
 
     ```console
-    export GIT_ACCOUNT=senzing
-    export GIT_REPOSITORY=template-docker
+    export GIT_ACCOUNT=senzing-garage
+    export GIT_REPOSITORY=template-python
     export GIT_ACCOUNT_DIR=~/${GIT_ACCOUNT}.git
     export GIT_REPOSITORY_DIR="${GIT_ACCOUNT_DIR}/${GIT_REPOSITORY}"
+
     ```
 
-1. Using the environment variables values just set, follow steps in [clone-repository](https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/clone-repository.md) to install the Git repository.
+1. Using the environment variables values just set, follow
+   steps in [clone-repository] to install the Git repository.
 
-## Build Docker image
+## Dependencies
 
-1. **Option #1:** Using `docker` command and GitHub.
-
-    ```console
-    sudo docker build \
-      --tag senzing/template \
-      https://github.com/senzing-garage/template-docker.git#main
-    ```
-
-1. **Option #2:** Using `docker` command and local repository.
+1. A one-time command to install dependencies needed for `make` targets.
+   Example:
 
     ```console
     cd ${GIT_REPOSITORY_DIR}
-    sudo docker build --tag senzing/template .
+    make dependencies-for-make
+
     ```
 
-1. **Option #3:** Using `make` command.
+1. Install dependencies needed for [Python] code.
+   Example:
 
     ```console
     cd ${GIT_REPOSITORY_DIR}
-    sudo make docker-build
+    make dependencies
+
     ```
 
-    Note: `sudo make docker-build-development-cache` can be used to create cached Docker layers.
+## Lint
+
+1. Run Go tests.
+   Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    make lint
+
+    ```
+
+## Test
+
+1. Run Go tests.
+   Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    make clean setup test
+
+    ```
+
+## Coverage
+
+Create a code coverage map.
+
+1. Run Go tests.
+   Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    make clean setup coverage
+
+    ```
+
+   A web-browser will show the results of the coverage.
+   The goal is to have over 80% coverage.
+   Anything less needs to be reflected in [testcoverage.yaml].
+
+## Documentation
+
+1. Start [godoc] documentation server.
+   Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    make clean documentation
+
+    ```
+
+1. If a web page doesn't appear, visit [localhost:6060].
+1. Senzing documentation will be in the "Third party" section.
+   `github.com` > `senzing` > `go-cmdhelping`
+
+1. When a versioned release is published with a `v0.0.0` format tag,
+the reference can be found by clicking on the following badge at the top of the README.md page.
+Example:
+
+    [![Go Reference](https://pkg.go.dev/badge/github.com/senzing-garage/template-go.svg)](https://pkg.go.dev/github.com/senzing-garage/template-go)
+
+1. To stop the `godoc` server, run
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    make clean
+
+    ```
+
+## Docker
+
+1. Use make target to run a docker images that builds RPM and DEB files.
+   Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    make docker-build
+
+    ```
+
+1. Run docker container.
+   Example:
+
+    ```console
+    docker run --rm senzing/template-go
+
+    ```
+
+## Package
+
+1. Build the `wheel` file for distribution.
+   Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    make package
+    ```
+
+1. Verify that `template-python` is not installed.
+   Example:
+
+    ```console
+    python3 -m pip freeze | grep -e template-python -e senzing_abstract
+    ```
+
+   Nothing is returned.
+
+1. Install directly from `wheel` file.
+   Example:
+
+    ```console
+    python3 -m pip install ${GIT_REPOSITORY_DIR}/dist/*.whl
+    ```
+
+1. Verify that `template-python` is installed.
+   Example:
+
+    ```console
+    python3 -m pip freeze | grep -e template-python -e senzing_abstract
+    ```
+
+    Example return:
+    > template-python @ file:///home/senzing/senzing-garage.git/sz-sdk-python-abstract/dist/template_python-0.0.1-py3-none-any.whl#sha256=2a4e5218d66d5be60ee31bfad5943e6611fc921f28a4326d9594ceceae7e0ac1
+
+1. Uninstall the `template-python` python package.
+   Example:
+
+    ```console
+    python3 -m pip uninstall template-python
+    ```
