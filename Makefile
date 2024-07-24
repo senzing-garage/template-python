@@ -35,6 +35,7 @@ PATH := $(MAKEFILE_DIRECTORY)/bin:$(PATH)
 DOCKER_IMAGE_TAG ?= $(GIT_REPOSITORY_NAME):$(GIT_VERSION)
 LD_LIBRARY_PATH ?= /opt/senzing/g2/lib
 PYTHONPATH ?= $(MAKEFILE_DIRECTORY)/src
+CLI_ARGS ?= task1
 
 # Export environment variables.
 
@@ -101,7 +102,7 @@ test: pytest
 coverage: test coverage-osarch-specific
 
 # -----------------------------------------------------------------------------
-# Docker-based builds
+# Build
 # -----------------------------------------------------------------------------
 
 .PHONY: docker-build
@@ -112,11 +113,19 @@ docker-build:
 		.
 
 # -----------------------------------------------------------------------------
+# Run
+# -----------------------------------------------------------------------------
+
+.PHONY: run
+run:
+	@./template-python.py $(CLI_ARGS)
+
+# -----------------------------------------------------------------------------
 # Documentation
 # -----------------------------------------------------------------------------
 
 .PHONY: documentation
-documentation: pydoc
+documentation: sphinx view-sphinx
 
 # -----------------------------------------------------------------------------
 # Clean
@@ -124,6 +133,30 @@ documentation: pydoc
 
 .PHONY: clean
 clean: clean-osarch-specific docker-rmi-for-build
+
+# -----------------------------------------------------------------------------
+# Utility targets
+# -----------------------------------------------------------------------------
+
+.PHONY: docker-rmi-for-build
+docker-rmi-for-build:
+	-docker rmi --force \
+		$(DOCKER_IMAGE_NAME):$(GIT_VERSION) \
+		$(DOCKER_IMAGE_NAME)
+
+
+.PHONY: help
+help:
+	@echo "Build $(PROGRAM_NAME) version $(BUILD_VERSION)-$(BUILD_ITERATION)".
+	@echo "Makefile targets:"
+	@$(MAKE) -pRrq -f $(firstword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$' | xargs
+
+
+.PHONY: print-make-variables
+print-make-variables:
+	@$(foreach V,$(sort $(.VARIABLES)), \
+		$(if $(filter-out environment% default automatic, \
+		$(origin $V)),$(warning $V=$($V) ($(value $V)))))
 
 # -----------------------------------------------------------------------------
 # Specific programs
@@ -192,27 +225,3 @@ sphinx:
 .PHONY: view-sphinx
 view-sphinx: view-sphinx-osarch-specific
 	$(info --- view-sphinx ---------------------------------------------------------------------)
-
-# -----------------------------------------------------------------------------
-# Utility targets
-# -----------------------------------------------------------------------------
-
-.PHONY: docker-rmi-for-build
-docker-rmi-for-build:
-	-docker rmi --force \
-		$(DOCKER_IMAGE_NAME):$(GIT_VERSION) \
-		$(DOCKER_IMAGE_NAME)
-
-
-.PHONY: help
-help:
-	@echo "Build $(PROGRAM_NAME) version $(BUILD_VERSION)-$(BUILD_ITERATION)".
-	@echo "Makefile targets:"
-	@$(MAKE) -pRrq -f $(firstword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$' | xargs
-
-
-.PHONY: print-make-variables
-print-make-variables:
-	@$(foreach V,$(sort $(.VARIABLES)), \
-		$(if $(filter-out environment% default automatic, \
-		$(origin $V)),$(warning $V=$($V) ($(value $V)))))
