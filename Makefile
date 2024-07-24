@@ -133,7 +133,9 @@ documentation: sphinx view-sphinx
 
 .PHONY: package
 package: clean
+	cp  $(MAKEFILE_DIRECTORY)/template-python.py $(MAKEFILE_DIRECTORY)/src/template_python/main_entry.py
 	python3 -m build
+	rm $(MAKEFILE_DIRECTORY)/src/template_python/main_entry.py
 
 # -----------------------------------------------------------------------------
 # Clean

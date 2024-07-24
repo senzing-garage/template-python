@@ -141,6 +141,7 @@ Create a code coverage map.
     ```console
     cd ${GIT_REPOSITORY_DIR}
     make package
+
     ```
 
 1. Verify that `template-python` is not installed.
@@ -148,6 +149,7 @@ Create a code coverage map.
 
     ```console
     python3 -m pip freeze | grep -e template-python -e template_python
+
     ```
 
    Nothing is returned.
@@ -157,13 +159,15 @@ Create a code coverage map.
 
     ```console
     python3 -m pip install ${GIT_REPOSITORY_DIR}/dist/*.whl
+
     ```
 
 1. Verify that `template-python` is installed.
    Example:
 
     ```console
-    python3 -m pip freeze | grep -e template-python -e senzing_abstract
+    python3 -m pip freeze | grep -e template-python -e template_python
+
     ```
 
     Example return:
@@ -174,4 +178,5 @@ Create a code coverage map.
 
     ```console
     python3 -m pip uninstall template-python
+
     ```

@@ -19,6 +19,7 @@ clean-osarch-specific:
 	@rm -fr $(DIST_DIRECTORY) || true
 	@rm -f  $(MAKEFILE_DIRECTORY)/coverage.xml || true
 	@rm -fr $(MAKEFILE_DIRECTORY)/docs/build || true
+	@rm -fr $(MAKEFILE_DIRECTORY)/htmlcov || true
 	@rm -fr $(TARGET_DIRECTORY) || true
 	@find . | grep -E "(/__pycache__$$|\.pyc$$|\.pyo$$)" | xargs rm -rf
 

@@ -594,8 +594,7 @@ def do_version(subcommand: str, args: argparse.Namespace) -> None:
 # -----------------------------------------------------------------------------
 
 
-if __name__ == "__main__":
-
+def main():
     # Configure logging. See https://docs.python.org/2/library/logging.html#levels
 
     LOG_LEVEL_MAP = {
@@ -656,3 +655,7 @@ if __name__ == "__main__":
     # Tricky code for calling function based on string.
 
     globals()[SUBCOMMAND_FUNCTION_NAME](SUBCOMMAND, ARGS)
+
+
+if __name__ == "__main__":
+    main()
