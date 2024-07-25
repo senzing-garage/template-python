@@ -63,7 +63,7 @@ hello-world: hello-world-osarch-specific
 # Dependency management
 # -----------------------------------------------------------------------------
 
-.PHONY: dependencies-for-make
+.PHONY: dependencies-for-development
 dependencies-for-make:
 	@python3 -m pip install --upgrade pip
 	@python3 -m pip install --requirement development-requirements.txt

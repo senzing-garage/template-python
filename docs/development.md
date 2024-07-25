@@ -46,7 +46,7 @@ Since the Senzing library is a prerequisite, it must be installed first.
 
     ```console
     cd ${GIT_REPOSITORY_DIR}
-    make dependencies-for-make
+    make dependencies-for-development
 
     ```
 
@@ -204,4 +204,4 @@ Create a code coverage map.
 [docker]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/docker.md
 [git]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/git.md
 [make]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/make.md
-[sphinx]: https://www.sphinx-doc.org/en/master/usage/installation.html
+[sphinx]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/sphinx.md
