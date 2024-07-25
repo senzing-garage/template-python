@@ -26,5 +26,6 @@ sphinxcontrib-jquery==4.1
 sphinxcontrib-jsmath==1.0.1
 sphinxcontrib-qthelp==1.0.8
 sphinxcontrib-serializinghtml==1.1.10
+twine==5.1.1
 virtualenv==20.26.3
 wheel==0.43.0

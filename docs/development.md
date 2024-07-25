@@ -212,6 +212,19 @@ Create a code coverage map.
 
     ```
 
+## Publish
+
+1. Test publishing `wheel` file to [Test PyPi].
+   Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    make publish-test
+
+    ```
+
+1. Visit [Test PyPi] and search for package.
+
 ## References
 
 1. [bandit]
