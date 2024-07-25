@@ -94,6 +94,11 @@ lint: pylint mypy bandit black flake8 isort
 .PHONY: test
 test: pytest
 
+
+.PHONY: docker-test
+docker-test:
+	@docker-compose -f docker-compose.test.yml up
+
 # -----------------------------------------------------------------------------
 # Coverage
 # -----------------------------------------------------------------------------

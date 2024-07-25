@@ -2,6 +2,9 @@
 
 The following instructions are useful during development.
 
+**Note:** This has been tested on Linux and Darwin/macOS.
+It has not been tested on Windows.
+
 ## Prerequisites for development
 
 :thinking: The following tasks need to be complete before proceeding.
@@ -144,6 +147,15 @@ Create a code coverage map.
 
     ```
 
+1. **Optional:** Test using `docker-compose`.
+   Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    make docker-test
+
+    ```
+
 ## Package
 
 1. Build the `wheel` file for distribution.
@@ -203,5 +215,7 @@ Create a code coverage map.
 [clone-repository]: https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/clone-repository.md
 [docker]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/docker.md
 [git]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/git.md
+[How to Install Senzing for Python Development]: https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/install-senzing-for-python-development.md
 [make]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/make.md
+[Python]: https://www.python.org/
 [sphinx]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/sphinx.md
