@@ -183,6 +183,13 @@ Create a code coverage map.
     Example return:
     > template-python @ file:///home/senzing/senzing-garage.git/sz-sdk-python-abstract/dist/template_python-0.0.1-py3-none-any.whl#sha256=2a4e5218d66d5be60ee31bfad5943e6611fc921f28a4326d9594ceceae7e0ac1
 
+1. If applicable, run the application.
+   Example:
+
+    ```console
+    template_python
+    ```
+
 1. Uninstall the `template-python` python package.
    Example:
 
