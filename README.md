@@ -61,4 +61,4 @@ Configuration values specified by environment variable or command line parameter
 [SENZING_DATABASE_URL]: https://github.com/senzing-garage/knowledge-base/blob/main/lists/environment-variables.md#senzing_database_url
 [SENZING_DEBUG]: https://github.com/senzing-garage/knowledge-base/blob/main/lists/environment-variables.md#senzing_debug
 [Senzing]: https://senzing.com/
-[template-python.py]: src/template-python.py
+[template-python.py]: template-python.py
