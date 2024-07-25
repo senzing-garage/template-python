@@ -12,8 +12,8 @@ SENZING_TOOLS_DATABASE_URL ?= sqlite3://na:na@nowhere/C:\Temp\sqlite\G2C.db
 
 .PHONY: clean-osarch-specific
 clean-osarch-specific:
-	@docker rm  --force $(DOCKER_CONTAINER_NAME) 
-	@docker rmi --force $(DOCKER_IMAGE_NAME) $(DOCKER_BUILD_IMAGE_NAME) 
+	@docker rm  --force $(DOCKER_CONTAINER_NAME)
+	@docker rmi --force $(DOCKER_IMAGE_NAME) $(DOCKER_BUILD_IMAGE_NAME)
 	del /F /S /Q $(TARGET_DIRECTORY)
 
 
