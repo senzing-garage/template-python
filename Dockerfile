@@ -5,7 +5,6 @@ ARG BASE_IMAGE=debian:11.9-slim@sha256:acc5810124f0929ab44fc7913c0ad936b074cbd3e
 # -----------------------------------------------------------------------------
 
 FROM ${BASE_IMAGE} as builder
-
 ENV REFRESHED_AT=2024-07-25
 
 # Run as "root" for system installation.
@@ -30,15 +29,19 @@ ENV PATH="/app/venv/bin:$PATH"
 
 # Install packages via PIP.
 
-RUN python3 -m pip install --upgrade pip
-RUN python3 -m pip install build
+COPY requirements.txt ./
+RUN python3 -m pip install --upgrade pip \
+ && python3 -m pip install -r requirements.txt \
+ && python3 -m pip install build \
+ && rm requirements.txt
+
+# Build Python wheel file.
 
 COPY . /git-repository
 WORKDIR /git-repository
-
-RUN cp template-python.py src/template_python/main_entry.py
-RUN python3 -m build
-RUN python3 -m pip install dist/*.whl
+RUN cp template-python.py src/template_python/main_entry.py \
+ && python3 -m build \
+ && python3 -m pip install dist/*.whl
 
 # -----------------------------------------------------------------------------
 # Stage: Final
@@ -64,9 +67,9 @@ USER root
 
 RUN apt-get update \
  && apt-get -y install \
-    python3 \
-    python3-pip \
-    python3-venv \
+      python3 \
+      python3-pip \
+      python3-venv \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
@@ -74,27 +77,16 @@ RUN apt-get update \
 
 COPY ./rootfs /
 COPY --from=builder /app/venv /app/venv
-COPY --from=builder /git-repository/dist /app/dist
 
 # Activate virtual environment.
 
 ENV VIRTUAL_ENV=/app/venv
 ENV PATH="/app/venv/bin:${PATH}"
 
-# Install packages via PIP.
-
-COPY requirements.txt ./
-RUN python3 -m pip install --upgrade pip \
- && python3 -m pip install -r requirements.txt \
- && rm requirements.txt
-
 # Make non-root container.
 
-# USER 1001
-
-# RUN python3 -m pip install /app/dist/*.whl
+USER 1001
 
 # Runtime execution.
 
-WORKDIR /app
 ENTRYPOINT ["template_python"]

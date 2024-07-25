@@ -60,7 +60,7 @@ Since the Senzing library is a prerequisite, it must be installed first.
 
 ## Lint
 
-1. Run Go tests.
+1. Run linting.
    Example:
 
     ```console
@@ -71,7 +71,7 @@ Since the Senzing library is a prerequisite, it must be installed first.
 
 ## Test
 
-1. Run Go tests.
+1. Run tests.
    Example:
 
     ```console
@@ -95,11 +95,21 @@ Create a code coverage map.
 
    A web-browser will show the results of the coverage.
    The goal is to have over 80% coverage.
-   Anything less needs to be reflected in [testcoverage.yaml].
+
+## Run
+
+1. Run program.
+   Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    make run
+
+    ```
 
 ## Documentation
 
-1. Start [godoc] documentation server.
+1. View documentation.
    Example:
 
     ```console
