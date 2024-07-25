@@ -132,10 +132,7 @@ documentation: sphinx view-sphinx
 # -----------------------------------------------------------------------------
 
 .PHONY: package
-package: clean
-	cp  $(MAKEFILE_DIRECTORY)/template-python.py $(MAKEFILE_DIRECTORY)/src/template_python/main_entry.py
-	python3 -m build
-	rm $(MAKEFILE_DIRECTORY)/src/template_python/main_entry.py
+package: clean package-osarch-specific
 
 # -----------------------------------------------------------------------------
 # Clean
@@ -157,8 +154,8 @@ docker-rmi-for-build:
 
 .PHONY: help
 help:
-	@echo "Build $(PROGRAM_NAME) version $(BUILD_VERSION)-$(BUILD_ITERATION)".
-	@echo "Makefile targets:"
+	$(info Build $(PROGRAM_NAME) version $(BUILD_VERSION)-$(BUILD_ITERATION))
+	$(info Makefile targets:)
 	@$(MAKE) -pRrq -f $(firstword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$' | xargs
 
 
@@ -227,9 +224,8 @@ pytest:
 
 
 .PHONY: sphinx
-sphinx:
+sphinx: sphinx-osarch-specific
 	$(info --- sphinx ---------------------------------------------------------------------)
-	@cd docs; rm -rf build; make html
 
 
 .PHONY: view-sphinx

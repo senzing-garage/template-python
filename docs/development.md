@@ -188,6 +188,7 @@ Create a code coverage map.
 
     ```console
     template_python
+
     ```
 
 1. Uninstall the `template-python` python package.

@@ -36,9 +36,21 @@ hello-world-osarch-specific:
 	@echo "Hello World, from linux."
 
 
+.PHONY: package-osarch-specific
+package-osarch-specific:
+	cp  $(MAKEFILE_DIRECTORY)/template-python.py $(MAKEFILE_DIRECTORY)/src/template_python/main_entry.py
+	python3 -m build
+	rm $(MAKEFILE_DIRECTORY)/src/template_python/main_entry.py
+
+
 .PHONY: setup-osarch-specific
 setup-osarch-specific:
 	@echo "No setup required."
+
+
+.PHONY: sphinx-osarch-specific
+sphinx-osarch-specific:
+	@cd docs; rm -rf build; make html
 
 
 .PHONY: view-sphinx-osarch-specific
