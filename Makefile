@@ -147,7 +147,7 @@ clean: clean-osarch-specific docker-rmi-for-build
 
 .PHONY: docker-rmi-for-build
 docker-rmi-for-build:
-	-docker rmi --force \
+	docker rmi --force \
 		$(DOCKER_IMAGE_NAME):$(GIT_VERSION) \
 		$(DOCKER_IMAGE_NAME)
 

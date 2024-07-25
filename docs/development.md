@@ -11,6 +11,7 @@ These are "one-time tasks" which may already have been completed.
     1. [git]
     1. [make]
     1. [docker]
+    1. [sphinx]
 
 ## Install Senzing C library
 
@@ -203,3 +204,4 @@ Create a code coverage map.
 [docker]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/docker.md
 [git]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/git.md
 [make]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/make.md
+[sphinx]: https://www.sphinx-doc.org/en/master/usage/installation.html
