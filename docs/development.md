@@ -8,9 +8,9 @@ The following instructions are useful during development.
 These are "one-time tasks" which may already have been completed.
 
 1. The following software programs need to be installed:
-    1. [git](https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/git.md)
-    1. [make](https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/make.md)
-    1. [docker](https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/docker.md)
+    1. [git]
+    1. [make]
+    1. [docker]
 
 ## Install Senzing C library
 
@@ -198,3 +198,8 @@ Create a code coverage map.
     python3 -m pip uninstall template-python
 
     ```
+
+[clone-repository]: https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/clone-repository.md
+[docker]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/docker.md
+[git]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/git.md
+[make]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/make.md
