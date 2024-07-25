@@ -252,3 +252,4 @@ Create a code coverage map.
 [pytest]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/pytest.md
 [Python]: https://www.python.org/
 [sphinx]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/sphinx.md
+[Test PyPi]: https://test.pypi.org/
