@@ -594,10 +594,11 @@ def do_version(subcommand: str, args: argparse.Namespace) -> None:
 # -----------------------------------------------------------------------------
 
 
-def main():
+def main() -> None:
+    """Handle input parameters and route to correct sub-command."""
     # Configure logging. See https://docs.python.org/2/library/logging.html#levels
 
-    LOG_LEVEL_MAP = {
+    log_level_map = {
         "notset": logging.NOTSET,
         "debug": logging.DEBUG,
         "info": logging.INFO,
@@ -607,9 +608,9 @@ def main():
         "critical": logging.CRITICAL,
     }
 
-    LOG_LEVEL_PARAMETER = os.getenv("SENZING_LOG_LEVEL", "info").lower()
-    LOG_LEVEL = LOG_LEVEL_MAP.get(LOG_LEVEL_PARAMETER, logging.INFO)
-    logging.basicConfig(format=LOG_FORMAT, level=LOG_LEVEL)
+    log_level_parameter = os.getenv("SENZING_LOG_LEVEL", "info").lower()
+    log_level = log_level_map.get(log_level_parameter, logging.INFO)
+    logging.basicConfig(format=LOG_FORMAT, level=log_level)
     logging.debug(message_debug(998))
 
     # Trap signals temporarily until args are parsed.
@@ -619,42 +620,42 @@ def main():
 
     # Parse the command line arguments.
 
-    SUBCOMMAND: str = str(os.getenv("SENZING_SUBCOMMAND", None))
-    PARSER = get_parser()
+    subcommand: str = str(os.getenv("SENZING_SUBCOMMAND", None))
+    parser = get_parser()
     if len(sys.argv) > 1:
-        ARGS = PARSER.parse_args()
-        SUBCOMMAND = ARGS.subcommand
-    elif SUBCOMMAND:
-        ARGS = argparse.Namespace(subcommand=SUBCOMMAND)
+        args = parser.parse_args()
+        subcommand = args.subcommand
+    elif subcommand:
+        args = argparse.Namespace(subcommand=subcommand)
     else:
-        PARSER.print_help()
+        parser.print_help()
         if len(os.getenv("SENZING_DOCKER_LAUNCHED", "")) > 0:
-            SUBCOMMAND = "sleep"
-            ARGS = argparse.Namespace(subcommand=SUBCOMMAND)
-            do_sleep(SUBCOMMAND, ARGS)
+            subcommand = "sleep"
+            args = argparse.Namespace(subcommand=subcommand)
+            do_sleep(subcommand, args)
         exit_silently()
 
     # Catch interrupts. Tricky code: Uses currying.
 
-    SIGNAL_HANDLER = create_signal_handler_function(ARGS)
-    signal.signal(signal.SIGINT, SIGNAL_HANDLER)
-    signal.signal(signal.SIGTERM, SIGNAL_HANDLER)
+    signal_handler = create_signal_handler_function(args)
+    signal.signal(signal.SIGINT, signal_handler)
+    signal.signal(signal.SIGTERM, signal_handler)
 
     # Transform subcommand from CLI parameter to function name string.
-    if not SUBCOMMAND:
+    if not subcommand:
         exit_error(694)
-    SUBCOMMAND_FUNCTION_NAME = "do_{0}".format(SUBCOMMAND.replace("-", "_"))
+    subcommand_function_name = "do_{0}".format(subcommand.replace("-", "_"))
 
     # Test to see if function exists in the code.
 
-    if SUBCOMMAND_FUNCTION_NAME not in globals():
-        logging.warning(message_warning(696, SUBCOMMAND))
-        PARSER.print_help()
+    if subcommand_function_name not in globals():
+        logging.warning(message_warning(696, subcommand))
+        parser.print_help()
         exit_silently()
 
     # Tricky code for calling function based on string.
 
-    globals()[SUBCOMMAND_FUNCTION_NAME](SUBCOMMAND, ARGS)
+    globals()[subcommand_function_name](subcommand, args)
 
 
 if __name__ == "__main__":

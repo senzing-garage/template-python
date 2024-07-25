@@ -36,6 +36,7 @@ DOCKER_IMAGE_TAG ?= $(GIT_REPOSITORY_NAME):$(GIT_VERSION)
 LD_LIBRARY_PATH ?= /opt/senzing/g2/lib
 PYTHONPATH ?= $(MAKEFILE_DIRECTORY)/src
 CLI_ARGS ?= task1
+DOCKER_BUILDKIT ?= DOCKER_BUILDKIT=0
 
 # Export environment variables.
 
@@ -107,7 +108,7 @@ coverage: test coverage-osarch-specific
 
 .PHONY: docker-build
 docker-build:
-	docker build \
+	$(DOCKER_BUILDKIT) docker build \
 		--tag $(DOCKER_IMAGE_NAME) \
 		--tag $(DOCKER_IMAGE_NAME):$(GIT_VERSION) \
 		.
