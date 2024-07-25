@@ -34,7 +34,7 @@ coverage-osarch-specific:
 
 .PHONY: hello-world-osarch-specific
 hello-world-osarch-specific:
-	@echo "Hello World, from darwin."
+	$(info "Hello World, from darwin.")
 
 
 .PHONY: package-osarch-specific
@@ -46,7 +46,7 @@ package-osarch-specific:
 
 .PHONY: setup-osarch-specific
 setup-osarch-specific:
-	@echo "No setup required."
+	$(info "No setup required.")
 
 
 .PHONY: sphinx-osarch-specific
@@ -64,4 +64,4 @@ view-sphinx-osarch-specific:
 
 .PHONY: only-darwin
 only-darwin:
-	@echo "Only darwin has this Makefile target."
+	$(info "Only darwin has this Makefile target.")

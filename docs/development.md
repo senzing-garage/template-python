@@ -212,10 +212,30 @@ Create a code coverage map.
 
     ```
 
+## References
+
+1. [bandit]
+1. [black]
+1. [coverage]
+1. [flake8]
+1. [isort]
+1. [mypy]
+1. [pylint]
+1. [pytest]
+1. [sphinx]
+
+[bandit]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/bandit.md
+[black]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/black.md
 [clone-repository]: https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/clone-repository.md
+[coverage]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/coverage.md
 [docker]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/docker.md
+[flake8]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/flake8.md
 [git]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/git.md
 [How to Install Senzing for Python Development]: https://github.com/senzing-garage/knowledge-base/blob/main/HOWTO/install-senzing-for-python-development.md
+[isort]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/isort.md
 [make]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/make.md
+[mypy]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/mypy.md
+[pylint]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/pylint.md
+[pytest]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/pytest.md
 [Python]: https://www.python.org/
 [sphinx]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/sphinx.md

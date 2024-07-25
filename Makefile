@@ -140,6 +140,14 @@ documentation: sphinx view-sphinx
 package: clean package-osarch-specific
 
 # -----------------------------------------------------------------------------
+# publish
+# -----------------------------------------------------------------------------
+
+.PHONY: publish-test
+publish-test: package
+	python3 -m twine upload --repository testpypi dist/*
+
+# -----------------------------------------------------------------------------
 # Clean
 # -----------------------------------------------------------------------------
 
@@ -177,13 +185,13 @@ print-make-variables:
 .PHONY: bandit
 bandit:
 	$(info --- bandit ---------------------------------------------------------------------)
-	@bandit $(shell git ls-files '*.py'   ':!:tests/*')
+	@bandit $(shell git ls-files '*.py' ':!:tests/*')
 
 
 .PHONY: black
 black:
 	$(info --- black ----------------------------------------------------------------------)
-	@black $(shell git ls-files '*.py'   ':!:tests/*')
+	@black $(shell git ls-files '*.py' ':!:tests/*')
 
 
 .PHONY: flake8
