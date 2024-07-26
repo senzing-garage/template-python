@@ -15,10 +15,13 @@ clean-osarch-specific:
 	@docker rm  --force $(DOCKER_CONTAINER_NAME)
 	@docker rmi --force $(DOCKER_IMAGE_NAME) $(DOCKER_BUILD_IMAGE_NAME)
 	del /F /S /Q $(DIST_DIRECTORY)
+	del /F /S /Q $(MAKEFILE_DIRECTORY)/.coverage
+	del /F /S /Q $(MAKEFILE_DIRECTORY)/.mypy_cache
+	del /F /S /Q $(MAKEFILE_DIRECTORY)/.pytest_cache
 	del /F /S /Q $(MAKEFILE_DIRECTORY)/__pycache__
 	del /F /S /Q $(MAKEFILE_DIRECTORY)/coverage.xml
+	del /F /S /Q $(MAKEFILE_DIRECTORY)/dist
 	del /F /S /Q $(MAKEFILE_DIRECTORY)/docs/build
-	del /F /S /Q $(MAKEFILE_DIRECTORY)/dist	
 	del /F /S /Q $(MAKEFILE_DIRECTORY)/htmlcov
 	del /F /S /Q $(TARGET_DIRECTORY)
 
