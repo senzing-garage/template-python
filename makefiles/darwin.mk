@@ -18,8 +18,10 @@ clean-osarch-specific:
 	@docker rm  --force $(DOCKER_CONTAINER_NAME) 2> /dev/null || true
 	@docker rmi --force $(DOCKER_IMAGE_NAME) $(DOCKER_BUILD_IMAGE_NAME) 2> /dev/null || true
 	@rm -fr $(DIST_DIRECTORY) || true
+	@rm -f  $(MAKEFILE_DIRECTORY)/.coverage || true
 	@rm -f  $(MAKEFILE_DIRECTORY)/coverage.xml || true
 	@rm -fr $(MAKEFILE_DIRECTORY)/docs/build || true
+	@rm -fr $(MAKEFILE_DIRECTORY)/dist || true
 	@rm -fr $(MAKEFILE_DIRECTORY)/htmlcov || true
 	@rm -fr $(TARGET_DIRECTORY) || true
 	@find . | grep -E "(/__pycache__$$|\.pyc$$|\.pyo$$)" | xargs rm -rf

@@ -18,6 +18,7 @@ clean-osarch-specific:
 	del /F /S /Q $(MAKEFILE_DIRECTORY)/__pycache__
 	del /F /S /Q $(MAKEFILE_DIRECTORY)/coverage.xml
 	del /F /S /Q $(MAKEFILE_DIRECTORY)/docs/build
+	del /F /S /Q $(MAKEFILE_DIRECTORY)/dist	
 	del /F /S /Q $(MAKEFILE_DIRECTORY)/htmlcov
 	del /F /S /Q $(TARGET_DIRECTORY)
 
