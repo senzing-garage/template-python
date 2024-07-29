@@ -140,7 +140,7 @@ documentation: sphinx view-sphinx
 package: clean package-osarch-specific
 
 # -----------------------------------------------------------------------------
-# publish
+# Publish
 # -----------------------------------------------------------------------------
 
 .PHONY: publish-test
@@ -185,31 +185,31 @@ print-make-variables:
 .PHONY: bandit
 bandit:
 	$(info --- bandit ---------------------------------------------------------------------)
-	@bandit $(shell git ls-files '*.py' ':!:tests/*')
+	@bandit $(shell git ls-files '*.py' ':!:tests/*' ':!:docs/source/*')
 
 
 .PHONY: black
 black:
 	$(info --- black ----------------------------------------------------------------------)
-	@black $(shell git ls-files '*.py' ':!:tests/*')
+	@black $(shell git ls-files '*.py' ':!:tests/*' ':!:docs/source/*')
 
 
 .PHONY: flake8
 flake8:
 	$(info --- flake8 ---------------------------------------------------------------------)
-	@flake8 $(shell git ls-files '*.py'  )
+	@flake8 $(shell git ls-files '*.py' ':!:docs/source/*')
 
 
 .PHONY: isort
 isort:
 	$(info --- isort ----------------------------------------------------------------------)
-	@isort $(shell git ls-files '*.py'  )
+	@isort $(shell git ls-files '*.py' ':!:docs/source/*')
 
 
 .PHONY: mypy
 mypy:
 	$(info --- mypy -----------------------------------------------------------------------)
-	@mypy --follow-imports skip --strict $(shell git ls-files '*.py' )
+	@mypy --strict $(shell git ls-files '*.py' ':!:docs/source/*')
 
 
 .PHONY: pydoc
@@ -233,7 +233,7 @@ pylint:
 .PHONY: pytest
 pytest:
 	$(info --- pytest ---------------------------------------------------------------------)
-	@pytest $(shell git ls-files '*.py')
+	@pytest $(shell git ls-files '*.py' ':!:docs/source/*')
 
 
 .PHONY: sphinx
@@ -243,4 +243,4 @@ sphinx: sphinx-osarch-specific
 
 .PHONY: view-sphinx
 view-sphinx: view-sphinx-osarch-specific
-	$(info --- view-sphinx ---------------------------------------------------------------------)
+	$(info --- view-sphinx ----------------------------------------------------------------)
