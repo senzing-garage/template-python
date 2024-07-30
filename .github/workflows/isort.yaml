@@ -10,10 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: isort/isort-action@v1
+      - name: Run isort
+        uses: isort/isort-action@v1
         with:
-          configuration:
           requirements-files: requirements.txt
-          sort-paths: "src"
+          sort-paths: "src/template_python examples tests"

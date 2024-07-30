@@ -4,6 +4,9 @@
 # Variables
 # -----------------------------------------------------------------------------
 
+LD_LIBRARY_PATH ?= /opt/senzing/g2/lib
+SENZING_TOOLS_DATABASE_URL ?= sqlite3://na:na@nowhere/tmp/sqlite/G2C.db
+PATH := $(MAKEFILE_DIRECTORY)/bin:$(PATH)
 
 # -----------------------------------------------------------------------------
 # OS specific targets
@@ -11,38 +14,52 @@
 
 .PHONY: clean-osarch-specific
 clean-osarch-specific:
-	@docker rm --force $(DOCKER_CONTAINER_NAME) 2> /dev/null || true
+	@docker rm  --force $(DOCKER_CONTAINER_NAME) 2> /dev/null || true
 	@docker rmi --force $(DOCKER_IMAGE_NAME) $(DOCKER_BUILD_IMAGE_NAME) 2> /dev/null || true
-	@rm -rf $(TARGET_DIRECTORY) || true
-	@rm -f $(GOPATH)/bin/$(PROGRAM_NAME) || true
+	@rm -f  $(MAKEFILE_DIRECTORY)/.coverage || true
+	@rm -f  $(MAKEFILE_DIRECTORY)/coverage.xml || true
+	@rm -fr $(DIST_DIRECTORY) || true
+	@rm -fr $(MAKEFILE_DIRECTORY)/.mypy_cache || true
+	@rm -fr $(MAKEFILE_DIRECTORY)/.pytest_cache || true
+	@rm -fr $(MAKEFILE_DIRECTORY)/dist || true
+	@rm -fr $(MAKEFILE_DIRECTORY)/docs/build || true
+	@rm -fr $(MAKEFILE_DIRECTORY)/htmlcov || true
+	@rm -fr $(TARGET_DIRECTORY) || true
+	@find . | grep -E "(/__pycache__$$|\.pyc$$|\.pyo$$)" | xargs rm -rf
+
+
+.PHONY: coverage-osarch-specific
+coverage-osarch-specific:
+	@pytest --cov=src --cov-report=xml  $(shell git ls-files '*.py')
+	@coverage html
+	@xdg-open $(MAKEFILE_DIRECTORY)/htmlcov/index.html
 
 
 .PHONY: hello-world-osarch-specific
 hello-world-osarch-specific:
-	@echo "Hello World, from linux."
+	$(info "Hello World, from linux.")
 
 
 .PHONY: package-osarch-specific
-package-osarch-specific: docker-build-package
-	@mkdir -p $(TARGET_DIRECTORY) || true
-	@CONTAINER_ID=$$(docker create $(DOCKER_BUILD_IMAGE_NAME)); \
-	docker cp $$CONTAINER_ID:/output/. $(TARGET_DIRECTORY)/; \
-	docker rm -v $$CONTAINER_ID
-
-
-.PHONY: run-osarch-specific
-run-osarch-specific:
-	@go run main.go
+package-osarch-specific:
+	@cp  $(MAKEFILE_DIRECTORY)/template-python.py $(MAKEFILE_DIRECTORY)/src/template_python/main_entry.py
+	@python3 -m build
+	@rm $(MAKEFILE_DIRECTORY)/src/template_python/main_entry.py
 
 
 .PHONY: setup-osarch-specific
 setup-osarch-specific:
-	@echo "No setup required."
+	$(info "No setup required.")
 
 
-.PHONY: test-osarch-specific
-test-osarch-specific:
-	@go test -v -p 1 ./...
+.PHONY: sphinx-osarch-specific
+sphinx-osarch-specific:
+	@cd docs; rm -rf build; make html
+
+
+.PHONY: view-sphinx-osarch-specific
+view-sphinx-osarch-specific:
+	@xdg-open file://$(MAKEFILE_DIRECTORY)/docs/build/html/index.html
 
 # -----------------------------------------------------------------------------
 # Makefile targets supported only by this platform.
@@ -50,4 +67,4 @@ test-osarch-specific:
 
 .PHONY: only-linux
 only-linux:
-	@echo "Only linux has this Makefile target."
+	$(info "Only linux has this Makefile target.")
