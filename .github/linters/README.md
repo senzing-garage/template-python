@@ -24,15 +24,8 @@
 - [yaml-lint]
   - [yaml-lint configuration]
 
-[.checkov.yaml]:  .checkov.yaml
-[.golangci.yaml]: .golangci.yaml
 [.jscpd.json]: .jscpd.json
 [.yaml-lint.yml]: .yaml-lint.yml
-[checkov configuration]: https://www.checkov.io/2.Basics/CLI%20Command%20Reference.html
-[checkov]: https://www.checkov.io/
-[golangci-lint configuration]: https://golangci-lint.run/usage/configuration/
-[golangci-lint.yaml]: ../workflows/README.md#golangci-lintyaml
-[golangci-lint]: https://golangci-lint.run/
 [jscpd configuration]: https://github.com/kucherenko/jscpd/tree/master/apps/jscpd#options
 [jscpd]: https://github.com/kucherenko/jscpd
 [lint-workflows.yaml]: ../workflows/README.md#lint-workflowsyaml
