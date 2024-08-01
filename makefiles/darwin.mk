@@ -30,15 +30,22 @@ clean-osarch-specific:
 
 
 .PHONY: coverage-osarch-specific
+coverage-osarch-specific: export SENZING_LOG_LEVEL=TRACE
 coverage-osarch-specific:
-	@pytest --cov=src --cov-report=xml  $(shell git ls-files '*.py'   )
+	@pytest --cov=src --cov-report=xml  $(shell git ls-files '*.py')
 	@coverage html
 	@open $(MAKEFILE_DIRECTORY)/htmlcov/index.html
 
 
+.PHONY: documentation-osarch-specific
+documentation-osarch-specific:
+	@cd docs; rm -rf build; make html
+	@open file://$(MAKEFILE_DIRECTORY)/docs/build/html/index.html
+
+
 .PHONY: hello-world-osarch-specific
 hello-world-osarch-specific:
-	$(info "Hello World, from darwin.")
+	$(info Hello World, from darwin.)
 
 
 .PHONY: package-osarch-specific
@@ -50,17 +57,7 @@ package-osarch-specific:
 
 .PHONY: setup-osarch-specific
 setup-osarch-specific:
-	$(info "No setup required.")
-
-
-.PHONY: sphinx-osarch-specific
-sphinx-osarch-specific:
-	@cd docs; rm -rf build; make html
-
-
-.PHONY: view-sphinx-osarch-specific
-view-sphinx-osarch-specific:
-	@open file://$(MAKEFILE_DIRECTORY)/docs/build/html/index.html
+	$(info No setup required.)
 
 # -----------------------------------------------------------------------------
 # Makefile targets supported only by this platform.
@@ -68,4 +65,4 @@ view-sphinx-osarch-specific:
 
 .PHONY: only-darwin
 only-darwin:
-	$(info "Only darwin has this Makefile target.")
+	$(info Only darwin has this Makefile target.)
