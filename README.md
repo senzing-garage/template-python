@@ -8,9 +8,18 @@ Although this GitHub repository may help you understand an approach to using Sen
 it's not considered to be "production ready" and is not considered to be part of the Senzing product.
 Heck, it may not even be appropriate for your application of Senzing!
 
+## :warning: WARNING: template-python is still in development :warning: _
+
+At the moment, this is "work-in-progress" with Semantic Versions of `0.n.x`.
+Although it can be reviewed and commented on,
+the recommendation is not to use it yet.
+
 ## Synopsis
 
 This section should give 1-2 sentences on what the artifacts in this repository do.
+
+[![Python 3.11 Badge]][Python 3.11]
+[![PEP8]][PEP8]
 
 ## Overview
 
@@ -56,6 +65,9 @@ Configuration values specified by environment variable or command line parameter
 [Errors]: docs/errors.md
 [Examples]: docs/examples.md
 [PEP-0008]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/pep-0008.md
+[PEP8]: https://www.python.org/dev/peps/pep-0008/
+[Python 3.11 Badge]: https://img.shields.io/badge/python-3.6-blue.svg
+[Python 3.11]: https://www.python.org/downloads/release/python-3110/
 [Senzing Garage]: https://github.com/senzing-garage
 [Senzing Quick Start guides]: https://docs.senzing.com/quickstart/
 [SENZING_DATABASE_URL]: https://github.com/senzing-garage/knowledge-base/blob/main/lists/environment-variables.md#senzing_database_url
