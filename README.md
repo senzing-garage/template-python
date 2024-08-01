@@ -19,7 +19,7 @@ the recommendation is not to use it yet.
 This section should give 1-2 sentences on what the artifacts in this repository do.
 
 [![Python 3.11 Badge]][Python 3.11]
-[![PEP8]][PEP8]
+[![PEP8 Badge]][PEP8]
 
 ## Overview
 
@@ -65,6 +65,7 @@ Configuration values specified by environment variable or command line parameter
 [Errors]: docs/errors.md
 [Examples]: docs/examples.md
 [PEP-0008]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/pep-0008.md
+[PEP8 Badge]: https://img.shields.io/badge/code%20style-pep8-orange.svg
 [PEP8]: https://www.python.org/dev/peps/pep-0008/
 [Python 3.11 Badge]: https://img.shields.io/badge/python-3.6-blue.svg
 [Python 3.11]: https://www.python.org/downloads/release/python-3110/
