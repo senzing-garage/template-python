@@ -265,6 +265,6 @@ Create a code coverage map.
 [mypy]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/mypy.md
 [pylint]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/pylint.md
 [pytest]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/pytest.md
-[Python]: https://www.python.org/
+[Python]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/python.md
 [sphinx]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/sphinx.md
-[Test PyPi]: https://test.pypi.org/
+[Test PyPi]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/pypi.md#test-pypi
