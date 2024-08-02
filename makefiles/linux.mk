@@ -4,7 +4,7 @@
 # Variables
 # -----------------------------------------------------------------------------
 
-LD_LIBRARY_PATH ?= /opt/senzing/g2/lib
+LD_LIBRARY_PATH ?= $(SENZING_TOOLS_SENZING_DIRECTORY)/lib
 SENZING_TOOLS_DATABASE_URL ?= sqlite3://na:na@nowhere/tmp/sqlite/G2C.db
 PATH := $(MAKEFILE_DIRECTORY)/bin:$(PATH)
 
@@ -29,15 +29,30 @@ clean-osarch-specific:
 
 
 .PHONY: coverage-osarch-specific
+coverage-osarch-specific: export SENZING_LOG_LEVEL=TRACE
 coverage-osarch-specific:
 	@pytest --cov=src --cov-report=xml  $(shell git ls-files '*.py')
 	@coverage html
 	@xdg-open $(MAKEFILE_DIRECTORY)/htmlcov/index.html
 
 
+.PHONY: documentation-osarch-specific
+documentation-osarch-specific:
+	@cd docs; rm -rf build; make html
+	@xdg-open file://$(MAKEFILE_DIRECTORY)/docs/build/html/index.html
+
+
+.PHONY: docker-build-osarch-specific
+docker-build-osarch-specific:
+	@docker build \
+		--tag $(DOCKER_IMAGE_NAME) \
+		--tag $(DOCKER_IMAGE_NAME):$(BUILD_VERSION) \
+		.
+
+
 .PHONY: hello-world-osarch-specific
 hello-world-osarch-specific:
-	$(info "Hello World, from linux.")
+	$(info Hello World, from linux.)
 
 
 .PHONY: package-osarch-specific
@@ -49,17 +64,7 @@ package-osarch-specific:
 
 .PHONY: setup-osarch-specific
 setup-osarch-specific:
-	$(info "No setup required.")
-
-
-.PHONY: sphinx-osarch-specific
-sphinx-osarch-specific:
-	@cd docs; rm -rf build; make html
-
-
-.PHONY: view-sphinx-osarch-specific
-view-sphinx-osarch-specific:
-	@xdg-open file://$(MAKEFILE_DIRECTORY)/docs/build/html/index.html
+	$(info No setup required.)
 
 # -----------------------------------------------------------------------------
 # Makefile targets supported only by this platform.
@@ -67,4 +72,4 @@ view-sphinx-osarch-specific:
 
 .PHONY: only-linux
 only-linux:
-	$(info "Only linux has this Makefile target.")
+	$(info Only linux has this Makefile target.)

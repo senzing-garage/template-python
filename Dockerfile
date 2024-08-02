@@ -1,11 +1,15 @@
-ARG BASE_IMAGE=debian:11.9-slim@sha256:acc5810124f0929ab44fc7913c0ad936b074cbd3eadf094ac120190862ba36c4
+# -----------------------------------------------------------------------------
+# Stages
+# -----------------------------------------------------------------------------
+
+ARG IMAGE_FINAL=debian:11.9-slim
 
 # -----------------------------------------------------------------------------
 # Stage: builder
 # -----------------------------------------------------------------------------
 
-FROM ${BASE_IMAGE} as builder
-ENV REFRESHED_AT=2024-07-25
+FROM ${IMAGE_FINAL} as builder
+ENV REFRESHED_AT=2024-07-01
 
 # Run as "root" for system installation.
 
@@ -44,26 +48,18 @@ RUN cp template-python.py src/template_python/main_entry.py \
  && python3 -m pip install dist/*.whl
 
 # -----------------------------------------------------------------------------
-# Stage: Final
+# Stage: final
 # -----------------------------------------------------------------------------
 
-FROM ${BASE_IMAGE} AS runner
-
-ENV REFRESHED_AT=2024-07-24
-
+FROM ${IMAGE_FINAL} as final
+ENV REFRESHED_AT=2024-07-01
 LABEL Name="senzing/template-python" \
       Maintainer="support@senzing.com" \
       Version="1.2.6"
-
-# Define health check.
-
 HEALTHCHECK CMD ["/app/healthcheck.sh"]
-
-# Run as "root" for system installation.
-
 USER root
 
-# Install packages via apt.
+# Install packages via apt-get.
 
 RUN apt-get update \
  && apt-get -y install \
@@ -76,16 +72,20 @@ RUN apt-get update \
 # Copy files from repository.
 
 COPY ./rootfs /
+
+# Copy files from prior stage.
+
 COPY --from=builder /app/venv /app/venv
 
-# Activate virtual environment.
+# Run as non-root container
+
+USER 1001
+
+# Runtime environment variables.
 
 ENV VIRTUAL_ENV=/app/venv
 ENV PATH="/app/venv/bin:${PATH}"
-
-# Make non-root container.
-
-USER 1001
+ENV LD_LIBRARY_PATH=/opt/senzing/g2/lib/
 
 # Runtime execution.
 

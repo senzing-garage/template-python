@@ -73,6 +73,30 @@ Since the Senzing library is a prerequisite, it must be installed first.
 
     ```
 
+## Build
+
+Not applicable.
+
+## Run
+
+1. Run program.
+   Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    make run
+
+    ```
+
+1. Clean up.
+   Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    make clean
+
+    ```
+
 ## Test
 
 1. Run tests.
@@ -99,17 +123,6 @@ Create a code coverage map.
 
    A web-browser will show the results of the coverage.
    The goal is to have over 80% coverage.
-
-## Run
-
-1. Run program.
-   Example:
-
-    ```console
-    cd ${GIT_REPOSITORY_DIR}
-    make run
-
-    ```
 
 ## Documentation
 
@@ -252,6 +265,6 @@ Create a code coverage map.
 [mypy]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/mypy.md
 [pylint]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/pylint.md
 [pytest]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/pytest.md
-[Python]: https://www.python.org/
+[Python]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/python.md
 [sphinx]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/sphinx.md
-[Test PyPi]: https://test.pypi.org/
+[Test PyPi]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/pypi.md#test-pypi
