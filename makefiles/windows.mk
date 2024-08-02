@@ -40,6 +40,14 @@ documentation-osarch-specific:
 	@explorer file://$(MAKEFILE_DIRECTORY)/docs/build/html/index.html
 
 
+.PHONY: docker-build-osarch-specific
+docker-build-osarch-specific:
+	@docker build \
+		--tag $(DOCKER_IMAGE_NAME) \
+		--tag $(DOCKER_IMAGE_NAME):$(BUILD_VERSION) \
+		.
+
+
 .PHONY: hello-world-osarch-specific
 hello-world-osarch-specific:
 	$(info Hello World, from windows.)

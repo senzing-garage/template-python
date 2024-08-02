@@ -37,6 +37,14 @@ coverage-osarch-specific:
 	@open $(MAKEFILE_DIRECTORY)/htmlcov/index.html
 
 
+.PHONY: docker-build-osarch-specific
+docker-build-osarch-specific:
+	@docker build \
+		--tag $(DOCKER_IMAGE_NAME) \
+		--tag $(DOCKER_IMAGE_NAME):$(BUILD_VERSION) \
+		.
+
+
 .PHONY: documentation-osarch-specific
 documentation-osarch-specific:
 	@cd docs; rm -rf build; make html
