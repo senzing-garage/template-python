@@ -99,6 +99,24 @@ docker-build:
 		.
 
 # -----------------------------------------------------------------------------
+# Run
+# -----------------------------------------------------------------------------
+
+.PHONY: docker-run
+docker-run:
+	@docker run \
+		--interactive \
+		--rm \
+		--tty \
+		--name $(DOCKER_CONTAINER_NAME) \
+		$(DOCKER_IMAGE_NAME)
+
+
+.PHONY: run
+run:
+	@./template-python.py $(CLI_ARGS)
+
+# -----------------------------------------------------------------------------
 # Test
 # -----------------------------------------------------------------------------
 
@@ -117,23 +135,7 @@ docker-test:
 .PHONY: coverage
 coverage: test coverage-osarch-specific
 
-# -----------------------------------------------------------------------------
-# Run
-# -----------------------------------------------------------------------------
 
-.PHONY: docker-run
-docker-run:
-	@docker run \
-		--interactive \
-		--rm \
-		--tty \
-		--name $(DOCKER_CONTAINER_NAME) \
-		$(DOCKER_IMAGE_NAME)
-
-
-.PHONY: run
-run:
-	@./template-python.py $(CLI_ARGS)
 
 # -----------------------------------------------------------------------------
 # Documentation
