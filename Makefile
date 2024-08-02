@@ -92,11 +92,7 @@ lint: pylint mypy bandit black flake8 isort
 # -----------------------------------------------------------------------------
 
 .PHONY: docker-build
-docker-build:
-	$(DOCKER_BUILDKIT) docker build \
-		--tag $(DOCKER_IMAGE_NAME) \
-		--tag $(DOCKER_IMAGE_NAME):$(GIT_VERSION) \
-		.
+docker-build: docker-build-osarch-specific
 
 # -----------------------------------------------------------------------------
 # Run
