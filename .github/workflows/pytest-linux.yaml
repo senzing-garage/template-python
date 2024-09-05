@@ -3,7 +3,7 @@ name: pytest linux
 on: [push, pull_request]
 
 env:
-  LD_LIBRARY_PATH: /opt/senzing/g2/lib
+  LD_LIBRARY_PATH: /opt/senzing/er/lib
   PYTHONPATH: /home/runner/work/template-python/template-python/src
   SENZING_TOOLS_DATABASE_URL: sqlite3://na:na@nowhere/tmp/sqlite/G2C.db
 
@@ -57,7 +57,7 @@ jobs:
 
       - name: Rename coverage file
         env:
-          COVERAGE_FILE: ".coverage.${{ matrix.python-version }}"
+          COVERAGE_FILE: "coverage.${{ matrix.python-version }}"
         run: |
           mv .coverage "$COVERAGE_FILE"
 
@@ -65,7 +65,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: coverage-${{ matrix.python-version }}
-          path: .coverage.${{ matrix.python-version }}
+          path: coverage.${{ matrix.python-version }}
 
   coverage:
     name: Coverage
@@ -73,4 +73,4 @@ jobs:
     permissions:
       pull-requests: write
       contents: write
-    uses: senzing-factory/build-resources/.github/workflows/python-coverage-comment.yaml@v2
+    uses: senzing-factory/build-resources/.github/workflows/python-coverage-comment.yaml@skern-py-code-cov-test
