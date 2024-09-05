@@ -13,11 +13,6 @@ jobs:
   pytest-darwin:
     name: "pytest Senzing: ${{ matrix.senzingapi-version }}; OS: ${{ matrix.os }}; Python ${{ matrix.python-version }}"
     runs-on: ${{ matrix.os }}
-
-    permissions:
-      pull-requests: write
-      contents: write
-
     strategy:
       fail-fast: false
       matrix:
