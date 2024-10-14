@@ -20,7 +20,7 @@ jobs:
         os: [ubuntu-latest]
         # python-version: ["3.8", "3.9", "3.10", "3.11"]
         python-version: ["3.8", "3.11"]
-        senzingapi-runtime-version: [staging-v4]
+        senzingapi-version: [staging-v4]
 
     steps:
       - name: Checkout repository
@@ -44,7 +44,7 @@ jobs:
       - name: Install Senzing API
         uses: senzing-factory/github-action-install-senzing-api@v4
         with:
-          senzingapi-runtime-version: ${{ matrix.senzingapi-runtime-version }}
+          senzingapi-version: ${{ matrix.senzingapi-version }}
 
       - name: Copy /etc files
         run: sudo cp testdata/senzing-license/g2.lic /etc/opt/senzing/g2.lic
