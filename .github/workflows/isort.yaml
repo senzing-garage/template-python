@@ -17,7 +17,7 @@ jobs:
         run: |
           python -m venv ./venv
           source ./venv/bin/activate
-          echo PATH=$PATH >> $GITHUB_ENV
+          echo "PATH=${PATH}" >> "${GITHUB_ENV}"
           python -m pip install --upgrade pip
           python -m pip install --requirement requirements.txt
 
