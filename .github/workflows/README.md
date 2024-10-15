@@ -166,7 +166,7 @@ this action runs [pytest] on the Windows platform to perform unit tests and code
     - [pytest]
     - [actions/upload-artifact]
 
-[.checkov.yaml]:  ../linters/README.md#checkovyaml
+[.checkov.yaml]: ../linters/README.md#checkovyaml
 [.jscpd.json]: ../linters/README.md#jscpdjson
 [.yaml-lint.yml]: ../linters/README.md#yaml-lintyml
 [actions/checkout]: https://github.com/actions/checkout
@@ -183,7 +183,7 @@ this action runs [pytest] on the Windows platform to perform unit tests and code
 [dependency-scan.yaml]: dependency-scan.yaml
 [Docker Build Container GitHub Action]: docker-build-container.yaml
 [Docker Push Containers to DockerHub GitHub Action]: docker-push-containers-to-dockerhub.yaml
-[DockerHub]: <https://hub.docker.com/>
+[DockerHub]: https://hub.docker.com/
 [Fast Python Vulnerability Scanner]: https://github.com/vanschelven/fpvs/
 [flake8.yaml]: flake8.yaml
 [flake8]: https://flake8.pycqa.org/en/latest/
