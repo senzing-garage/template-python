@@ -180,7 +180,7 @@ Create a code coverage map.
 
     ```
 
-1. Use virtual environment.
+1. Activate virtual environment.
 
     ```console
     cd ${GIT_REPOSITORY_DIR}
@@ -230,6 +230,13 @@ Create a code coverage map.
 
     ```console
     python3 -m pip uninstall template-python
+
+    ```
+
+1. Deactivate virtual environment.
+
+    ```console
+    deactivate
 
     ```
 

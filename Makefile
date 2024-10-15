@@ -158,7 +158,7 @@ package: clean package-osarch-specific
 
 .PHONY: publish-test
 publish-test: package
-	python3 -m twine upload --repository testpypi dist/*
+	$(activate-venv); python3 -m twine upload --repository testpypi dist/*
 
 # -----------------------------------------------------------------------------
 # Clean
