@@ -180,6 +180,14 @@ Create a code coverage map.
 
     ```
 
+1. Use virtual environment.
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    source .venv/bin/activate
+
+    ```
+
 1. Verify that `template-python` is not installed.
    Example:
 

@@ -129,14 +129,14 @@ test: pytest
 
 .PHONY: docker-test
 docker-test:
-	@docker-compose -f docker-compose.test.yaml up
+	@$(activate-venv); docker-compose -f docker-compose.test.yaml up
 
 # -----------------------------------------------------------------------------
 # Coverage
 # -----------------------------------------------------------------------------
 
 .PHONY: coverage
-coverage: test coverage-osarch-specific
+coverage: coverage-osarch-specific
 
 # -----------------------------------------------------------------------------
 # Documentation
