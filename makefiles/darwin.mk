@@ -37,6 +37,10 @@ coverage-osarch-specific:
 	@open $(MAKEFILE_DIRECTORY)/htmlcov/index.html
 
 
+.PHONY: dependencies-for-development-osarch-specific
+dependencies-for-development-osarch-specific:
+
+
 .PHONY: docker-build-osarch-specific
 docker-build-osarch-specific:
 	@docker build \
@@ -66,6 +70,11 @@ package-osarch-specific:
 .PHONY: setup-osarch-specific
 setup-osarch-specific:
 	$(info No setup required.)
+
+
+.PHONY: venv-osarch-specific
+venv-osarch-specific:
+	@python3 -m venv .venv
 
 # -----------------------------------------------------------------------------
 # Makefile targets supported only by this platform.

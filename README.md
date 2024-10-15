@@ -20,6 +20,8 @@ This section should give 1-2 sentences on what the artifacts in this repository 
 
 [![Python 3.11 Badge]][Python 3.11]
 [![PEP8 Badge]][PEP8]
+[![PyPI version Badge]][PyPi version]
+[![Downloads Badge]][Downloads]
 
 ## Overview
 
@@ -62,12 +64,16 @@ Configuration values specified by environment variable or command line parameter
 
 [Development]: docs/development.md
 [DockerHub]: https://hub.docker.com/r/senzing/template-python
+[Downloads Badge]: https://static.pepy.tech/badge/template-python
+[Downloads]: https://pepy.tech/project/template-python
 [Errors]: docs/errors.md
 [Examples]: docs/examples.md
 [PEP-0008]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/pep-0008.md
 [PEP8 Badge]: https://img.shields.io/badge/code%20style-pep8-orange.svg
 [PEP8]: https://www.python.org/dev/peps/pep-0008/
-[Python 3.11 Badge]: https://img.shields.io/badge/python-3.6-blue.svg
+[PyPI version Badge]: https://badge.fury.io/py/template-python.svg
+[PyPi version]: https://badge.fury.io/py/template-python
+[Python 3.11 Badge]: https://img.shields.io/badge/python-3.11-blue.svg
 [Python 3.11]: https://www.python.org/downloads/release/python-3110/
 [Senzing Garage]: https://github.com/senzing-garage
 [Senzing Quick Start guides]: https://docs.senzing.com/quickstart/

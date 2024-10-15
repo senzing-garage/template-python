@@ -8,8 +8,11 @@ ARG IMAGE_FINAL=debian:11.9-slim
 # Stage: builder
 # -----------------------------------------------------------------------------
 
-FROM ${IMAGE_FINAL} as builder
+FROM ${IMAGE_FINAL} AS builder
 ENV REFRESHED_AT=2024-07-01
+LABEL Name="senzing/python-builder" \
+      Maintainer="support@senzing.com" \
+      Version="0.1.0"
 
 # Run as "root" for system installation.
 
@@ -51,7 +54,7 @@ RUN cp template-python.py src/template_python/main_entry.py \
 # Stage: final
 # -----------------------------------------------------------------------------
 
-FROM ${IMAGE_FINAL} as final
+FROM ${IMAGE_FINAL} AS final
 ENV REFRESHED_AT=2024-07-01
 LABEL Name="senzing/template-python" \
       Maintainer="support@senzing.com" \

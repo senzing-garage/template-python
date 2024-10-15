@@ -180,6 +180,14 @@ Create a code coverage map.
 
     ```
 
+1. Activate virtual environment.
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    source .venv/bin/activate
+
+    ```
+
 1. Verify that `template-python` is not installed.
    Example:
 
@@ -222,6 +230,13 @@ Create a code coverage map.
 
     ```console
     python3 -m pip uninstall template-python
+
+    ```
+
+1. Deactivate virtual environment.
+
+    ```console
+    deactivate
 
     ```
 

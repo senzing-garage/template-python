@@ -31,15 +31,13 @@ clean-osarch-specific:
 .PHONY: coverage-osarch-specific
 coverage-osarch-specific: export SENZING_LOG_LEVEL=TRACE
 coverage-osarch-specific:
-	@pytest --cov=src --cov-report=xml  $(shell git ls-files '*.py')
-	@coverage html
+	@$(activate-venv); pytest --cov=src --cov-report=xml  $(shell git ls-files '*.py')
+	@$(activate-venv); coverage html
 	@xdg-open $(MAKEFILE_DIRECTORY)/htmlcov/index.html
 
 
-.PHONY: documentation-osarch-specific
-documentation-osarch-specific:
-	@cd docs; rm -rf build; make html
-	@xdg-open file://$(MAKEFILE_DIRECTORY)/docs/build/html/index.html
+.PHONY: dependencies-for-development-osarch-specific
+dependencies-for-development-osarch-specific:
 
 
 .PHONY: docker-build-osarch-specific
@@ -50,6 +48,12 @@ docker-build-osarch-specific:
 		.
 
 
+.PHONY: documentation-osarch-specific
+documentation-osarch-specific:
+	@$(activate-venv); cd docs; rm -rf build; make html
+	@xdg-open file://$(MAKEFILE_DIRECTORY)/docs/build/html/index.html
+
+
 .PHONY: hello-world-osarch-specific
 hello-world-osarch-specific:
 	$(info Hello World, from linux.)
@@ -58,13 +62,18 @@ hello-world-osarch-specific:
 .PHONY: package-osarch-specific
 package-osarch-specific:
 	@cp  $(MAKEFILE_DIRECTORY)/template-python.py $(MAKEFILE_DIRECTORY)/src/template_python/main_entry.py
-	@python3 -m build
+	@$(activate-venv); python3 -m build
 	@rm $(MAKEFILE_DIRECTORY)/src/template_python/main_entry.py
 
 
 .PHONY: setup-osarch-specific
 setup-osarch-specific:
 	$(info No setup required.)
+
+
+.PHONY: venv-osarch-specific
+venv-osarch-specific:
+	@python3 -m venv .venv
 
 # -----------------------------------------------------------------------------
 # Makefile targets supported only by this platform.
