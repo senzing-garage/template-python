@@ -36,10 +36,8 @@ coverage-osarch-specific:
 	@xdg-open $(MAKEFILE_DIRECTORY)/htmlcov/index.html
 
 
-.PHONY: documentation-osarch-specific
-documentation-osarch-specific:
-	@cd docs; rm -rf build; make html
-	@xdg-open file://$(MAKEFILE_DIRECTORY)/docs/build/html/index.html
+.PHONY: dependencies-for-development-osarch-specific
+dependencies-for-development-osarch-specific:
 
 
 .PHONY: docker-build-osarch-specific
@@ -48,6 +46,12 @@ docker-build-osarch-specific:
 		--tag $(DOCKER_IMAGE_NAME) \
 		--tag $(DOCKER_IMAGE_NAME):$(BUILD_VERSION) \
 		.
+
+
+.PHONY: documentation-osarch-specific
+documentation-osarch-specific:
+	@cd docs; rm -rf build; make html
+	@xdg-open file://$(MAKEFILE_DIRECTORY)/docs/build/html/index.html
 
 
 .PHONY: hello-world-osarch-specific
@@ -65,6 +69,11 @@ package-osarch-specific:
 .PHONY: setup-osarch-specific
 setup-osarch-specific:
 	$(info No setup required.)
+
+
+.PHONY: venv-osarch-specific
+venv-osarch-specific:
+	@python3 -m venv .venv
 
 # -----------------------------------------------------------------------------
 # Makefile targets supported only by this platform.
