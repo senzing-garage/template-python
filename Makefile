@@ -34,7 +34,7 @@ PATH := $(MAKEFILE_DIRECTORY)/bin:$(PATH)
 CLI_ARGS ?= task1
 # DOCKER_BUILDKIT ?= DOCKER_BUILDKIT=0
 DOCKER_IMAGE_TAG ?= $(GIT_REPOSITORY_NAME):$(GIT_VERSION)
-LD_LIBRARY_PATH ?= /opt/senzing/g2/lib
+LD_LIBRARY_PATH ?= /opt/senzing/er/lib
 PYTHONPATH ?= $(MAKEFILE_DIRECTORY)/src
 
 # Export environment variables.
