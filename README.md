@@ -8,7 +8,7 @@ Although this GitHub repository may help you understand an approach to using Sen
 it's not considered to be "production ready" and is not considered to be part of the Senzing product.
 Heck, it may not even be appropriate for your application of Senzing!
 
-## :warning: WARNING: template-python is still in development :warning: _
+## :warning: WARNING: template-python is still in development :warning: \_
 
 At the moment, this is "work-in-progress" with Semantic Versions of `0.n.x`.
 Although it can be reviewed and commented on,
@@ -32,14 +32,14 @@ This repository (template-python) contains exemplar python scripts that can be u
 The [template-python.py] python script is a boilerplate which has the following features:
 
 1. Conforms to [PEP-0008] python programming style guide.
-    1. With exception of some lines being too long.
+   1. With exception of some lines being too long.
 1. "command subcommand" command line.
 1. A structured command line parser and "-help"
 1. Configuration via:
-    1. Command line options
-    1. Environment variables
-    1. Configuration file
-    1. Default
+   1. Command line options
+   1. Environment variables
+   1. Configuration file
+   1. Default
 1. Messages dictionary
 1. Logging and Log Level support.
 1. Entry / Exit log messages.
@@ -60,7 +60,7 @@ Configuration values specified by environment variable or command line parameter
 1. [Errors]
 1. [Examples]
 1. Related artifacts:
-    1. [DockerHub]
+   1. [DockerHub]
 
 [Development]: docs/development.md
 [DockerHub]: https://hub.docker.com/r/senzing/template-python
