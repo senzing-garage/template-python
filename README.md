@@ -64,6 +64,8 @@ Configuration values specified by environment variable or command line parameter
 1. Related artifacts:
     1. [DockerHub]
 
+[Coverage badge]: https://img.shields.io/badge/dynamic/json?color=brightgreen&label=coverage&query=%24.message&url=https%3A%2F%2Fraw.githubusercontent.com%2Fsenzing-garage%2Fsz-sdk-python%2Fpython-coverage-comment-action-data%2Fendpoint.json
+[Coverage]: https://htmlpreview.github.io/?https://github.com/senzing-garage/template-python/blob/python-coverage-comment-action-data/htmlcov/index.html
 [Development]: docs/development.md
 [DockerHub]: https://hub.docker.com/r/senzing/template-python
 [Downloads Badge]: https://static.pepy.tech/badge/template-python
@@ -71,7 +73,7 @@ Configuration values specified by environment variable or command line parameter
 [Errors]: docs/errors.md
 [Examples]: docs/examples.md
 [License Badge]: https://img.shields.io/badge/License-Apache2-brightgreen.svg
-[License]: https://github.com/senzing-garage/template-go/blob/main/LICENSE
+[License]: https://github.com/senzing-garage/template-python/blob/main/LICENSE
 [PEP-0008]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/pep-0008.md
 [PEP8 Badge]: https://img.shields.io/badge/code%20style-pep8-orange.svg
 [PEP8]: https://www.python.org/dev/peps/pep-0008/
