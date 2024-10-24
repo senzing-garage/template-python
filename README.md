@@ -70,6 +70,8 @@ Configuration values specified by environment variable or command line parameter
 [Downloads]: https://pepy.tech/project/template-python
 [Errors]: docs/errors.md
 [Examples]: docs/examples.md
+[License Badge]: https://img.shields.io/badge/License-Apache2-brightgreen.svg
+[License]: https://github.com/senzing-garage/template-go/blob/main/LICENSE
 [PEP-0008]: https://github.com/senzing-garage/knowledge-base/blob/main/WHATIS/pep-0008.md
 [PEP8 Badge]: https://img.shields.io/badge/code%20style-pep8-orange.svg
 [PEP8]: https://www.python.org/dev/peps/pep-0008/
