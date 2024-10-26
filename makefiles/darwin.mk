@@ -72,6 +72,11 @@ setup-osarch-specific:
 	$(info No setup required.)
 
 
+.PHONY: test-osarch-specific
+test-osarch-specific:
+	@$(activate-venv); pytest
+
+
 .PHONY: venv-osarch-specific
 venv-osarch-specific:
 	@python3 -m venv .venv
