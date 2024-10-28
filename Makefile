@@ -124,7 +124,7 @@ run:
 # -----------------------------------------------------------------------------
 
 .PHONY: test
-test: pytest
+test: test-osarch-specific
 
 
 .PHONY: docker-test
@@ -198,13 +198,13 @@ print-make-variables:
 .PHONY: bandit
 bandit:
 	$(info --- bandit ---------------------------------------------------------------------)
-	@$(activate-venv); bandit $(shell git ls-files '*.py' ':!:tests/*' ':!:docs/source/*')
+	@$(activate-venv); bandit -c pyproject.toml $(shell git ls-files '*.py' ':!:docs/source/*')
 
 
 .PHONY: black
 black:
 	$(info --- black ----------------------------------------------------------------------)
-	@$(activate-venv); black $(shell git ls-files '*.py' ':!:tests/*' ':!:docs/source/*')
+	@$(activate-venv); black $(shell git ls-files '*.py' ':!:docs/source/*')
 
 
 .PHONY: flake8

@@ -32,7 +32,7 @@
    1. Change following value to appropriate Git repository name.
 
       ```markdown
-      export GIT_REPOSITORY=template-docker
+      export GIT_REPOSITORY=template-python
       ```
 
 [Best practices for writing Dockerfiles]: https://docs.docker.com/develop/develop-images/dockerfile_best-practices/

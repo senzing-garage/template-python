@@ -42,7 +42,9 @@ jobs:
 
       - if: matrix.python-version == '3.8' || matrix.python-version == '3.9' || matrix.python-version == '3.10'
         name: Install python libraries for python 3.8, 3.9, and 3.10
-        run: python -m pip install typing_extensions
+        run: |
+          source ./venv/bin/activate
+          python -m pip install typing_extensions
 
       - name: Install Senzing API
         uses: senzing-factory/github-action-install-senzing-api@v4
@@ -50,13 +52,18 @@ jobs:
           senzingapi-version: ${{ matrix.senzingapi-version }}
 
       - name: Copy /etc files
-        run: sudo cp testdata/senzing-license/g2.lic /etc/opt/senzing/g2.lic
+        run: |
+          sudo cp testdata/senzing-license/g2.lic /etc/opt/senzing/g2.lic
 
       - name: Copy test database files
-        run: mkdir /tmp/sqlite && cp testdata/sqlite/G2C.db /tmp/sqlite/G2C.db
+        run: |
+          mkdir /tmp/sqlite
+          cp testdata/sqlite/G2C.db /tmp/sqlite/G2C.db
 
       - name: Run pytest on tests
-        run: pytest tests/ --verbose --capture=no --cov=src --cov-append
+        run: |
+          source ./venv/bin/activate
+          pytest tests/ --verbose --capture=no --cov=src --cov-append
 
       - name: Rename coverage file
         env:
