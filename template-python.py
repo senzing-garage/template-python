@@ -61,11 +61,7 @@ GIGABYTES = 1024 * MEGABYTES
 
 CONFIGURATION_LOCATOR: Dict[
     str,
-    Dict[str, bool | str]
-    | Dict[str, str | None]
-    | Dict[str, str]
-    | Dict[str, object]
-    | Dict[str, int | str],
+    Dict[str, bool | str] | Dict[str, str | None] | Dict[str, str] | Dict[str, object] | Dict[str, int | str],
 ] = {
     "debug": {"default": False, "env": "SENZING_DEBUG", "cli": "debug"},
     "password": {"default": None, "env": "SENZING_PASSWORD", "cli": "password"},
@@ -180,9 +176,7 @@ def get_parser() -> argparse.ArgumentParser:
         prog="template-python.py",
         description="Add description. For more information, see https://github.com/senzing-garage/template-python",
     )
-    subparsers = parser.add_subparsers(
-        dest="subcommand", help="Subcommands (SENZING_SUBCOMMAND):"
-    )
+    subparsers = parser.add_subparsers(dest="subcommand", help="Subcommands (SENZING_SUBCOMMAND):")
 
     for subcommand_key, subcommand_values in subcommands.items():
         subcommand_help = subcommand_values.get("help", "")
@@ -253,9 +247,7 @@ MESSAGE_DICTIONARY = {
 def message(index: int, *args: Any) -> str:
     """Return an instantiated message."""
     index_string = str(index)
-    template = MESSAGE_DICTIONARY.get(
-        index_string, "No message for index {0}.".format(index_string)
-    )
+    template = MESSAGE_DICTIONARY.get(index_string, "No message for index {0}.".format(index_string))
     return template.format(*args)
 
 
@@ -284,9 +276,7 @@ def message_debug(index: int, *args: Any) -> str:
     return message_generic(MESSAGE_DEBUG, index, *args)
 
 
-def get_exception() -> (
-    Dict[str, str | int | BaseException | type[BaseException] | TracebackType | None]
-):
+def get_exception() -> Dict[str, str | int | BaseException | type[BaseException] | TracebackType | None]:
     """Get details about an exception."""
     exception_type, exception_object, traceback = sys.exc_info()
     frame = traceback.tb_frame  # type: ignore[union-attr]
