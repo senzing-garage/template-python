@@ -34,10 +34,6 @@ ignore_missing_imports = "true"
 [tool.pylint]
 ignored-argument-names = "args|kwargs"
 disable = [
-    "broad-except",
-    "consider-using-f-string",
-    "too-many-branches",
-    "too-many-locals"
 ]
 good-names = [
     "template-python"
