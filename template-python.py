@@ -634,7 +634,7 @@ def main() -> None:
     # Transform subcommand from CLI parameter to function name string.
     if not subcommand:
         exit_error(694)
-    subcommand_function_name = "do_{0}".format(subcommand.replace("-", "_"))
+    subcommand_function_name = f"do_{subcommand.replace("-", "_")}"
 
     # Test to see if function exists in the code.
 
