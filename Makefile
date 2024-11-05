@@ -31,6 +31,7 @@ PATH := $(MAKEFILE_DIRECTORY)/bin:$(PATH)
 # Can be overridden with "export"
 # Example: "export LD_LIBRARY_PATH=/path/to/my/senzing/er/lib"
 
+SENZING_DIR ?= /opt/senzing/er
 CLI_ARGS ?= task1
 # DOCKER_BUILDKIT ?= DOCKER_BUILDKIT=0
 DOCKER_IMAGE_TAG ?= $(GIT_REPOSITORY_NAME):$(GIT_VERSION)
