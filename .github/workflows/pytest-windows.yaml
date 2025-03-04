@@ -63,6 +63,7 @@ jobs:
         run: |
           .\\venv\\Scripts\\activate
           $Env:SENZING_PATH = "$Env:USERPROFILE\Senzing"
+          $Env:PYTHONPATH = "$Env:GITHUB_WORKSPACE\src"
           pytest tests/ --verbose --capture=no --cov=src
 
       - name: Rename coverage file
