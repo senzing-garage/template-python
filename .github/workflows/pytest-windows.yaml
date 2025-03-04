@@ -10,12 +10,11 @@ permissions:
 
 jobs:
   pytest-windows:
-    name: "pytest with Senzing: ${{ matrix.senzingsdk-version }}; OS: ${{ matrix.os }}; Python ${{ matrix.python-version }}"
-    runs-on: ${{ matrix.os }}
+    name: "pytest with Senzing: ${{ matrix.senzingsdk-version }}; OS: windows-latest; Python ${{ matrix.python-version }}"
+    runs-on: windows-latest
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-latest]
         python-version: ["3.9", "3.10", "3.11", "3.12"]
         senzingsdk-version: [staging-v4]
 
