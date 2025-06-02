@@ -134,8 +134,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-.history
-
 # pytype static type analyzer
 .pytype/
 
@@ -152,8 +150,10 @@ cython_debug/
 .DS_Store
 .pydevproject
 
-# VSCode
-.vscode/
+# Visual Studio code
+.vscode/*
+!.vscode/cspell.json
+*.code-workspace
 .history
 
 .settings
