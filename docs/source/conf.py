@@ -41,7 +41,7 @@ extensions = [
     "sphinx.ext.doctest",
     "sphinx.ext.intersphinx",
     "sphinx.ext.napoleon",  # to read Google-style or Numpy-style docstrings
-    "sphinx.ext.viewcode",  # to allow vieing the source code in the web page
+    "sphinx.ext.viewcode",  # to allow viewing the source code in the web page
 ]
 
 exclude_patterns = ["*.py"]
