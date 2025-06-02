@@ -1,12 +1,11 @@
 {
-  // Version of the setting file.  Always 0.2
   "version": "0.2",
-  // language - current active spelling language
   "language": "en",
-  // words - list of words to be always considered correct
   "words": [
     "alnum",
     "Analysing",
+    "applehelp",
+    "autodoc",
     "autodocsumm",
     "automodule",
     "autosectionlabel",
@@ -14,6 +13,7 @@
     "buildx",
     "CCLA",
     "CODEOWNER",
+    "devhelp",
     "Dockerfiles",
     "DOCKERHUB",
     "docstrings",
@@ -22,9 +22,12 @@
     "fpvs",
     "genindex",
     "htmlcov",
+    "htmlhelp",
     "ICLA",
     "intersphinx",
     "isort",
+    "jquery",
+    "jsmath",
     "kwargs",
     "lukehinds",
     "modindex",
@@ -46,13 +49,18 @@
     "pyproject",
     "pytest",
     "PYTHONPATH",
+    "qthelp",
+    "remoteliteralinclude",
     "rootfs",
     "Senzing",
     "senzingsdk",
+    "serializinghtml",
     "setuptools",
     "shellcheck",
     "SOURCEDIR",
     "SPHINXBUILD",
+    "sphinxcontrib",
+    "sphinxext",
     "SPHINXOPTS",
     "stackoverflow",
     "szengineflags",
@@ -64,12 +72,18 @@
     "undoc",
     "USERPROFILE",
     "venv",
-    "viewcode"
+    "viewcode",
+    "virtualenv"
   ],
   "ignorePaths": [
     ".git/**",
     ".gitignore",
+    ".history/**",
     ".mypy_cache/**",
-    "development-requirements.txt"
+    ".pytest_cache/**",
+    ".venv/**",
+    "**/__pycache__/**",
+    "development-requirements.txt",
+    "src/senzing_grpc/pb2_grpc/**"
   ]
 }
