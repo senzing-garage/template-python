@@ -214,7 +214,7 @@ bandit:
 bearer:
 	$(info ${\n})
 	$(info --- bearer ---------------------------------------------------------------------)
-	@bearer scan --config-file .github/linters/bearer.yml .
+	@$(activate-venv); @bearer scan --config-file .github/linters/bearer.yml .
 
 
 .PHONY: black
