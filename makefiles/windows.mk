@@ -34,6 +34,14 @@ coverage-osarch-specific:
 	@explorer $(MAKEFILE_DIRECTORY)/htmlcov/index.html
 
 
+.PHONY: dependencies-for-development-osarch-specific
+dependencies-for-development-osarch-specific:
+
+
+.PHONY: dependencies-for-documentation-osarch-specific
+dependencies-for-documentation-osarch-specific:
+
+
 .PHONY: docker-build-osarch-specific
 docker-build-osarch-specific:
 	@docker build \
@@ -56,7 +64,7 @@ hello-world-osarch-specific:
 .PHONY: package-osarch-specific
 package-osarch-specific:
 	# cp  $(MAKEFILE_DIRECTORY)/template-python.py $(MAKEFILE_DIRECTORY)/src/template_python/main_entry.py
-	@python3 -m build
+	@$(activate-venv); python -m build
 	# rm $(MAKEFILE_DIRECTORY)/src/template_python/main_entry.py
 
 

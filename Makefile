@@ -214,7 +214,7 @@ bandit:
 bearer:
 	$(info ${\n})
 	$(info --- bearer ---------------------------------------------------------------------)
-	@bearer scan --config-file .github/linters/bearer.yml .
+	@$(activate-venv); @bearer scan --config-file .github/linters/bearer.yml .
 
 
 .PHONY: black
@@ -228,7 +228,7 @@ black:
 cspell:
 	$(info ${\n})
 	$(info --- cspell ---------------------------------------------------------------------)
-	@cspell lint --dot .
+	@$(activate-venv); @cspell lint --dot .
 
 
 .PHONY: flake8
