@@ -64,7 +64,7 @@ hello-world-osarch-specific:
 .PHONY: package-osarch-specific
 package-osarch-specific:
 	# cp  $(MAKEFILE_DIRECTORY)/template-python.py $(MAKEFILE_DIRECTORY)/src/template_python/main_entry.py
-	@$(activate-venv); python -m build
+	@$(activate-venv); python3 -m build
 	# rm $(MAKEFILE_DIRECTORY)/src/template_python/main_entry.py
 
 
