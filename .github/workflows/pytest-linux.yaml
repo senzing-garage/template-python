@@ -1,6 +1,11 @@
 name: pytest linux
 
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "15 7 * * *"
 
 env:
   PYTHONPATH: ${{ github.workspace }}/src
@@ -37,8 +42,8 @@ jobs:
           source ./venv/bin/activate
           echo "PATH=${PATH}" >> "${GITHUB_ENV}"
           python -m pip install --upgrade pip
+          python -m pip install --requirement development-requirements.txt
           python -m pip install --requirement requirements.txt
-          python -m pip install psutil pytest pytest-cov pytest-schema
 
       - if: matrix.python-version == '3.8' || matrix.python-version == '3.9' || matrix.python-version == '3.10'
         name: Install python libraries for python 3.8, 3.9, and 3.10
@@ -96,10 +101,10 @@ jobs:
     uses: senzing-factory/build-resources/.github/workflows/python-coverage-comment.yaml@v2
 
   slack-notification:
-    needs: [pytest-linux, coverage]
-    if: ${{ always() && contains(fromJSON('["failure", "cancelled"]'), needs.pytest-linux.outputs.status ) && contains(fromJSON('["failure", "cancelled"]'), needs.coverage.outputs.job-status ) && github.ref_name == github.event.repository.default_branch }}
+    needs: [pytest-linux]
+    if: ${{ always() && contains(fromJSON('["failure", "cancelled"]'), needs.pytest-linux.outputs.status ) && (github.ref_name == github.event.repository.default_branch || github.event_name == 'schedule') }}
     secrets:
       SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
     uses: senzing-factory/build-resources/.github/workflows/build-failure-slack-notification.yaml@v2
     with:
-      job-status: ${{ needs.pytest-linux.outputs.status && needs.coverage.outputs.job-status }}
+      job-status: ${{ needs.pytest-linux.outputs.status }}
