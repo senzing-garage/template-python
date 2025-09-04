@@ -8,7 +8,7 @@ flake8==7.3.0
 fpvs==0.3.0
 isort==6.0.1
 mypy==1.17.1
-myst_parser==4.0.1
+myst_parser
 psutil==7.0.0
 pylint-per-file-ignores==2.0.3
 pylint==3.3.8
