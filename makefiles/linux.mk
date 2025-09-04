@@ -42,10 +42,6 @@ coverage-osarch-specific:
 dependencies-for-development-osarch-specific:
 
 
-.PHONY: dependencies-for-documentation-osarch-specific
-dependencies-for-documentation-osarch-specific:
-
-
 .PHONY: docker-build-osarch-specific
 docker-build-osarch-specific:
 	@docker build \
