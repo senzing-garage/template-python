@@ -2,14 +2,14 @@
 # Stages
 # -----------------------------------------------------------------------------
 
-ARG IMAGE_FINAL=debian:11.9-slim
+ARG IMAGE_FINAL=debian:12-slim
 
 # -----------------------------------------------------------------------------
 # Stage: builder
 # -----------------------------------------------------------------------------
 
 FROM ${IMAGE_FINAL} AS builder
-ENV REFRESHED_AT=2024-07-01
+ENV REFRESHED_AT=2025-09-01
 LABEL Name="senzing/python-builder" \
       Maintainer="support@senzing.com" \
       Version="0.1.0"
@@ -55,10 +55,11 @@ RUN cp template-python.py src/template_python/main_entry.py \
 # -----------------------------------------------------------------------------
 
 FROM ${IMAGE_FINAL} AS final
-ENV REFRESHED_AT=2024-07-01
+ENV REFRESHED_AT=2025-09-01
 LABEL Name="senzing/template-python" \
       Maintainer="support@senzing.com" \
-      Version="1.2.6"
+      Version="0.1.0"
+
 HEALTHCHECK CMD ["/app/healthcheck.sh"]
 USER root
 
