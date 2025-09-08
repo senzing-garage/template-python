@@ -36,12 +36,9 @@ ENV PATH="/app/venv/bin:$PATH"
 
 # Install packages via PIP.
 
-COPY requirements.txt ./
 RUN python3 -m pip install --upgrade pip \
- && python3 -m pip install -r requirements.txt \
- && python3 -m pip install build \
- && rm requirements.txt
-
+ && python3 -m pip install . \
+ && python3 -m pip install build
 # Build Python wheel file.
 
 COPY . /git-repository

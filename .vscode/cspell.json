@@ -11,6 +11,7 @@
     "automodule",
     "autosectionlabel",
     "Blacklick",
+    "bugtracker",
     "BUILDKIT",
     "BUILDOUT",
     "buildx",
@@ -172,7 +173,6 @@
     ".mypy_cache/**",
     ".pytest_cache/**",
     ".venv/**",
-    "**/__pycache__/**",
-    "development-requirements.txt",
+    "**/__pycache__/**"
   ]
 }

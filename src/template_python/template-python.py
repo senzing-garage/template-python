@@ -41,8 +41,6 @@ from template_python import example
 # Metadata
 
 __all__: List[str] = []
-__version__ = "1.0.0"  # See https://www.python.org/dev/peps/pep-0396/
-__date__ = "2019-07-16"
 __updated__ = "2024-07-24"
 
 # See https://github.com/senzing-garage/knowledge-base/blob/main/lists/senzing-product-ids.md
