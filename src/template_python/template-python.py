@@ -35,6 +35,7 @@ from types import FrameType, TracebackType
 from typing import Any, Callable, Collection, Dict, List
 
 from template_python import example
+from importlib.metadata import version, PackageNotFoundError
 
 # Import from https://pypi.org/
 
@@ -42,6 +43,11 @@ from template_python import example
 
 __all__: List[str] = []
 __updated__ = "2024-07-24"
+try:
+    __version__ = version("template_python")
+except PackageNotFoundError:
+    # package is not installed
+    pass
 
 # See https://github.com/senzing-garage/knowledge-base/blob/main/lists/senzing-product-ids.md
 

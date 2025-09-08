@@ -32,8 +32,8 @@ build-backend = "setuptools.build_meta"
 [dependency-groups]
 test = ["pytest", "coverage"]
 development = [
-  "template-python[documentation]",
-  "template-python[lint]",
+  { include-group = "documentation" },
+  { include-group = "lint" },
   "build==1.3.0",
   "coverage==7.10.6",
   "cryptography==45.0.7",
