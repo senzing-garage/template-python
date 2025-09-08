@@ -34,8 +34,8 @@ import time
 from types import FrameType, TracebackType
 from typing import Any, Callable, Collection, Dict, List
 
-from template_python import example
 from importlib.metadata import version, PackageNotFoundError
+from template_python import example
 
 # Import from https://pypi.org/
 
