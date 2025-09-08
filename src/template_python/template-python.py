@@ -31,10 +31,10 @@ import os
 import signal
 import sys
 import time
+from importlib.metadata import PackageNotFoundError, version
 from types import FrameType, TracebackType
 from typing import Any, Callable, Collection, Dict, List
 
-from importlib.metadata import version, PackageNotFoundError
 from template_python import example
 
 # Import from https://pypi.org/
