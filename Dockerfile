@@ -22,6 +22,7 @@ USER root
 
 RUN apt-get update \
  && apt-get -y install \
+      git \
       python3 \
       python3-dev \
       python3-pip \
@@ -34,19 +35,18 @@ RUN apt-get update \
 RUN python3 -m venv /app/venv
 ENV PATH="/app/venv/bin:$PATH"
 
+COPY . /git-repository
+WORKDIR /git-repository
+
 # Install packages via PIP.
 
-COPY requirements.txt ./
 RUN python3 -m pip install --upgrade pip \
- && python3 -m pip install -r requirements.txt \
- && python3 -m pip install build \
- && rm requirements.txt
+ && python3 -m pip install . \
+ && python3 -m pip install build
 
 # Build Python wheel file.
 
-COPY . /git-repository
-WORKDIR /git-repository
-RUN cp template-python.py src/template_python/main_entry.py \
+RUN cp src/template_python/template-python.py src/template_python/main_entry.py \
  && python3 -m build \
  && python3 -m pip install dist/*.whl
 
