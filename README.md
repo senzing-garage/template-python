@@ -2,11 +2,12 @@
 
 [Full report](https://htmlpreview.github.io/?https://github.com/senzing-garage/template-python/blob/python-coverage-comment-action-data/htmlcov/index.html)
 
-| Name                                 |    Stmts |     Miss |    Cover |   Missing |
-|------------------------------------- | -------: | -------: | -------: | --------: |
-| src/template\_python/\_\_init\_\_.py |        0 |        0 |     100% |           |
-| src/template\_python/example.py      |        4 |        0 |     100% |           |
-|                            **TOTAL** |    **4** |    **0** | **100%** |           |
+| Name                                    |    Stmts |     Miss |  Cover |   Missing |
+|---------------------------------------- | -------: | -------: | -----: | --------: |
+| src/template\_python/\_\_init\_\_.py    |        0 |        0 |   100% |           |
+| src/template\_python/example.py         |        4 |        0 |   100% |           |
+| src/template\_python/template-python.py |      232 |      232 |     0% |    24-656 |
+|                               **TOTAL** |  **236** |  **232** | **2%** |           |
 
 
 ## Setup coverage badge
