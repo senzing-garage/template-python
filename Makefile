@@ -72,7 +72,7 @@ venv: venv-osarch-specific
 dependencies-for-development: venv dependencies-for-development-osarch-specific
 	$(activate-venv); \
 		python3 -m pip install --upgrade pip; \
-		python3 -m pip install --group development
+		python3 -m pip install --group all
 
 
 .PHONY: dependencies
