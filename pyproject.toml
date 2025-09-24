@@ -1,6 +1,6 @@
 [project]
 name = "template-python"
-dynamic = ["version"]
+version = "1.2.8"
 description = "Template for Python programs"
 authors = [{ name = "senzing", email = "support@senzing.com" }]
 readme = "README.md"
@@ -26,7 +26,7 @@ source = "https://github.com/senzing-garage/template-python"
 template_python = "template_python.main_entry:main"
 
 [build-system]
-requires = ["setuptools>=80", "setuptools-scm>=8", "wheel"]
+requires = ["setuptools>=80", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [dependency-groups]
