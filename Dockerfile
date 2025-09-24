@@ -12,7 +12,7 @@ FROM ${IMAGE_FINAL} AS builder
 ENV REFRESHED_AT=2025-09-01
 LABEL Name="senzing/python-builder" \
       Maintainer="support@senzing.com" \
-      Version="0.1.0"
+      Version="1.2.8"
 
 # Run as "root" for system installation.
 
@@ -58,7 +58,7 @@ FROM ${IMAGE_FINAL} AS final
 ENV REFRESHED_AT=2025-09-01
 LABEL Name="senzing/template-python" \
       Maintainer="support@senzing.com" \
-      Version="0.1.0"
+      Version="1.2.8"
 
 HEALTHCHECK CMD ["/app/healthcheck.sh"]
 USER root
