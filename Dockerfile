@@ -21,7 +21,7 @@ USER root
 # Install packages via apt-get.
 
 RUN apt-get update \
- && apt-get -y install \
+ && apt-get -y --no-install-recommends install \
       git \
       python3 \
       python3-dev \
@@ -66,7 +66,7 @@ USER root
 # Install packages via apt-get.
 
 RUN apt-get update \
- && apt-get -y install \
+ && apt-get -y --no-install-recommends install \
       python3 \
       python3-pip \
       python3-venv \
