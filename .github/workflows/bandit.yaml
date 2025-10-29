@@ -22,5 +22,5 @@ jobs:
       - name: Run Bandit Scan
         uses: PyCQA/bandit-action@v1
         with:
-          targets: examples src
           python-version: ${{ matrix.python-version }}
+          targets: examples src
