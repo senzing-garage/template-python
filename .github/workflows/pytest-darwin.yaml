@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: pytest-darwin
+  group: pytest-darwin-${{ github.head_ref || github.ref_name }}
   cancel-in-progress: true
 
 env:
