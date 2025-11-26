@@ -72,21 +72,19 @@ venv: venv-osarch-specific
 dependencies-for-development: venv dependencies-for-development-osarch-specific
 	$(activate-venv); \
 		python3 -m pip install --upgrade pip; \
-		python3 -m pip install --requirement development-requirements.txt
-
-
-.PHONY: dependencies-for-documentation
-dependencies-for-documentation: venv dependencies-for-documentation-osarch-specific
-	$(activate-venv); \
-		python3 -m pip install --upgrade pip; \
-		python3 -m pip install --requirement documentation-requirements.txt
+		python3 -m pip install --group all
 
 
 .PHONY: dependencies
 dependencies: venv
 	$(activate-venv); \
 		python3 -m pip install --upgrade pip; \
-		python3 -m pip install --requirement requirements.txt
+		python3 -m pip install -e .
+
+.PHONY: install-prettier
+install-prettier:
+	@command -v npx >/dev/null 2>&1 || { echo "npm is required but not installed. Aborting." >&2; exit 1; }
+	@npx prettier --version >/dev/null 2>&1 || npm install --save-dev --save-exact prettier
 
 # -----------------------------------------------------------------------------
 # Setup
@@ -101,6 +99,13 @@ setup: setup-osarch-specific
 
 .PHONY: lint
 lint: pylint mypy bandit black flake8 isort
+
+# -----------------------------------------------------------------------------
+# Format
+# -----------------------------------------------------------------------------
+
+.PHONY: format
+format: install-prettier prettier
 
 # -----------------------------------------------------------------------------
 # Build
@@ -214,7 +219,7 @@ bandit:
 bearer:
 	$(info ${\n})
 	$(info --- bearer ---------------------------------------------------------------------)
-	@$(activate-venv); @bearer scan --config-file .github/linters/bearer.yml .
+	@$(activate-venv); bearer scan --config-file .github/linters/bearer.yml .
 
 
 .PHONY: black
@@ -228,7 +233,7 @@ black:
 cspell:
 	$(info ${\n})
 	$(info --- cspell ---------------------------------------------------------------------)
-	@cspell lint --dot .
+	cspell lint --dot .
 
 
 .PHONY: flake8
@@ -251,6 +256,11 @@ mypy:
 	$(info --- mypy -----------------------------------------------------------------------)
 	@$(activate-venv); mypy --strict $(shell git ls-files '*.py' ':!:docs/source/*')
 
+.PHONY: prettier
+prettier:
+	$(info ${\n})
+	$(info --- prettier ----------------------------------------------------------------------)
+	@npx prettier --write "**/*.{json,md,yml,yaml}"
 
 .PHONY: pydoc
 pydoc:

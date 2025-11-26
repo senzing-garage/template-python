@@ -4,6 +4,7 @@
 # Variables
 # -----------------------------------------------------------------------------
 
+SENZING_DIR ?= /opt/senzing/er
 SENZING_TOOLS_SENZING_DIRECTORY ?= $(SENZING_DIR)
 LD_LIBRARY_PATH ?= $(SENZING_TOOLS_SENZING_DIRECTORY)/lib
 SENZING_TOOLS_DATABASE_URL ?= sqlite3://na:na@nowhere/tmp/sqlite/G2C.db
@@ -32,17 +33,13 @@ clean-osarch-specific:
 .PHONY: coverage-osarch-specific
 coverage-osarch-specific: export SENZING_LOG_LEVEL=TRACE
 coverage-osarch-specific:
-	@$(activate-venv); pytest --cov=src --cov-report=xml  $(shell git ls-files '*.py')
+	@$(activate-venv); pytest --cov=src --cov-report=xml $(shell git ls-files '*.py')
 	@$(activate-venv); coverage html
-	@xdg-open $(MAKEFILE_DIRECTORY)/htmlcov/index.html
+	@xdg-open $(MAKEFILE_DIRECTORY)/htmlcov/index.html 1>/dev/null 2>&1
 
 
 .PHONY: dependencies-for-development-osarch-specific
 dependencies-for-development-osarch-specific:
-
-
-.PHONY: dependencies-for-documentation-osarch-specific
-dependencies-for-documentation-osarch-specific:
 
 
 .PHONY: docker-build-osarch-specific
@@ -56,7 +53,7 @@ docker-build-osarch-specific:
 .PHONY: documentation-osarch-specific
 documentation-osarch-specific:
 	@$(activate-venv); cd docs; rm -rf build; make html
-	@xdg-open file://$(MAKEFILE_DIRECTORY)/docs/build/html/index.html  1>/dev/null 2>&1
+	@xdg-open file://$(MAKEFILE_DIRECTORY)/docs/build/html/index.html 1>/dev/null 2>&1
 
 
 .PHONY: hello-world-osarch-specific

@@ -31,6 +31,7 @@ import os
 import signal
 import sys
 import time
+from importlib.metadata import PackageNotFoundError, version
 from types import FrameType, TracebackType
 from typing import Any, Callable, Collection, Dict, List
 
@@ -41,9 +42,12 @@ from template_python import example
 # Metadata
 
 __all__: List[str] = []
-__version__ = "1.0.0"  # See https://www.python.org/dev/peps/pep-0396/
-__date__ = "2019-07-16"
 __updated__ = "2024-07-24"
+try:
+    __version__ = version("template_python")
+except PackageNotFoundError:
+    # package is not installed
+    pass
 
 # See https://github.com/senzing-garage/knowledge-base/blob/main/lists/senzing-product-ids.md
 

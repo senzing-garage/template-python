@@ -2,17 +2,17 @@
 # Stages
 # -----------------------------------------------------------------------------
 
-ARG IMAGE_FINAL=debian:11.9-slim
+ARG IMAGE_FINAL=debian:13-slim@sha256:18764e98673c3baf1a6f8d960b5b5a1ec69092049522abac4e24a7726425b016
 
 # -----------------------------------------------------------------------------
 # Stage: builder
 # -----------------------------------------------------------------------------
 
 FROM ${IMAGE_FINAL} AS builder
-ENV REFRESHED_AT=2024-07-01
+ENV REFRESHED_AT=2025-09-01
 LABEL Name="senzing/python-builder" \
       Maintainer="support@senzing.com" \
-      Version="0.1.0"
+      Version="1.2.8"
 
 # Run as "root" for system installation.
 
@@ -21,7 +21,8 @@ USER root
 # Install packages via apt-get.
 
 RUN apt-get update \
- && apt-get -y install \
+ && apt-get -y --no-install-recommends install \
+      git \
       python3 \
       python3-dev \
       python3-pip \
@@ -34,19 +35,18 @@ RUN apt-get update \
 RUN python3 -m venv /app/venv
 ENV PATH="/app/venv/bin:$PATH"
 
+COPY . /git-repository
+WORKDIR /git-repository
+
 # Install packages via PIP.
 
-COPY requirements.txt ./
 RUN python3 -m pip install --upgrade pip \
- && python3 -m pip install -r requirements.txt \
- && python3 -m pip install build \
- && rm requirements.txt
+ && python3 -m pip install . \
+ && python3 -m pip install build
 
 # Build Python wheel file.
 
-COPY . /git-repository
-WORKDIR /git-repository
-RUN cp template-python.py src/template_python/main_entry.py \
+RUN cp src/template_python/template-python.py src/template_python/main_entry.py \
  && python3 -m build \
  && python3 -m pip install dist/*.whl
 
@@ -55,17 +55,18 @@ RUN cp template-python.py src/template_python/main_entry.py \
 # -----------------------------------------------------------------------------
 
 FROM ${IMAGE_FINAL} AS final
-ENV REFRESHED_AT=2024-07-01
+ENV REFRESHED_AT=2025-09-01
 LABEL Name="senzing/template-python" \
       Maintainer="support@senzing.com" \
-      Version="1.2.6"
+      Version="1.2.8"
+
 HEALTHCHECK CMD ["/app/healthcheck.sh"]
 USER root
 
 # Install packages via apt-get.
 
 RUN apt-get update \
- && apt-get -y install \
+ && apt-get -y --no-install-recommends install \
       python3 \
       python3-pip \
       python3-venv \

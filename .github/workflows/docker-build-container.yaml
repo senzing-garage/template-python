@@ -5,11 +5,16 @@ on:
     branches: [main]
   workflow_dispatch:
 
-permissions:
-  contents: read
+concurrency:
+  group: docker-build-container-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+permissions: {}
 
 jobs:
   docker-build-container:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
 
     steps:
