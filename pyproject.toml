@@ -52,7 +52,7 @@ development = [
 ]
 documentation = [
   "autodocsumm==0.2.14; python_version < '3.10'",
-  "myst_parser==3.0.1; python_version <= '3.11'",
+  "myst_parser==3.0.1; python_version <= '3.10'",
   "sphinx-autodoc-typehints==3.6.0; python_version > '3.11'",
   "sphinx-gallery==0.20.0; python_version > '3.11'",
   "sphinx-jinja2-compat==0.4.1; python_version > '3.11'",
