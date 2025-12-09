@@ -79,7 +79,8 @@ lint = [
   "isort==6.1.0; python_version <= '3.11'",
   "isort==7.0.0; python_version > '3.11'",
   "mypy==1.19.0",
-  "pylint==4.0.4",
+  "pylint==3.3.9; python_version <= '3.11'",
+  "pylint==4.0.4; python_version > '3.11'",
   "pylint-per-file-ignores==3.2.0",
 ]
 test = [
