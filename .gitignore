@@ -159,3 +159,4 @@ cython_debug/
 .history
 
 .settings
+.settings.local.json
