@@ -58,7 +58,7 @@ documentation = [
   "sphinx-prompt==1.9.0; python_version > '3.11'",
   "sphinx-rtd-theme==3.0.2; python_version > '3.11'",
   "sphinx-tabs==3.4.*; python_version > '3.11'",
-  "sphinx-toolbox==4.0.0; python_version > '3.11'",
+  "sphinx-toolbox==4.1.0; python_version > '3.11'",
   "sphinxcontrib-applehelp==2.0.0; python_version > '3.11'",
   "sphinxcontrib-devhelp==2.0.0; python_version > '3.11'",
   "sphinxcontrib-htmlhelp==2.1.0; python_version > '3.11'",
@@ -73,7 +73,7 @@ lint = [
   "black==25.11.0",
   "flake8==7.3.0",
   "isort==6.1.0",
-  "mypy==1.18.2",
+  "mypy==1.19.0",
   "pylint==3.3.9",
   "pylint-per-file-ignores==2.0.3",
 ]
