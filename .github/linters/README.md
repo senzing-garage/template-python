@@ -8,12 +8,12 @@
   - [jscpd configuration]
   - Example:
 
-    ```json
-    {
+      ```json
+      {
       "ignore": ["**/*.go,**/go-test*.yaml"],
       "threshold": 10
-    }
-    ```
+      }
+      ```
 
 ## .yaml-lint.yml
 
