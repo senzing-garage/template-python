@@ -19,9 +19,6 @@ permissions: {}
 
 jobs:
   pytest-windows:
-    concurrency:
-      group: pytest-windows-${{ matrix.senzingsdk-version }}-${{ matrix.python-version }}-${{ github.head_ref || github.ref_name }}
-      cancel-in-progress: true
     name: "Pytest with Senzing: ${{ matrix.senzingsdk-version }}; OS: windows-latest; Python ${{ matrix.python-version }}"
     permissions:
       contents: read
