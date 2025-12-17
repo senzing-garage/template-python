@@ -1,4 +1,4 @@
-name: black
+name: Black
 
 on:
   pull_request:
@@ -12,7 +12,7 @@ permissions: {}
 
 jobs:
   black:
-    name: black Python ${{ matrix.python-version }}
+    name: Black Python ${{ matrix.python-version }}
     permissions:
       contents: read
     runs-on: ubuntu-latest

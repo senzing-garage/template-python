@@ -1,4 +1,4 @@
-name: isort
+name: Isort
 
 on:
   pull_request:

@@ -1,4 +1,4 @@
-name: pytest linux
+name: Pytest linux
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
     concurrency:
       group: pytest-linux-${{ matrix.senzingsdk-version }}-${{ matrix.python-version }}-${{ github.head_ref || github.ref_name }}
       cancel-in-progress: true
-    name: "pytest with Senzing: ${{ matrix.senzingsdk-version }}; OS: ${{ matrix.os }}; Python ${{ matrix.python-version }}"
+    name: "Pytest with Senzing: ${{ matrix.senzingsdk-version }}; OS: ${{ matrix.os }}; Python ${{ matrix.python-version }}"
     permissions:
       contents: read
     runs-on: ${{ matrix.os }}
@@ -92,7 +92,7 @@ jobs:
       - name: Store coverage file
         uses: actions/upload-artifact@v6
         with:
-          name: "coverage-${{ matrix.python-version }}-${{ matrix.senzingsdk-version }}"
+          name: "Coverage-${{ matrix.python-version }}-${{ matrix.senzingsdk-version }}"
           path: "coverage.${{ matrix.python-version }}-${{ matrix.senzingsdk-version }}"
 
   coverage:

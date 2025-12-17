@@ -1,4 +1,4 @@
-name: pytest windows
+name: Pytest windows
 
 on:
   pull_request:
@@ -18,7 +18,7 @@ jobs:
     concurrency:
       group: pytest-windows-${{ matrix.senzingsdk-version }}-${{ matrix.python-version }}-${{ github.head_ref || github.ref_name }}
       cancel-in-progress: true
-    name: "pytest with Senzing: ${{ matrix.senzingsdk-version }}; OS: windows-latest; Python ${{ matrix.python-version }}"
+    name: "Pytest with Senzing: ${{ matrix.senzingsdk-version }}; OS: windows-latest; Python ${{ matrix.python-version }}"
     permissions:
       contents: read
     runs-on: windows-latest
@@ -85,7 +85,7 @@ jobs:
       - name: Store coverage file
         uses: actions/upload-artifact@v6
         with:
-          name: "coverage-${{ matrix.python-version }}-${{ matrix.senzingsdk-version }}"
+          name: "Coverage-${{ matrix.python-version }}-${{ matrix.senzingsdk-version }}"
           path: "coverage.${{ matrix.python-version }}-${{ matrix.senzingsdk-version }}"
 
   coverage:
