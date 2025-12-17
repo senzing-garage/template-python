@@ -1,4 +1,4 @@
-# Best practices
+# template-python best practices
 
 ## README.md
 
