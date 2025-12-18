@@ -87,7 +87,7 @@ jobs:
       - name: Store coverage file
         uses: actions/upload-artifact@v6
         with:
-          name: "Coverage-${{ matrix.python-version }}-${{ matrix.senzingsdk-version }}"
+          name: "coverage-${{ matrix.python-version }}-${{ matrix.senzingsdk-version }}"
           path: "coverage.${{ matrix.python-version }}-${{ matrix.senzingsdk-version }}"
 
   coverage:
