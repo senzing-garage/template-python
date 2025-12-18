@@ -1,4 +1,4 @@
-name: pytest linux
+name: Pytest linux
 
 on:
   push:
@@ -8,6 +8,10 @@ on:
   schedule:
     - cron: "15 7 * * *"
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
 env:
   PYTHONPATH: ${{ github.workspace }}/src
   SENZING_TOOLS_DATABASE_URL: sqlite3://na:na@nowhere/tmp/sqlite/G2C.db
@@ -16,10 +20,7 @@ permissions: {}
 
 jobs:
   pytest-linux:
-    concurrency:
-      group: pytest-linux-${{ matrix.senzingsdk-version }}-${{ matrix.python-version }}-${{ github.head_ref || github.ref_name }}
-      cancel-in-progress: true
-    name: "pytest with Senzing: ${{ matrix.senzingsdk-version }}; OS: ${{ matrix.os }}; Python ${{ matrix.python-version }}"
+    name: "Pytest with Senzing: ${{ matrix.senzingsdk-version }}; OS: ${{ matrix.os }}; Python ${{ matrix.python-version }}"
     permissions:
       contents: read
     runs-on: ${{ matrix.os }}
@@ -29,6 +30,7 @@ jobs:
         os: [ubuntu-latest]
         python-version: ["3.10", "3.11", "3.12", "3.13"]
         senzingsdk-version: [production-v4, staging-v4]
+    timeout-minutes: 30
 
     steps:
       - name: Checkout repository

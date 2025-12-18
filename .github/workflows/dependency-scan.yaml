@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 concurrency:
-  group: pip-audit-${{ github.head_ref || github.ref_name }}
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref_name }}
   cancel-in-progress: true
 
 permissions: {}
@@ -19,6 +19,7 @@ jobs:
       fail-fast: false
       matrix:
         python-version: ["3.13"]
+    timeout-minutes: 10
 
     steps:
       - name: Checkout repository
