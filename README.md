@@ -1,4 +1,4 @@
-# template-python
+s# template-python
 
 If you are beginning your journey with [Senzing],
 please start with [Senzing Quick Start guides].
@@ -18,7 +18,7 @@ the recommendation is not to use it yet.
 
 This section should give 1-2 sentences on what the artifacts in this repository do.
 
-[![Python 3.11 Badge]][Python 3.11]
+[![Python 3.13 Badge]][Python 3.13]
 [![PEP8 Badge]][PEP8]
 [![PyPI version Badge]][PyPi version]
 [![Downloads Badge]][Downloads]
@@ -79,8 +79,8 @@ Configuration values specified by environment variable or command line parameter
 [PEP8]: https://www.python.org/dev/peps/pep-0008/
 [PyPI version Badge]: https://badge.fury.io/py/template-python.svg
 [PyPi version]: https://badge.fury.io/py/template-python
-[Python 3.11 Badge]: https://img.shields.io/badge/python-3.11-blue.svg
-[Python 3.11]: https://www.python.org/downloads/release/python-3110/
+[Python 3.13 Badge]: https://img.shields.io/badge/python-3.13-blue.svg
+[Python 3.13]: https://www.python.org/downloads/release/python-3130/
 [Senzing Garage]: https://github.com/senzing-garage
 [Senzing Quick Start guides]: https://docs.senzing.com/quickstart/
 [SENZING_DATABASE_URL]: https://github.com/senzing-garage/knowledge-base/blob/main/lists/environment-variables.md#senzing_database_url
