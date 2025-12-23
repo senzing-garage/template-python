@@ -233,7 +233,7 @@ black:
 cspell:
 	$(info ${\n})
 	$(info --- cspell ---------------------------------------------------------------------)
-	cspell lint --dot .
+	@$(activate-venv); cspell lint --dot .
 
 
 .PHONY: flake8
