@@ -38,10 +38,6 @@ coverage-osarch-specific:
 	@xdg-open $(MAKEFILE_DIRECTORY)/htmlcov/index.html 1>/dev/null 2>&1
 
 
-.PHONY: dependencies-for-development-osarch-specific
-dependencies-for-development-osarch-specific:
-
-
 .PHONY: docker-build-osarch-specific
 docker-build-osarch-specific:
 	@docker build \
