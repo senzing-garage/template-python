@@ -2,14 +2,14 @@
 # Stages
 # -----------------------------------------------------------------------------
 
-ARG IMAGE_FINAL=debian:13-slim@sha256:e711a7b30ec1261130d0a121050b4ed81d7fb28aeabcf4ea0c7876d4e9f5aca2
+ARG IMAGE_FINAL=debian:13-slim@sha256:4bcb9db66237237d03b55b969271728dd3d955eaaa254b9db8a3db94550b1885
 
 # -----------------------------------------------------------------------------
 # Stage: builder
 # -----------------------------------------------------------------------------
 
 FROM ${IMAGE_FINAL} AS builder
-ENV REFRESHED_AT=2025-09-01
+ENV REFRESHED_AT=2026-01-05
 LABEL Name="senzing/python-builder" \
       Maintainer="support@senzing.com" \
       Version="1.2.8"
@@ -55,7 +55,7 @@ RUN cp src/template_python/template-python.py src/template_python/main_entry.py 
 # -----------------------------------------------------------------------------
 
 FROM ${IMAGE_FINAL} AS final
-ENV REFRESHED_AT=2025-09-01
+ENV REFRESHED_AT=2026-01-05
 LABEL Name="senzing/template-python" \
       Maintainer="support@senzing.com" \
       Version="1.2.8"
