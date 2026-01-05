@@ -81,6 +81,7 @@ dependencies: venv
 		python3 -m pip install --upgrade pip; \
 		python3 -m pip install -e .
 
+
 .PHONY: install-prettier
 install-prettier:
 	@command -v npx >/dev/null 2>&1 || { echo "npm is required but not installed. Aborting." >&2; exit 1; }
@@ -112,7 +113,11 @@ format: install-prettier prettier
 # -----------------------------------------------------------------------------
 
 .PHONY: docker-build
-docker-build: docker-build-osarch-specific
+docker-build:
+	@docker build \
+		--tag $(DOCKER_IMAGE_NAME) \
+		--tag $(DOCKER_IMAGE_NAME):$(BUILD_VERSION) \
+		.
 
 # -----------------------------------------------------------------------------
 # Run
@@ -137,7 +142,8 @@ run:
 # -----------------------------------------------------------------------------
 
 .PHONY: test
-test: test-osarch-specific
+test:
+	@$(activate-venv); pytest
 
 
 .PHONY: docker-test
