@@ -69,7 +69,7 @@ venv: venv-osarch-specific
 
 
 .PHONY: dependencies-for-development
-dependencies-for-development: venv dependencies-for-development-osarch-specific
+dependencies-for-development: venv
 	$(activate-venv); \
 		python3 -m pip install --upgrade pip; \
 		python3 -m pip install --group all
@@ -80,6 +80,7 @@ dependencies: venv
 	$(activate-venv); \
 		python3 -m pip install --upgrade pip; \
 		python3 -m pip install -e .
+
 
 .PHONY: install-prettier
 install-prettier:
@@ -112,7 +113,11 @@ format: install-prettier prettier
 # -----------------------------------------------------------------------------
 
 .PHONY: docker-build
-docker-build: docker-build-osarch-specific
+docker-build:
+	@docker build \
+		--tag $(DOCKER_IMAGE_NAME) \
+		--tag $(DOCKER_IMAGE_NAME):$(BUILD_VERSION) \
+		.
 
 # -----------------------------------------------------------------------------
 # Run
@@ -137,7 +142,8 @@ run:
 # -----------------------------------------------------------------------------
 
 .PHONY: test
-test: test-osarch-specific
+test:
+	@$(activate-venv); pytest
 
 
 .PHONY: docker-test

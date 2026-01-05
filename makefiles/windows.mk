@@ -34,18 +34,6 @@ coverage-osarch-specific:
 	@explorer $(MAKEFILE_DIRECTORY)/htmlcov/index.html
 
 
-.PHONY: dependencies-for-development-osarch-specific
-dependencies-for-development-osarch-specific:
-
-
-.PHONY: docker-build-osarch-specific
-docker-build-osarch-specific:
-	@docker build \
-		--tag $(DOCKER_IMAGE_NAME) \
-		--tag $(DOCKER_IMAGE_NAME):$(BUILD_VERSION) \
-		.
-
-
 .PHONY: documentation-osarch-specific
 documentation-osarch-specific:
 	# @cd docs; rm -rf build; make html
@@ -67,11 +55,6 @@ package-osarch-specific:
 .PHONY: setup-osarch-specific
 setup-osarch-specific:
 	$(info No setup required.)
-
-
-.PHONY: test-osarch-specific
-test-osarch-specific:
-	@$(activate-venv); pytest
 
 
 .PHONY: venv-osarch-specific
