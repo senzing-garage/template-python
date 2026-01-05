@@ -1,4 +1,4 @@
-s# template-python
+# template-python
 
 If you are beginning your journey with [Senzing],
 please start with [Senzing Quick Start guides].
