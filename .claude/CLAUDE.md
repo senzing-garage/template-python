@@ -21,7 +21,7 @@ source .venv/bin/activate           # Activate virtual environment
 ```bash
 make lint           # Run all linters (pylint, mypy, bandit, black, flake8, isort)
 make pylint         # Run pylint only
-make mypy           # Run mypy with --strict
+make mypy           # Run mypy
 make black          # Format with black
 make isort          # Sort imports
 make flake8         # Run flake8
@@ -55,7 +55,7 @@ make docker-build   # Build Docker image
 
 - Python 3.10+ required
 - Black formatting with 120 character line length
-- Strict mypy type checking
+- Mypy type checking
 - isort configured for black compatibility
 - flake8 extends ignore for black compatibility (E203, E501, E704, W503)
 
