@@ -6,6 +6,7 @@ on:
   schedule:
     - cron: "15 7 * * *"
   workflow_dispatch:
+# If not running on cron schedule, remove schedule: key
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref_name }}
@@ -59,7 +60,7 @@ jobs:
         with:
           senzingsdk-version: ${{ matrix.senzingsdk-version }}
 
-      - name: Add to "Path" environment variable
+      - name: Set environment variables
         run: |
           Add-Content "$env:GITHUB_PATH" "$Env:USERPROFILE\Senzing\er\lib"
 
